@@ -2,6 +2,7 @@
 
 ## Priority 1: Foundation (Must Complete First)
 
+- [x] Update Next.js to patched version for Vercel security warning
 - [ ] Initialize Next.js 14 project with App Router
 - [ ] Configure Tailwind CSS with custom theme (neutral base, single accent)
 - [ ] Set up project structure: `/app`, `/components`, `/content`, `/lib`
