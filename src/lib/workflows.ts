@@ -10,6 +10,7 @@ export interface Workflow {
   setupTime: string
   benefit: string
   steps: string[]
+  proTips?: string[]
   useCases: {
     scenario: string
     outcome: string
@@ -50,6 +51,12 @@ export const workflows: Workflow[] = [
       "Prompt: 'Add backend API and database for this frontend'",
       "Claude Code wires up the full stack automatically",
     ],
+    proTips: [
+      "Use Google Antigravity (in AI Studio) to access Opus 4.5 for free—ideal for complex frontend generation.",
+      "Google AI Studio + Gemini is best for visual-to-code tasks (screenshots, mockups).",
+      "Claude Code + Opus is best for complex backend logic, architecture decisions, and debugging.",
+      "Combine both: Gemini for frontend, Claude for backend = best of both worlds at minimal cost.",
+    ],
     useCases: [
       {
         scenario: "Recreate a landing page you admire",
@@ -73,6 +80,66 @@ export const workflows: Workflow[] = [
       {
         name: "Claude Code Docs",
         url: "https://docs.anthropic.com/claude-code",
+        type: "docs",
+      },
+    ],
+  },
+  {
+    slug: "free-opus-antigravity",
+    name: "Free Opus 4.5 via Antigravity",
+    tagline: "Access Claude's most powerful model at no cost through Google AI Studio",
+    tools: [
+      {
+        name: "Google AI Studio",
+        role: "Host for Antigravity agent chat",
+        url: "https://aistudio.google.com/app/",
+      },
+      {
+        name: "Claude Opus 4.5",
+        role: "Most powerful reasoning model",
+        url: "https://claude.ai",
+      },
+    ],
+    setupTime: "5 min",
+    benefit: "Use Claude Opus 4.5 without paying for Claude Pro",
+    steps: [
+      "Open your browser and go to aistudio.google.com/app/",
+      "Sign in with your Google account (free)",
+      "Look for 'Antigravity' in the agent/chat options",
+      "Select Antigravity—this gives you access to Claude Opus 4.5",
+      "Start chatting! You now have Opus-level reasoning for free",
+      "Use for complex tasks: architecture decisions, deep analysis, nuanced writing",
+    ],
+    proTips: [
+      "Antigravity = Free Opus 4.5. Perfect for occasional heavy-duty tasks without a subscription.",
+      "When to use Antigravity: Complex reasoning, architecture decisions, difficult debugging.",
+      "When to use Claude Code: Hands-on coding, file editing, terminal operations.",
+      "Combine both: Plan with Antigravity (free), execute with Claude Code (fast).",
+      "Antigravity has usage limits—save it for tasks that truly need Opus-level thinking.",
+    ],
+    useCases: [
+      {
+        scenario: "Need Opus-level reasoning without subscription",
+        outcome: "Access the most powerful model for free",
+      },
+      {
+        scenario: "Complex architecture decision",
+        outcome: "Get Opus-quality analysis without paying",
+      },
+      {
+        scenario: "Debugging a tricky problem",
+        outcome: "Opus reasoning helps find root cause",
+      },
+    ],
+    resources: [
+      {
+        name: "Google AI Studio",
+        url: "https://aistudio.google.com/app/",
+        type: "website",
+      },
+      {
+        name: "Claude Model Comparison",
+        url: "https://www.anthropic.com/claude",
         type: "docs",
       },
     ],

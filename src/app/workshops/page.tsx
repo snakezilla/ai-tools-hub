@@ -32,7 +32,7 @@ const WORKSHOP_PACKAGES = [
       "Live Q&A and troubleshooting",
       "30-day email support",
     ],
-    price: "$1,500",
+    price: "$2,000",
   },
   {
     name: "Full Implementation",
@@ -46,7 +46,7 @@ const WORKSHOP_PACKAGES = [
       "Individual coaching sessions",
       "90-day email support",
     ],
-    price: "$3,000",
+    price: "$3,300",
     popular: true,
   },
   {

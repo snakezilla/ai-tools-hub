@@ -145,6 +145,26 @@ export function ToolCard({ tool, variant = "grid" }: ToolCardProps) {
         </ol>
       </div>
 
+      {/* Pro Tips */}
+      {tool.proTips && tool.proTips.length > 0 && (
+        <div className="p-4 md:p-8 border-b border-border bg-accent/5">
+          <h2 className="text-heading-sm text-card-foreground mb-4 md:mb-6 flex items-center gap-2">
+            <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            Pro Tips
+          </h2>
+          <ul className="space-y-3">
+            {tool.proTips.map((tip, index) => (
+              <li key={index} className="flex items-start gap-3">
+                <span className="text-accent font-bold text-lg leading-none mt-0.5">•</span>
+                <span className="text-card-foreground text-sm md:text-base">{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {/* Privacy Flags */}
       <div className="p-4 md:p-8 border-b border-border bg-background">
         <h2 className="text-heading-sm text-card-foreground mb-4 flex items-center gap-2">
