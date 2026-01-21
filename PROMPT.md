@@ -51,9 +51,8 @@ These are the "Big 7+" that every user should know:
 3. **Claude Skills** - 50+ specialized extensions for Claude Code
 4. **ChatGPT** - All-rounder, voice mode, GPT-5 (OpenAI)
 5. **Manus AI** - Autonomous agent, end-to-end task execution (Meta)
-6. **Microsoft Copilot** - Office automation, Excel/PowerPoint (Microsoft)
-7. **Zapier** - No-code automation across 8,000+ apps
-8. **Perplexity** - AI-powered research and search
+6. **Zapier** - No-code automation across 8,000+ apps
+7. **Perplexity** - AI-powered research and search
 
 Each foundation tool links to niche branches:
 - Claude Code → Cursor, Windsurf, Cline

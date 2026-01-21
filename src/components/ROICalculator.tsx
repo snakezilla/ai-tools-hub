@@ -25,9 +25,9 @@ const TASKS = [
 const TOOL_RECOMMENDATIONS: Record<string, string[]> = {
   writing: ["claude", "chatgpt"],
   research: ["perplexity", "claude"],
-  data: ["chatgpt", "microsoft-copilot"],
+  data: ["chatgpt"],
   email: ["claude", "chatgpt"],
-  presentations: ["manus-ai", "microsoft-copilot"],
+  presentations: ["manus-ai"],
   scheduling: ["zapier"],
   coding: ["claude-code"],
   automation: ["zapier"],
@@ -78,7 +78,6 @@ export function ROICalculator() {
       "manus-ai": "Manus AI",
       perplexity: "Perplexity",
       zapier: "Zapier",
-      "microsoft-copilot": "Microsoft Copilot",
     }
     return names[slug] || slug
   }

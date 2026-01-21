@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     "Claude",
     "ChatGPT",
     "Manus AI",
-    "Microsoft Copilot",
     "Zapier",
     "Perplexity",
     "productivity",

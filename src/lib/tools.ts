@@ -238,52 +238,6 @@ export const tools: Tool[] = [
     isFoundation: true,
   },
   {
-    slug: "microsoft-copilot",
-    name: "Microsoft Copilot",
-    tagline: "AI assistant integrated with Office 365 apps",
-    setupTime: "5 min",
-    cost: "$30/user/mo",
-    privacy: "green",
-    timeSaved: "5-10 hrs/week",
-    useCases: [
-      {
-        role: "Office Worker",
-        task: "Generate PowerPoint from a document",
-        outcome: "Create presentations in minutes",
-      },
-      {
-        role: "Analyst",
-        task: "Analyze Excel data with natural language",
-        outcome: "Skip complex formulas",
-      },
-      {
-        role: "Manager",
-        task: "Draft emails and documents in Word",
-        outcome: "Write professional content faster",
-      },
-    ],
-    quickstart: [
-      "Ensure you have Microsoft 365 subscription",
-      "Enable Copilot in admin center",
-      "Open any Office app (Word, Excel, PowerPoint)",
-      'Click the Copilot icon and try: "Create a project status report"',
-    ],
-    privacyFlags: {
-      dataRetention: "Enterprise-grade",
-      trainingOnData: "No (Microsoft commitment)",
-      enterpriseOption: "Yes (built-in)",
-    },
-    relatedTools: [
-      {
-        name: "Google Workspace AI",
-        useCase: "Alternative for Google ecosystem",
-        slug: "google-workspace-ai",
-      },
-    ],
-    category: "Office Productivity",
-    isFoundation: true,
-  },
-  {
     slug: "zapier",
     name: "Zapier",
     tagline: "No-code automation connecting 8,000+ apps",

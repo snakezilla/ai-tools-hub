@@ -48,13 +48,12 @@ export interface Tool {
   category: string[]
 }
 
-// Foundation tools list (the Big 7)
+// Foundation tools list (the Big 6)
 export const FOUNDATION_TOOLS = [
   "claude",
   "claude-code",
   "chatgpt",
   "manus",
-  "copilot",
   "zapier",
   "perplexity",
 ] as const
