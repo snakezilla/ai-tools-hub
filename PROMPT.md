@@ -1,43 +1,369 @@
-# Ralph Development Instructions
+# AI Tools Education Hub - Ralph Development Instructions
 
-## Context
-You are Ralph, an autonomous AI development agent working on a [YOUR PROJECT NAME] project.
+## Project Vision
 
-## Current Objectives
-1. Study specs/* to learn about the project specifications
-2. Review @fix_plan.md for current priorities
-3. Implement the highest priority item using best practices
-4. Use parallel subagents for complex tasks (max 100 concurrent)
-5. Run tests after each implementation
-6. Update documentation and fix_plan.md
+Build a clean, Figma-level website that teaches non-technical users (marketers, accountants, home users, small teams) how to use high-impact AI tools that didn't exist a year ago. Free educational content that delivers massive value, with paid in-person workshops as the business model.
+
+**Core Philosophy:** Algorithmic, zero-fluff content. Every tool gets a "5-Minute Mastery" card. No essays, no hype—just actionable steps.
+
+---
+
+## Architecture
+
+### Site Structure
+
+```
+Homepage
+├── Hero: "AI tools that save 10+ hours/week. Learn them in 5 minutes."
+├── ROI Calculator CTA (primary conversion)
+├── Foundation Tools Grid (5-7 generalist tools with auto-play demos)
+│
+├── /tools/[tool-name] (individual tool pages)
+│   ├── 5-Minute Mastery Card
+│   ├── Auto-playing demo loop (5-8 sec)
+│   ├── Related niche tools (branches)
+│   └── "Calculate your savings" CTA
+│
+├── /category/[role] (optional browse by role)
+│   ├── Marketing
+│   ├── Accounting & Finance
+│   ├── Operations
+│   └── Home & Personal
+│
+├── /workshops (paid offering)
+│   ├── ROI calculator results → booking flow
+│   └── Team workshop packages
+│
+└── /about (credibility, story)
+```
+
+### Foundation Tools (Generalist Hub)
+
+These are the "Big 5-7" that every user should know:
+
+1. **Claude** - Reasoning, writing, analysis (Anthropic)
+2. **Claude Code** - Terminal-based coding assistant (Anthropic)
+3. **ChatGPT** - All-rounder, voice mode, GPT-5 (OpenAI)
+4. **Manus AI** - Autonomous agent, end-to-end task execution (Meta)
+5. **Microsoft Copilot** - Office automation, Excel/PowerPoint (Microsoft)
+6. **Zapier** - No-code automation across 8,000+ apps
+7. **Perplexity** - AI-powered research and search
+
+Each foundation tool links to niche branches:
+- Claude Code → Cursor, Windsurf, Cline
+- Zapier → Make, n8n, Power Automate
+- Manus → Devin, AutoGPT, CrewAI
+
+---
+
+## Content Format: "5-Minute Mastery" Card
+
+Every tool page follows this EXACT template:
+
+```
+┌─────────────────────────────────────────────────────┐
+│ [TOOL NAME]                                         │
+│ One-line description of what it does                │
+├─────────────────────────────────────────────────────┤
+│ ⏱️ Setup: X minutes  │  💰 Cost: Free/$X/mo        │
+│ 🔒 Privacy: [FLAG]   │  ⚡ Time saved: X hrs/week  │
+├─────────────────────────────────────────────────────┤
+│ [AUTO-PLAY DEMO LOOP - 5-8 seconds]                 │
+│ Shows: prompt → processing → output                 │
+├─────────────────────────────────────────────────────┤
+│ 3 USE CASES                                         │
+│ 1. [Role]: [Specific task] → [Outcome]              │
+│ 2. [Role]: [Specific task] → [Outcome]              │
+│ 3. [Role]: [Specific task] → [Outcome]              │
+├─────────────────────────────────────────────────────┤
+│ QUICKSTART (numbered steps)                         │
+│ 1. Go to [URL]                                      │
+│ 2. [Action]                                         │
+│ 3. [Action]                                         │
+│ 4. Try this prompt: "[example]"                     │
+├─────────────────────────────────────────────────────┤
+│ 🚨 PRIVACY FLAGS                                    │
+│ • Data retention: [Yes/No/Configurable]             │
+│ • Training on your data: [Yes/No/Opt-out]           │
+│ • Enterprise option: [Yes/No]                       │
+├─────────────────────────────────────────────────────┤
+│ RELATED TOOLS (niche branches)                      │
+│ → [Tool 1] - for [specific use case]                │
+│ → [Tool 2] - for [specific use case]                │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## Demo Loop Specifications (Built with Remotion)
+
+Each tool needs a 5-8 second auto-playing, silent, looping video. **Use Remotion** to generate these programmatically with React—no screen recording needed.
+
+### Why Remotion
+- Videos are code (React components) → easy to update when tools change
+- Consistent style across all demos
+- Tiny file sizes (~500KB-1MB per video)
+- Claude Code can generate the animations from natural language prompts
+
+### Output Format
+- MP4 (H.264, compressed)
+- 1920x1080 or 1280x720
+- 30fps, 150-240 frames (5-8 seconds)
+- Auto-play, muted, loop on site
+
+### Standard Demo Structure (3-Act)
+
+```
+Act 1 (0-2 sec): THE PROMPT
+- Show a clean UI mockup of the tool
+- Typewriter animation types the user's prompt
+- Blinking cursor for realism
+
+Act 2 (2-4 sec): THE MAGIC
+- "Thinking" indicator (pulsing dots, spinner, or progress bar)
+- Optional: show brief "working" state
+
+Act 3 (4-7 sec): THE OUTPUT
+- Reveal the result with a smooth transition
+- Highlight key features with annotations
+- Show time saved: "10 min vs 4 hours"
+- Hold for 1 sec, then loop
+```
+
+### Remotion Project Structure
+
+```
+/remotion
+├── src/
+│   ├── compositions/
+│   │   ├── ClaudeDemo.tsx
+│   │   ├── ManusDemo.tsx
+│   │   ├── ZapierDemo.tsx
+│   │   └── ...
+│   ├── components/
+│   │   ├── MockTerminal.tsx      # Terminal UI for CLI tools
+│   │   ├── MockBrowser.tsx       # Browser chrome for web tools
+│   │   ├── Typewriter.tsx        # Typing animation
+│   │   ├── ThinkingIndicator.tsx # Loading states
+│   │   └── FeatureCallout.tsx    # Annotation bubbles
+│   ├── styles/
+│   │   └── theme.ts              # Consistent colors/fonts
+│   └── Root.tsx
+├── public/
+│   └── outputs/                  # Rendered MP4s go here
+└── remotion.config.ts
+```
+
+### Example: Manus Demo Composition
+
+```tsx
+// src/compositions/ManusDemo.tsx
+export const ManusDemo: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  // Act 1: Typewriter prompt (0-60 frames)
+  // Act 2: Thinking animation (60-120 frames)
+  // Act 3: Reveal PowerPoint output (120-210 frames)
+
+  return (
+    <AbsoluteFill style={{ backgroundColor: '#f8fafc' }}>
+      <MockBrowser url="manus.ai">
+        {frame < 60 && (
+          <Typewriter
+            text="Create a competitive analysis presentation for Acme Corp"
+            startFrame={10}
+            charsPerSecond={20}
+          />
+        )}
+        {frame >= 60 && frame < 120 && (
+          <ThinkingIndicator label="Manus is working..." />
+        )}
+        {frame >= 120 && (
+          <Sequence from={120}>
+            <PowerPointMockup />
+            <FeatureCallout
+              text="Fully editable • Your brand colors • 10 min vs 4 hrs"
+              position="bottom"
+            />
+          </Sequence>
+        )}
+      </MockBrowser>
+    </AbsoluteFill>
+  );
+};
+```
+
+### Rendering Demos
+
+```bash
+# Render single demo
+npx remotion render ManusDemo out/manus-demo.mp4
+
+# Render all demos
+npx remotion render --all
+```
+
+### For Each Tool, Create:
+1. A composition file in `/remotion/src/compositions/[ToolName]Demo.tsx`
+2. Appropriate mock UI (terminal for CLI tools, browser for web tools)
+3. Realistic prompt text showing a valuable use case
+4. Output that demonstrates the "wow factor"
+
+---
+
+## Hormozi Value Equation (Applied Implicitly)
+
+**Formula:** (Dream Outcome × Likelihood of Success) ÷ (Time × Effort) = Value
+
+Apply this through the metrics on every card:
+- **Dream Outcome:** "Time saved: X hrs/week" + specific use cases
+- **Likelihood of Success:** "Setup: 5 min" (it's that easy)
+- **Time Delay:** Quick start steps (you can do this NOW)
+- **Effort:** Numbered steps, copy-paste prompts (minimal friction)
+
+**DO NOT** explain the framework on the site. Let the structure do the selling.
+
+---
+
+## Design Specifications
+
+### Aesthetic: "Figma-level clean"
+
+- **Colors:** Neutral base (white/off-white), single accent color, dark text
+- **Typography:** Large, readable. Inter or similar. 18px+ body text.
+- **Spacing:** Generous whitespace. Cards breathe. Nothing cramped.
+- **Animations:** Subtle. Only the demo loops move. No bouncing, no parallax.
+- **Mobile-first:** Cards stack cleanly on mobile.
+
+### Reference sites for aesthetic:
+- linear.app (clean, professional)
+- stripe.com (demo loops)
+- notion.so (minimalist)
+- vercel.com (developer-friendly but accessible)
+
+### Anti-patterns to AVOID:
+- Gradients everywhere
+- Stock photos of people pointing at screens
+- "AI" buzzword graphics (robots, neural networks)
+- Testimonial carousels
+- Cookie banners that cover content
+- Newsletter popups
+
+---
+
+## ROI Calculator (Primary Conversion)
+
+Interactive calculator that shows potential savings:
+
+**Inputs:**
+- Team size
+- Primary tasks (checkboxes: content creation, data analysis, scheduling, etc.)
+- Current hours spent on these tasks
+
+**Output:**
+- Estimated hours saved per week
+- Estimated annual savings (hours × average hourly rate)
+- "Top 3 tools for your situation"
+
+**CTA:**
+"Want help implementing these tools for your team? Book a workshop."
+→ Links to workshop booking page
+
+---
+
+## Workshop Offering
+
+**Format:** In-person, half-day or full-day sessions for small teams (5-20 people)
+
+**Value proposition:**
+- Hands-on setup of 3-5 tools
+- Custom workflows for YOUR business
+- Q&A and troubleshooting
+- 90-day email support
+
+**Pricing strategy (Hormozi-aligned):**
+- Price anchored against cost of NOT having it (calculator shows this)
+- Guarantee: "If you don't save 10+ hours in the first month, full refund"
+
+---
+
+## Research Requirements
+
+### Ongoing tool discovery:
+1. Monitor Twitter/X for viral AI tool threads
+2. Track Product Hunt launches
+3. Follow key accounts: @levelsio, @marc_louvion, @danielgross, @skiaborai
+4. Verify claims before featuring (no vaporware)
+
+### Validation criteria for new tools:
+- [ ] Actually works (tested personally)
+- [ ] Setup under 30 minutes
+- [ ] Free tier or trial available
+- [ ] Clear privacy policy
+- [ ] Not just hype (real utility demonstrated)
+
+### Reference materials in this folder:
+- `pdfcoffee.com-alex-hormozi-100m-offers-how-to-make-offers-so-good-people-feel-stupid-saying-no-2021.pdf` - Value equation, offer structure
+- `dokumen.pub_100m-leads-how-to-get-strangers-to-want-to-buy-your-stuff.epub` - Lead generation, content strategy
+
+---
+
+## Technical Stack (Suggested)
+
+- **Framework:** Next.js 14+ (App Router)
+- **Styling:** Tailwind CSS
+- **CMS:** MDX for tool pages (easy to update)
+- **Demo Videos:** Remotion (React-based video generation)
+- **Hosting:** Vercel
+- **Analytics:** Plausible (privacy-friendly)
+- **Forms:** React Hook Form + Resend for emails
+
+---
+
+## Implementation Phases
+
+### Phase 1: Foundation
+- [ ] Set up Next.js project with Tailwind
+- [ ] Create 5-Minute Mastery card component
+- [ ] Build homepage with hero and grid
+- [ ] Implement 3 foundation tool pages (Claude, Claude Code, Manus)
+
+### Phase 2: Content & Demos
+- [ ] Add remaining foundation tools
+- [ ] Set up Remotion project in `/remotion` folder
+- [ ] Create reusable components: MockTerminal, MockBrowser, Typewriter, ThinkingIndicator
+- [ ] Build demo composition for each foundation tool
+- [ ] Render all demo MP4s to `/public/demos`
+- [ ] Add privacy flags research
+- [ ] Implement category browsing
+
+### Phase 3: Conversion
+- [ ] Build ROI calculator
+- [ ] Create workshop booking flow
+- [ ] Add analytics tracking
+
+### Phase 4: Polish
+- [ ] Mobile optimization
+- [ ] Performance optimization (Core Web Vitals)
+- [ ] SEO metadata
+- [ ] Social sharing previews
+
+---
 
 ## Key Principles
-- ONE task per loop - focus on the most important thing
-- Search the codebase before assuming something isn't implemented
-- Use subagents for expensive operations (file searching, analysis)
-- Write comprehensive tests with clear documentation
-- Update @fix_plan.md with your learnings
-- Commit working changes with descriptive messages
 
-## 🧪 Testing Guidelines (CRITICAL)
-- LIMIT testing to ~20% of your total effort per loop
-- PRIORITIZE: Implementation > Documentation > Tests
-- Only write tests for NEW functionality you implement
-- Do NOT refactor existing tests unless broken
-- Do NOT add "additional test coverage" as busy work
-- Focus on CORE functionality first, comprehensive testing later
+1. **Zero fluff** - If it doesn't help someone use the tool, cut it
+2. **Scannable** - Users should get value in under 60 seconds per tool
+3. **Honest** - Include privacy warnings, don't oversell
+4. **Generous** - Give away so much value that workshops feel like a steal
+5. **Current** - Tools change fast; build for easy updates
 
-## Execution Guidelines
-- Before making changes: search codebase using subagents
-- After implementation: run ESSENTIAL tests for the modified code only
-- If tests fail: fix them as part of your current work
-- Keep @AGENT.md updated with build/run instructions
-- Document the WHY behind tests and implementations
-- No placeholder implementations - build it properly
+---
 
-## 🎯 Status Reporting (CRITICAL - Ralph needs this!)
+## Status Reporting (Required for Ralph)
 
-**IMPORTANT**: At the end of your response, ALWAYS include this status block:
+At the end of each response, include:
 
 ```
 ---RALPH_STATUS---
@@ -48,234 +374,5 @@ TESTS_STATUS: PASSING | FAILING | NOT_RUN
 WORK_TYPE: IMPLEMENTATION | TESTING | DOCUMENTATION | REFACTORING
 EXIT_SIGNAL: false | true
 RECOMMENDATION: <one line summary of what to do next>
----END_RALPH_STATUS---
+---END_STATUS---
 ```
-
-### When to set EXIT_SIGNAL: true
-
-Set EXIT_SIGNAL to **true** when ALL of these conditions are met:
-1. ✅ All items in @fix_plan.md are marked [x]
-2. ✅ All tests are passing (or no tests exist for valid reasons)
-3. ✅ No errors or warnings in the last execution
-4. ✅ All requirements from specs/ are implemented
-5. ✅ You have nothing meaningful left to implement
-
-### Examples of proper status reporting:
-
-**Example 1: Work in progress**
-```
----RALPH_STATUS---
-STATUS: IN_PROGRESS
-TASKS_COMPLETED_THIS_LOOP: 2
-FILES_MODIFIED: 5
-TESTS_STATUS: PASSING
-WORK_TYPE: IMPLEMENTATION
-EXIT_SIGNAL: false
-RECOMMENDATION: Continue with next priority task from @fix_plan.md
----END_RALPH_STATUS---
-```
-
-**Example 2: Project complete**
-```
----RALPH_STATUS---
-STATUS: COMPLETE
-TASKS_COMPLETED_THIS_LOOP: 1
-FILES_MODIFIED: 1
-TESTS_STATUS: PASSING
-WORK_TYPE: DOCUMENTATION
-EXIT_SIGNAL: true
-RECOMMENDATION: All requirements met, project ready for review
----END_RALPH_STATUS---
-```
-
-**Example 3: Stuck/blocked**
-```
----RALPH_STATUS---
-STATUS: BLOCKED
-TASKS_COMPLETED_THIS_LOOP: 0
-FILES_MODIFIED: 0
-TESTS_STATUS: FAILING
-WORK_TYPE: DEBUGGING
-EXIT_SIGNAL: false
-RECOMMENDATION: Need human help - same error for 3 loops
----END_RALPH_STATUS---
-```
-
-### What NOT to do:
-- ❌ Do NOT continue with busy work when EXIT_SIGNAL should be true
-- ❌ Do NOT run tests repeatedly without implementing new features
-- ❌ Do NOT refactor code that is already working fine
-- ❌ Do NOT add features not in the specifications
-- ❌ Do NOT forget to include the status block (Ralph depends on it!)
-
-## 📋 Exit Scenarios (Specification by Example)
-
-Ralph's circuit breaker and response analyzer use these scenarios to detect completion.
-Each scenario shows the exact conditions and expected behavior.
-
-### Scenario 1: Successful Project Completion
-**Given**:
-- All items in @fix_plan.md are marked [x]
-- Last test run shows all tests passing
-- No errors in recent logs/
-- All requirements from specs/ are implemented
-
-**When**: You evaluate project status at end of loop
-
-**Then**: You must output:
-```
----RALPH_STATUS---
-STATUS: COMPLETE
-TASKS_COMPLETED_THIS_LOOP: 1
-FILES_MODIFIED: 1
-TESTS_STATUS: PASSING
-WORK_TYPE: DOCUMENTATION
-EXIT_SIGNAL: true
-RECOMMENDATION: All requirements met, project ready for review
----END_RALPH_STATUS---
-```
-
-**Ralph's Action**: Detects EXIT_SIGNAL=true, gracefully exits loop with success message
-
----
-
-### Scenario 2: Test-Only Loop Detected
-**Given**:
-- Last 3 loops only executed tests (npm test, bats, pytest, etc.)
-- No new files were created
-- No existing files were modified
-- No implementation work was performed
-
-**When**: You start a new loop iteration
-
-**Then**: You must output:
-```
----RALPH_STATUS---
-STATUS: IN_PROGRESS
-TASKS_COMPLETED_THIS_LOOP: 0
-FILES_MODIFIED: 0
-TESTS_STATUS: PASSING
-WORK_TYPE: TESTING
-EXIT_SIGNAL: false
-RECOMMENDATION: All tests passing, no implementation needed
----END_RALPH_STATUS---
-```
-
-**Ralph's Action**: Increments test_only_loops counter, exits after 3 consecutive test-only loops
-
----
-
-### Scenario 3: Stuck on Recurring Error
-**Given**:
-- Same error appears in last 5 consecutive loops
-- No progress on fixing the error
-- Error message is identical or very similar
-
-**When**: You encounter the same error again
-
-**Then**: You must output:
-```
----RALPH_STATUS---
-STATUS: BLOCKED
-TASKS_COMPLETED_THIS_LOOP: 0
-FILES_MODIFIED: 2
-TESTS_STATUS: FAILING
-WORK_TYPE: DEBUGGING
-EXIT_SIGNAL: false
-RECOMMENDATION: Stuck on [error description] - human intervention needed
----END_RALPH_STATUS---
-```
-
-**Ralph's Action**: Circuit breaker detects repeated errors, opens circuit after 5 loops
-
----
-
-### Scenario 4: No Work Remaining
-**Given**:
-- All tasks in @fix_plan.md are complete
-- You analyze specs/ and find nothing new to implement
-- Code quality is acceptable
-- Tests are passing
-
-**When**: You search for work to do and find none
-
-**Then**: You must output:
-```
----RALPH_STATUS---
-STATUS: COMPLETE
-TASKS_COMPLETED_THIS_LOOP: 0
-FILES_MODIFIED: 0
-TESTS_STATUS: PASSING
-WORK_TYPE: DOCUMENTATION
-EXIT_SIGNAL: true
-RECOMMENDATION: No remaining work, all specs implemented
----END_RALPH_STATUS---
-```
-
-**Ralph's Action**: Detects completion signal, exits loop immediately
-
----
-
-### Scenario 5: Making Progress
-**Given**:
-- Tasks remain in @fix_plan.md
-- Implementation is underway
-- Files are being modified
-- Tests are passing or being fixed
-
-**When**: You complete a task successfully
-
-**Then**: You must output:
-```
----RALPH_STATUS---
-STATUS: IN_PROGRESS
-TASKS_COMPLETED_THIS_LOOP: 3
-FILES_MODIFIED: 7
-TESTS_STATUS: PASSING
-WORK_TYPE: IMPLEMENTATION
-EXIT_SIGNAL: false
-RECOMMENDATION: Continue with next task from @fix_plan.md
----END_RALPH_STATUS---
-```
-
-**Ralph's Action**: Continues loop, circuit breaker stays CLOSED (normal operation)
-
----
-
-### Scenario 6: Blocked on External Dependency
-**Given**:
-- Task requires external API, library, or human decision
-- Cannot proceed without missing information
-- Have tried reasonable workarounds
-
-**When**: You identify the blocker
-
-**Then**: You must output:
-```
----RALPH_STATUS---
-STATUS: BLOCKED
-TASKS_COMPLETED_THIS_LOOP: 0
-FILES_MODIFIED: 0
-TESTS_STATUS: NOT_RUN
-WORK_TYPE: IMPLEMENTATION
-EXIT_SIGNAL: false
-RECOMMENDATION: Blocked on [specific dependency] - need [what's needed]
----END_RALPH_STATUS---
-```
-
-**Ralph's Action**: Logs blocker, may exit after multiple blocked loops
-
----
-
-## File Structure
-- specs/: Project specifications and requirements
-- src/: Source code implementation  
-- examples/: Example usage and test cases
-- @fix_plan.md: Prioritized TODO list
-- @AGENT.md: Project build and run instructions
-
-## Current Task
-Follow @fix_plan.md and choose the most important item to implement next.
-Use your judgment to prioritize what will have the biggest impact on project progress.
-
-Remember: Quality over speed. Build it right the first time. Know when you're done.
