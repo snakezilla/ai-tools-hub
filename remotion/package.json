@@ -1,0 +1,28 @@
+{
+  "name": "ai-tools-hub-remotion",
+  "version": "1.0.0",
+  "description": "Demo video generation for AI Tools Hub",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render Root out/all-demos.mp4",
+    "render:claude": "remotion render ClaudeDemo public/outputs/claude-demo.mp4",
+    "render:claude-code": "remotion render ClaudeCodeDemo public/outputs/claude-code-demo.mp4",
+    "render:manus": "remotion render ManusDemo public/outputs/manus-demo.mp4",
+    "render:chatgpt": "remotion render ChatGPTDemo public/outputs/chatgpt-demo.mp4",
+    "render:copilot": "remotion render CopilotDemo public/outputs/copilot-demo.mp4",
+    "render:zapier": "remotion render ZapierDemo public/outputs/zapier-demo.mp4",
+    "render:perplexity": "remotion render PerplexityDemo public/outputs/perplexity-demo.mp4",
+    "render:all": "npm run render:claude && npm run render:claude-code && npm run render:manus && npm run render:chatgpt && npm run render:copilot && npm run render:zapier && npm run render:perplexity"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/player": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "typescript": "^5.0.0"
+  }
+}
