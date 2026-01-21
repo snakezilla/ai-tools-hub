@@ -19,7 +19,10 @@ export function Header() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           <Link href="/#tools" className="text-body-sm text-muted hover:text-foreground transition-colors">
-            All Tools
+            Tools
+          </Link>
+          <Link href="/workflows" className="text-body-sm text-muted hover:text-foreground transition-colors">
+            Workflows
           </Link>
 
           {/* Categories Dropdown */}
@@ -89,7 +92,14 @@ export function Header() {
               className="text-body text-muted hover:text-foreground transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              All Tools
+              Tools
+            </Link>
+            <Link
+              href="/workflows"
+              className="text-body text-muted hover:text-foreground transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Workflows
             </Link>
 
             {/* Mobile Categories */}

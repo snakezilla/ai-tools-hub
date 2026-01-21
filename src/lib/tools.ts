@@ -385,6 +385,110 @@ export const tools: Tool[] = [
     category: "Research",
     isFoundation: true,
   },
+  {
+    slug: "claude-skills",
+    name: "Claude Skills",
+    tagline: "50+ specialized extensions that transform Claude into a domain expert",
+    setupTime: "5 min",
+    cost: "Free (open source)",
+    privacy: "green",
+    timeSaved: "5-15 hrs/week",
+    useCases: [
+      {
+        role: "Marketer",
+        task: "Install 23 marketing skills for CRO, SEO, and copywriting",
+        outcome: "Claude becomes your marketing team",
+      },
+      {
+        role: "Developer",
+        task: "Add frontend-design, mcp-builder, and webapp-testing skills",
+        outcome: "Specialized expertise on demand",
+      },
+      {
+        role: "Content Creator",
+        task: "Use brand-guidelines and internal-comms skills",
+        outcome: "On-brand content every time",
+      },
+    ],
+    quickstart: [
+      "Browse github.com/travisvn/awesome-claude-skills for available skills",
+      "Clone or download the skill folder you want",
+      "Copy to ~/.claude/skills/ directory",
+      "Skills auto-activate when contextually relevant",
+      "Or invoke directly with /skill-name in Claude Code",
+    ],
+    privacyFlags: {
+      dataRetention: "Local only (no cloud)",
+      trainingOnData: "No",
+      enterpriseOption: "Yes (custom skills)",
+    },
+    relatedTools: [
+      {
+        name: "Claude Code",
+        useCase: "Terminal AI that uses skills",
+        slug: "claude-code",
+      },
+      {
+        name: "Marketing Skills",
+        useCase: "23 marketing-specific skills",
+        slug: "marketing-skills",
+      },
+    ],
+    category: "Development",
+    isFoundation: true,
+  },
+  {
+    slug: "marketing-skills",
+    name: "Marketing Skills",
+    tagline: "23 specialized Claude skills for conversion, SEO, and growth",
+    setupTime: "10 min",
+    cost: "Free (open source)",
+    privacy: "green",
+    timeSaved: "10-20 hrs/week",
+    useCases: [
+      {
+        role: "Growth Marketer",
+        task: "Run /page-cro to optimize landing page conversion",
+        outcome: "Data-driven recommendations in seconds",
+      },
+      {
+        role: "Content Marketer",
+        task: "Use /copywriting and /email-sequence skills",
+        outcome: "High-converting copy with proven frameworks",
+      },
+      {
+        role: "SEO Specialist",
+        task: "Run /seo-audit and /programmatic-seo",
+        outcome: "Comprehensive technical SEO analysis",
+      },
+    ],
+    quickstart: [
+      "Clone: git clone github.com/coreyhaines31/marketingskills",
+      "Copy skills to ~/.claude/skills/",
+      "Open Claude Code in your project",
+      "Run /page-cro, /seo-audit, /copywriting, etc.",
+      "Stack multiple skills for comprehensive marketing automation",
+    ],
+    privacyFlags: {
+      dataRetention: "Local only",
+      trainingOnData: "No",
+      enterpriseOption: "Yes",
+    },
+    relatedTools: [
+      {
+        name: "Claude Skills",
+        useCase: "Full skill ecosystem",
+        slug: "claude-skills",
+      },
+      {
+        name: "Claude Code",
+        useCase: "Terminal AI that runs skills",
+        slug: "claude-code",
+      },
+    ],
+    category: "Marketing",
+    isFoundation: false,
+  },
 ]
 
 export function getToolBySlug(slug: string): Tool | undefined {

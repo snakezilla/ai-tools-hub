@@ -1,5 +1,6 @@
-import { Composition, registerRoot } from 'remotion';
-import { ClaudeCodeDemo } from './compositions/ClaudeCodeDemo';
+import React from 'react';
+import { Composition } from 'remotion';
+import { ClaudeCodeDemo } from './ClaudeCodeDemo';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="ClaudeCodeDemo"
         component={ClaudeCodeDemo}
-        durationInFrames={210}
+        durationInFrames={510}
         fps={30}
         width={1920}
         height={1080}
@@ -15,5 +16,3 @@ export const RemotionRoot: React.FC = () => {
     </>
   );
 };
-
-registerRoot(RemotionRoot);

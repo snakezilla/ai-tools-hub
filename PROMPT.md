@@ -16,7 +16,7 @@ Build a clean, Figma-level website that teaches non-technical users (marketers, 
 Homepage
 ├── Hero: "AI tools that save 10+ hours/week. Learn them in 5 minutes."
 ├── ROI Calculator CTA (primary conversion)
-├── Foundation Tools Grid (5-7 generalist tools with auto-play demos)
+├── Foundation Tools Grid (7+ generalist tools with auto-play demos)
 │
 ├── /tools/[tool-name] (individual tool pages)
 │   ├── 5-Minute Mastery Card
@@ -24,7 +24,12 @@ Homepage
 │   ├── Related niche tools (branches)
 │   └── "Calculate your savings" CTA
 │
-├── /category/[role] (optional browse by role)
+├── /workflows (AI power combos)
+│   ├── Design-to-Code (Google AI Studio → Claude Code)
+│   ├── Marketing Autopilot (Claude Code + Marketing Skills)
+│   └── Full Skill Stack (Claude Code + 50+ skills)
+│
+├── /category/[role] (browse by role)
 │   ├── Marketing
 │   ├── Accounting & Finance
 │   ├── Operations
@@ -39,20 +44,56 @@ Homepage
 
 ### Foundation Tools (Generalist Hub)
 
-These are the "Big 5-7" that every user should know:
+These are the "Big 7+" that every user should know:
 
 1. **Claude** - Reasoning, writing, analysis (Anthropic)
 2. **Claude Code** - Terminal-based coding assistant (Anthropic)
-3. **ChatGPT** - All-rounder, voice mode, GPT-5 (OpenAI)
-4. **Manus AI** - Autonomous agent, end-to-end task execution (Meta)
-5. **Microsoft Copilot** - Office automation, Excel/PowerPoint (Microsoft)
-6. **Zapier** - No-code automation across 8,000+ apps
-7. **Perplexity** - AI-powered research and search
+3. **Claude Skills** - 50+ specialized extensions for Claude Code
+4. **ChatGPT** - All-rounder, voice mode, GPT-5 (OpenAI)
+5. **Manus AI** - Autonomous agent, end-to-end task execution (Meta)
+6. **Microsoft Copilot** - Office automation, Excel/PowerPoint (Microsoft)
+7. **Zapier** - No-code automation across 8,000+ apps
+8. **Perplexity** - AI-powered research and search
 
 Each foundation tool links to niche branches:
 - Claude Code → Cursor, Windsurf, Cline
+- Claude Skills → Marketing Skills, Frontend Design, MCP Builder
 - Zapier → Make, n8n, Power Automate
 - Manus → Devin, AutoGPT, CrewAI
+
+### Workflows (Power Combos)
+
+Workflows combine multiple tools for exponential results:
+
+1. **Design-to-Code** - Google AI Studio (frontend from screenshots) → Claude Code (backend)
+   - Resources: aistudio.google.com, Claude Code docs
+
+2. **Marketing Autopilot** - Claude Code + 23 Marketing Skills (CRO, SEO, copywriting)
+   - Resources: github.com/coreyhaines31/marketingskills
+
+3. **Full Skill Stack** - Claude Code + 50+ specialized skills from awesome-claude-skills
+   - Resources: github.com/travisvn/awesome-claude-skills, github.com/obra/superpowers
+
+### Claude Skills Ecosystem
+
+Claude Skills are specialized folders that teach Claude to perform tasks repeatably:
+
+**Official Skills:**
+- Document handling: docx, pdf, pptx, xlsx
+- Design & creative: algorithmic-art, canvas-design, slack-gif-creator
+- Development: frontend-design, mcp-builder, webapp-testing
+- Communication: brand-guidelines, internal-comms
+
+**Community Collections:**
+- Awesome Claude Skills (github.com/travisvn/awesome-claude-skills)
+- Marketing Skills - 23 skills for CRO, SEO, copywriting (github.com/coreyhaines31/marketingskills)
+- Superpowers - 20+ battle-tested skills (github.com/obra/superpowers)
+
+**Installation:**
+1. Clone or download skill folder
+2. Copy to ~/.claude/skills/
+3. Skills auto-activate when contextually relevant
+4. Or invoke directly: /skill-name
 
 ---
 
