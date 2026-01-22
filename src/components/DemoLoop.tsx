@@ -164,12 +164,30 @@ export function DemoLoop({
     )
   }
 
-  // Simple variant - basic autoplay with no controls
+  // Simple variant - hover to play with no controls
   if (variant === "simple") {
+    const handleMouseEnter = () => {
+      const video = videoRef.current
+      if (video) {
+        video.currentTime = 0
+        video.play().catch(() => {})
+      }
+    }
+
+    const handleMouseLeave = () => {
+      const video = videoRef.current
+      if (video) {
+        video.pause()
+        video.currentTime = 0
+      }
+    }
+
     return (
       <div
         ref={containerRef}
-        className={`relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-border ${className}`}
+        className={`relative overflow-hidden rounded-xl bg-gradient-to-br from-card to-border cursor-pointer ${className}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <video
           ref={videoRef}
@@ -178,7 +196,6 @@ export function DemoLoop({
             transition-opacity duration-500
             ${isLoaded ? "opacity-100" : "opacity-0"}
           `}
-          autoPlay
           muted
           loop
           playsInline
@@ -189,6 +206,21 @@ export function DemoLoop({
           <source src={src} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+
+        {/* Play icon overlay - shows when not playing */}
+        {!isPlaying && isLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/10 transition-opacity">
+            <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
+              <svg
+                className="w-5 h-5 text-foreground ml-0.5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+        )}
 
         {/* Loading skeleton */}
         {!isLoaded && (
