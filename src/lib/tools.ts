@@ -33,6 +33,7 @@ export interface Tool {
   slug: string
   name: string
   tagline: string
+  impactLine?: string  // One-liner summarizing the impact (e.g., "Like having additional employees")
   setupTime: string
   cost: string
   privacy: "green" | "yellow" | "red"
@@ -57,6 +58,7 @@ export interface Tool {
   }[]
   category: string
   isFoundation: boolean
+  tier?: 1 | 2  // 1 = Start Here (essential), 2 = Power Tools
 }
 
 export const tools: Tool[] = [
@@ -64,11 +66,13 @@ export const tools: Tool[] = [
     slug: "claude",
     name: "Claude",
     tagline: "Advanced reasoning, writing, and analysis AI assistant",
+    impactLine: "Your all-purpose AI thinking partner for any task",
     setupTime: "2 min",
     cost: "Free / $20/mo Pro",
     privacy: "green",
     timeSaved: "5-10 hrs/week",
     demoVideo: "/demos/claude-demo.mp4",
+    tier: 1,
     useCases: [
       {
         role: "Marketer",
@@ -151,10 +155,13 @@ export const tools: Tool[] = [
     slug: "claude-code",
     name: "Claude Code",
     tagline: "Terminal-based AI coding assistant from Anthropic",
+    impactLine: "Like having a senior developer pair-programming with you 24/7",
     setupTime: "5 min",
     cost: "Free with Claude Pro/Max subscription",
     privacy: "green",
     timeSaved: "10-20 hrs/week",
+    demoVideo: "/demos/claude-code-demo.mp4",
+    tier: 1,
     useCases: [
       {
         role: "Developer",
@@ -261,6 +268,7 @@ export const tools: Tool[] = [
     slug: "claude-skills",
     name: "Claude Skills",
     tagline: "50+ specialized extensions that transform Claude into a domain expert",
+    impactLine: "Like hiring a team of specialists—marketing, development, writing—on demand",
     setupTime: "5 min",
     cost: "Free (open source)",
     privacy: "green",
@@ -424,156 +432,135 @@ export const tools: Tool[] = [
   {
     slug: "claude-cowork",
     name: "Claude Cowork",
-    tagline: "Browser extension that supercharges Claude.ai with prompt templates and automation",
-    setupTime: "2 min",
-    cost: "Free",
+    tagline: "Desktop AI agent that organizes files, processes documents, and automates tasks—no coding needed",
+    impactLine: "Like having a personal assistant that can search, organize, and edit files across your entire computer",
+    setupTime: "5 min",
+    cost: "$20/mo Pro / $100-200/mo Max",
     privacy: "green",
-    timeSaved: "3-5 hrs/week",
-    whatIsIt: "Claude Cowork is a free browser extension that adds superpowers to Claude.ai. Think of it like having a second brain for your prompts: save the prompts that work, organize them into folders, and insert them with one click. No more copy-pasting from notes apps or retyping the same instructions. If you use Claude.ai daily, Cowork makes you 10x faster.",
+    timeSaved: "5-15 hrs/week",
+    whatIsIt: "Claude Cowork is an AI desktop agent built into the Claude app. Think of it as 'Claude Code for everyone else'—it can autonomously organize your Downloads folder, turn scattered notes into formatted documents, process receipts into expense reports, or batch rename hundreds of files. You give it access to a folder, describe what you want, and it works independently while you do other things. It runs in a secure sandbox so it can't accidentally break your system.",
     systemRequirements: {
-      browsers: [
-        "Google Chrome (recommended)",
-        "Microsoft Edge",
-        "Brave Browser",
-        "Arc Browser",
-        "Any Chromium-based browser",
-      ],
       operatingSystems: [
-        "Windows 10 or later",
-        "macOS 10.15 (Catalina) or later",
-        "Linux (with Chrome/Chromium)",
-        "ChromeOS",
+        "macOS 13 (Ventura) or later (required)",
+        "Windows support coming soon",
       ],
       prerequisites: [
-        "A Claude.ai account (free or Pro)",
-        "Google Chrome or compatible browser installed",
+        "Claude Desktop app installed",
+        "Claude Pro ($20/mo) or Max ($100-200/mo) subscription",
+        "At least 8GB RAM recommended",
       ],
       notSupported: [
-        "Safari (Apple doesn't allow Chrome extensions)",
-        "Firefox (different extension format)",
-        "Mobile browsers (iOS/Android)",
+        "Windows (coming soon)",
+        "Linux",
+        "Mobile devices (iOS/Android)",
+        "Web browser (requires desktop app)",
       ],
     },
     useCases: [
       {
-        role: "Daily Claude User",
-        task: "Save and instantly reuse your best prompts",
-        outcome: "Stop retyping — one click inserts any saved prompt",
+        role: "Anyone with a messy Downloads folder",
+        task: "Organize 500+ files by type, date, and project",
+        outcome: "Sorted folders in minutes instead of hours",
+      },
+      {
+        role: "Freelancer / Small Business",
+        task: "Process receipts and invoices into expense reports",
+        outcome: "Month-end accounting done automatically",
+      },
+      {
+        role: "Researcher / Student",
+        task: "Turn scattered notes into formatted documents",
+        outcome: "Polished drafts from rough notes",
       },
       {
         role: "Content Creator",
-        task: "Build a library of writing prompts by content type",
-        outcome: "Consistent voice across all your content",
-      },
-      {
-        role: "Professional",
-        task: "Create templates for emails, reports, analysis",
-        outcome: "Professional outputs in seconds, not minutes",
-      },
-      {
-        role: "Team Lead",
-        task: "Share your prompt library with your team",
-        outcome: "Everyone uses the same proven prompts",
+        task: "Batch rename and organize media files",
+        outcome: "Consistent naming across thousands of files",
       },
     ],
     quickstart: [
       {
-        text: "Check your browser",
+        text: "Check your Mac version",
         substeps: [
-          "This extension ONLY works in Chrome-based browsers",
-          "If you use Safari or Firefox, you'll need to install Chrome first",
-          "Download Chrome from google.com/chrome if needed",
+          "Click the Apple menu () → About This Mac",
+          "You need macOS 13 (Ventura) or later",
+          "If you're on an older version, update first: System Settings → General → Software Update",
         ],
       },
       {
-        text: "Option A — Direct link (fastest)",
-        isOption: true,
-        link: "https://chrome.google.com/webstore/detail/claude-cowork",
+        text: "Download Claude Desktop",
+        link: "https://claude.ai/download",
         substeps: [
-          "Click this link (or copy: chrome.google.com/webstore and search 'Claude Cowork')",
-          "You'll land directly on the extension page in Chrome Web Store",
-          "Skip to 'Install the extension' below",
+          "Go to claude.ai/download",
+          "Click 'Download for Mac'",
+          "Open the downloaded .dmg file",
+          "Drag Claude to your Applications folder",
         ],
       },
       {
-        text: "Option B — Manual search",
-        isOption: true,
+        text: "Sign in with Pro or Max subscription",
         substeps: [
-          "Open Google Chrome",
-          "Click the three dots menu (⋮) in the top-right corner",
-          "Go to: Extensions → Visit Chrome Web Store",
-          "In the search box, type: Claude Cowork",
-          "Press Enter and find the official extension",
+          "Open Claude from Applications",
+          "Sign in with your Claude account",
+          "Cowork requires Pro ($20/mo) or Max ($100-200/mo)",
+          "If on Free tier, upgrade at claude.ai/settings/billing",
         ],
       },
       {
-        text: "Install the extension",
+        text: "Start Cowork mode",
         substeps: [
-          "Click the blue 'Add to Chrome' button",
-          "A popup appears asking for permissions — click 'Add extension'",
-          "Wait 5-10 seconds — you'll see a confirmation message",
-          "The puzzle piece icon (🧩) in your toolbar now has a blue dot",
+          "In Claude Desktop, look for the 'Cowork' button or tab",
+          "Click to enter Cowork mode",
+          "You'll see a different interface designed for file tasks",
         ],
       },
       {
-        text: "Pin it for easy access",
+        text: "Grant folder access",
         substeps: [
-          "Click the puzzle piece icon (🧩) in Chrome's top-right toolbar",
-          "Find 'Claude Cowork' in the dropdown list",
-          "Click the 📌 pin icon next to it",
-          "The Cowork icon now appears permanently in your toolbar",
+          "Cowork will ask permission to access folders",
+          "Start with ONE folder (like Downloads) — don't give access to everything",
+          "Click 'Allow' when macOS asks for permission",
+          "You can add more folders later as needed",
         ],
       },
       {
-        text: "Connect to Claude.ai",
+        text: "Try your first task",
         substeps: [
-          "Go to claude.ai in your browser",
-          "Log in with your Claude account (or create one — it's free)",
-          "You'll see the Cowork icon is now active (not grayed out)",
-          "New Cowork features appear integrated into Claude's interface",
+          "Type a clear task description. Example:",
+          "   'Organize my Downloads folder: create subfolders for PDFs, Images, Documents, and Other. Move files into the right folders based on their type.'",
+          "Press Enter and watch Cowork plan and execute",
+          "It will show you what it's doing and ask permission before deleting anything",
         ],
       },
       {
-        text: "Create your first template",
+        text: "Let it work (you can do other things)",
         substeps: [
-          "On Claude.ai, click the Cowork icon in your toolbar",
-          "Click 'New Template' or the + button",
-          "Paste a prompt you use often. Example:",
-          "   'You are a professional editor. Review my text for clarity, grammar, and tone. Be specific with suggestions.'",
-          "Give it a name like 'Editor Review'",
-          "Click Save — done! Now one-click inserts this anytime",
-        ],
-      },
-      {
-        text: "Use your template",
-        substeps: [
-          "Start a new conversation in Claude.ai",
-          "Click the Cowork icon → click your saved template",
-          "The prompt is instantly inserted into the chat box",
-          "Add your specific content after it and press Enter",
-          "That's it — you're a power user now!",
+          "Unlike regular Claude chat, Cowork runs autonomously",
+          "You can minimize the window and work on other tasks",
+          "Cowork will notify you when done or if it needs input",
+          "Review the results and provide feedback",
         ],
       },
     ],
     proTips: [
-      "Template Variables: Use [PLACEHOLDER] in templates for parts that change each time — quick fill-in-the-blank.",
-      "Folder Organization: Create folders like 'Work', 'Writing', 'Analysis' to keep templates organized.",
-      "Keyboard Shortcuts: Learn the hotkeys — insert templates without touching your mouse.",
-      "Export & Backup: Export your template library regularly. Share it with teammates or keep it safe.",
-      "No Terminal Required: Unlike Claude Code, Cowork works entirely in your browser — perfect for non-technical users.",
-      "Syncs Across Devices: Sign in to sync templates between your work and home computers.",
+      "Start Small: Give Cowork access to one folder first. Add more as you build trust.",
+      "Be Specific: 'Organize my Downloads' is okay. 'Organize Downloads into folders by file type, with subfolders by month' is better.",
+      "Review Before Delete: Cowork always asks permission before permanently deleting files. Take time to review.",
+      "Use for Batch Work: Cowork shines with repetitive tasks across many files—renaming, organizing, converting.",
+      "Check Progress: Cowork shows its plan and progress. If something looks wrong, you can stop it anytime.",
+      "Combine with Claude: Do research in regular Claude, then switch to Cowork for file tasks.",
     ],
     privacyFlags: {
-      dataRetention: "Local browser storage — templates stay on your computer",
-      trainingOnData: "No — the extension never sends your prompts anywhere",
-      enterpriseOption: "Check extension settings for team/enterprise features",
-      hipaaAvailable: "N/A — no data leaves your browser",
-      optOutMethod: "Not needed — fully local by default",
+      dataRetention: "Files stay on your computer — Cowork processes locally",
+      trainingOnData: "No — your files are not used for training",
+      enterpriseOption: "Enterprise plans available with additional controls",
+      hipaaAvailable: "Contact Anthropic for healthcare compliance options",
+      optOutMethod: "Revoke folder access anytime in System Settings → Privacy",
     },
     relatedTools: [
       {
         name: "Claude",
-        useCase: "The AI assistant that Cowork enhances — start here",
+        useCase: "Start here — the AI assistant Cowork extends",
         slug: "claude",
       },
       {
@@ -582,22 +569,25 @@ export const tools: Tool[] = [
         slug: "claude-code",
       },
       {
-        name: "Claude Skills",
-        useCase: "Specialized skills for Claude Code users",
-        slug: "claude-skills",
+        name: "Manus AI",
+        useCase: "Fully autonomous AI agent for complex tasks",
+        slug: "manus-ai",
       },
     ],
     category: "Productivity",
     isFoundation: false,
+    tier: 1,
   },
   {
     slug: "chatgpt",
     name: "ChatGPT",
     tagline: "All-purpose AI assistant with voice and vision",
+    impactLine: "The AI that can see, hear, and browse the web for you",
     setupTime: "2 min",
     cost: "Free / $20/mo Plus / $200/mo Pro",
     privacy: "yellow",
     timeSaved: "5-10 hrs/week",
+    tier: 2,
     useCases: [
       {
         role: "Anyone",
@@ -683,10 +673,13 @@ export const tools: Tool[] = [
     slug: "manus-ai",
     name: "Manus AI",
     tagline: "Autonomous AI agent that completes tasks end-to-end",
+    impactLine: "Delegate entire projects—research, analysis, deliverables—and get them done",
     setupTime: "3 min",
     cost: "Free tier / $30/mo",
     privacy: "yellow",
     timeSaved: "5-15 hrs/week",
+    demoVideo: "/demos/manus-demo.mp4",
+    tier: 1,
     useCases: [
       {
         role: "Marketer",
@@ -770,10 +763,12 @@ export const tools: Tool[] = [
     slug: "zapier",
     name: "Zapier",
     tagline: "No-code automation connecting 8,000+ apps",
+    impactLine: "Connect your apps and automate workflows—without writing code",
     setupTime: "10 min",
     cost: "Free / $29.99+/mo",
     privacy: "green",
     timeSaved: "5-20 hrs/week",
+    tier: 2,
     useCases: [
       {
         role: "Sales Team",
@@ -867,10 +862,12 @@ export const tools: Tool[] = [
     slug: "perplexity",
     name: "Perplexity",
     tagline: "AI-powered research and search with citations",
+    impactLine: "AI-powered search that gives you answers with sources, not just links",
     setupTime: "1 min",
     cost: "Free / $20/mo Pro",
     privacy: "green",
     timeSaved: "3-8 hrs/week",
+    tier: 2,
     useCases: [
       {
         role: "Researcher",
@@ -1312,6 +1309,10 @@ export function getToolBySlug(slug: string): Tool | undefined {
 
 export function getFoundationTools(): Tool[] {
   return tools.filter((tool) => tool.isFoundation)
+}
+
+export function getToolsByTier(tier: 1 | 2): Tool[] {
+  return tools.filter((tool) => tool.tier === tier)
 }
 
 export function getToolsByCategory(category: string): Tool[] {
