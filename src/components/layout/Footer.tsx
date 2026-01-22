@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Logo } from "@/components/Logo"
 
 export function Footer() {
   return (
@@ -7,8 +8,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link href="/" className="text-heading-xs text-foreground">
-              AI Tools Hub
+            <Link href="/" className="flex items-center gap-2">
+              <Logo size="sm" />
             </Link>
             <p className="mt-4 text-body-sm text-muted max-w-md">
               Free educational content that teaches non-technical users how to use high-impact AI tools.
@@ -69,7 +70,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-body-sm text-muted">
-            {new Date().getFullYear()} AI Tools Hub. All rights reserved.
+            {new Date().getFullYear()} Practical Library. All rights reserved.
           </p>
           <p className="text-body-sm text-muted">
             Built with tools we teach.

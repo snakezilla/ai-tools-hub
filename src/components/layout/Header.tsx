@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { roleCategories } from "@/lib/tools"
+import { Logo } from "@/components/Logo"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -13,7 +14,7 @@ export function Header() {
       <nav className="container-content flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-heading-xs text-foreground">AI Tools Hub</span>
+          <Logo size="md" />
         </Link>
 
         {/* Desktop Navigation */}

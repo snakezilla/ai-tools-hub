@@ -132,14 +132,42 @@ export function ToolCard({ tool, variant = "grid" }: ToolCardProps) {
 
       {/* Quickstart */}
       <div className="p-4 md:p-8 border-b border-border">
-        <h2 className="text-heading-sm text-card-foreground mb-4 md:mb-6">Quickstart</h2>
-        <ol className="space-y-3">
+        <h2 className="text-heading-sm text-card-foreground mb-4 md:mb-6">Quickstart Guide</h2>
+        <ol className="space-y-6">
           {tool.quickstart.map((step, index) => (
-            <li key={index} className="flex items-start gap-3">
-              <span className="w-6 h-6 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-sm font-medium flex-shrink-0">
-                {index + 1}
-              </span>
-              <span className="text-card-foreground text-sm md:text-base">{step}</span>
+            <li key={index} className="relative">
+              <div className="flex items-start gap-3">
+                <span className="w-7 h-7 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">
+                  {index + 1}
+                </span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-card-foreground font-medium text-sm md:text-base">
+                      {typeof step === "string" ? step : step.text}
+                    </span>
+                    {typeof step !== "string" && step.link && (
+                      <a
+                        href={step.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent hover:text-accent-dark underline text-sm"
+                      >
+                        ↗
+                      </a>
+                    )}
+                  </div>
+                  {typeof step !== "string" && step.substeps && step.substeps.length > 0 && (
+                    <ul className="mt-2 ml-0 space-y-1.5">
+                      {step.substeps.map((substep, subIndex) => (
+                        <li key={subIndex} className="flex items-start gap-2 text-sm text-muted">
+                          <span className="text-accent/60 mt-1">›</span>
+                          <span className="text-card-foreground/80">{substep}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
             </li>
           ))}
         </ol>
@@ -168,27 +196,56 @@ export function ToolCard({ tool, variant = "grid" }: ToolCardProps) {
       {/* Privacy Flags */}
       <div className="p-4 md:p-8 border-b border-border bg-background">
         <h2 className="text-heading-sm text-card-foreground mb-4 flex items-center gap-2">
-          <span>Privacy Flags</span>
+          <svg className="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          <span>Privacy & Compliance</span>
         </h2>
-        <div className="space-y-3">
-          <div className="flex items-center justify-between py-2 border-b border-border">
-            <span className="text-muted">Data retention</span>
-            <span className="font-medium text-card-foreground">
+        <div className="space-y-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-border gap-1">
+            <span className="text-muted text-sm">Data retention</span>
+            <span className="font-medium text-card-foreground text-sm sm:text-right max-w-xs">
               {tool.privacyFlags.dataRetention}
             </span>
           </div>
-          <div className="flex items-center justify-between py-2 border-b border-border">
-            <span className="text-muted">Training on your data</span>
-            <span className="font-medium text-card-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-border gap-1">
+            <span className="text-muted text-sm">Training on your data</span>
+            <span className={`font-medium text-sm sm:text-right max-w-xs ${
+              tool.privacyFlags.trainingOnData.toLowerCase().includes("no")
+                ? "text-success"
+                : tool.privacyFlags.trainingOnData.toLowerCase().includes("yes")
+                  ? "text-warning"
+                  : "text-card-foreground"
+            }`}>
               {tool.privacyFlags.trainingOnData}
             </span>
           </div>
-          <div className="flex items-center justify-between py-2">
-            <span className="text-muted">Enterprise option</span>
-            <span className="font-medium text-card-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-border gap-1">
+            <span className="text-muted text-sm">Enterprise option</span>
+            <span className="font-medium text-card-foreground text-sm sm:text-right max-w-xs">
               {tool.privacyFlags.enterpriseOption}
             </span>
           </div>
+          {tool.privacyFlags.hipaaAvailable && (
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-border gap-1">
+              <span className="text-muted text-sm">HIPAA / BAA available</span>
+              <span className={`font-medium text-sm sm:text-right max-w-xs ${
+                tool.privacyFlags.hipaaAvailable.toLowerCase().includes("yes")
+                  ? "text-success"
+                  : "text-card-foreground"
+              }`}>
+                {tool.privacyFlags.hipaaAvailable}
+              </span>
+            </div>
+          )}
+          {tool.privacyFlags.optOutMethod && (
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between py-3 gap-1">
+              <span className="text-muted text-sm">How to opt out</span>
+              <span className="font-medium text-card-foreground text-sm sm:text-right max-w-xs">
+                {tool.privacyFlags.optOutMethod}
+              </span>
+            </div>
+          )}
         </div>
       </div>
 

@@ -13,8 +13,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://practicallibrary.com"),
   title: {
-    default: "AI Tools Hub | Learn AI Tools in 5 Minutes",
-    template: "%s | AI Tools Hub",
+    default: "Practical Library | Learn AI Tools in 5 Minutes",
+    template: "%s | Practical Library",
   },
   description:
     "AI tools that save 10+ hours/week. Learn them in 5 minutes. Free educational content for marketers, accountants, and small teams.",
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     "AI education",
     "learn AI",
   ],
-  authors: [{ name: "AI Tools Hub" }],
-  creator: "AI Tools Hub",
+  authors: [{ name: "Practical Library" }],
+  creator: "Practical Library",
   openGraph: {
-    title: "AI Tools Hub | Learn AI Tools in 5 Minutes",
+    title: "Practical Library | Learn AI Tools in 5 Minutes",
     description: "AI tools that save 10+ hours/week. Learn them in 5 minutes.",
     url: "https://practicallibrary.com",
-    siteName: "AI Tools Hub",
+    siteName: "Practical Library",
     locale: "en_US",
     type: "website",
     images: [
@@ -46,13 +46,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "AI Tools Hub - Learn AI Tools in 5 Minutes",
+        alt: "Practical Library - Learn AI Tools in 5 Minutes",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Tools Hub | Learn AI Tools in 5 Minutes",
+    title: "Practical Library | Learn AI Tools in 5 Minutes",
     description: "AI tools that save 10+ hours/week. Learn them in 5 minutes.",
     images: ["/og-image.png"],
   },
