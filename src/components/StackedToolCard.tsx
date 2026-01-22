@@ -46,6 +46,7 @@ export function StackedToolCard({ parentTool, childTool }: StackedToolCardProps)
         </div>
 
         <DemoLoop
+          src={parentTool.demoVideo}
           alt={`${parentTool.name} demo`}
           className="w-full h-40 object-cover mb-4"
         />

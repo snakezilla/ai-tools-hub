@@ -64,6 +64,13 @@ export function ToolCard({ tool, variant = "grid" }: ToolCardProps) {
             <span className="font-semibold text-accent">{tool.timeSaved}</span>
           </div>
         </div>
+
+        {/* Impact Line */}
+        {tool.impactLine && (
+          <p className="mt-4 pt-4 border-t border-border text-sm text-muted italic">
+            {tool.impactLine}
+          </p>
+        )}
       </Link>
     )
   }
