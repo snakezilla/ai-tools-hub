@@ -140,11 +140,104 @@ export function ToolCard({ tool, variant = "grid" }: ToolCardProps) {
             <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            What is a Skill?
+            What is {tool.name}?
           </h2>
           <p className="text-card-foreground/90 text-base md:text-lg leading-relaxed">
             {tool.whatIsIt}
           </p>
+        </div>
+      )}
+
+      {/* System Requirements */}
+      {tool.systemRequirements && (
+        <div className="p-4 md:p-8 border-b border-border">
+          <h2 className="text-heading-sm text-card-foreground mb-4 flex items-center gap-2">
+            <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            System Requirements
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Supported Browsers */}
+            {tool.systemRequirements.browsers && tool.systemRequirements.browsers.length > 0 && (
+              <div className="bg-success/5 rounded-lg p-4 border border-success/20">
+                <h3 className="font-semibold text-card-foreground text-sm mb-3 flex items-center gap-2">
+                  <svg className="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Supported Browsers
+                </h3>
+                <ul className="space-y-1.5">
+                  {tool.systemRequirements.browsers.map((browser, i) => (
+                    <li key={i} className="text-sm text-card-foreground/80 flex items-center gap-2">
+                      <span className="text-success">✓</span>
+                      {browser}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Operating Systems */}
+            {tool.systemRequirements.operatingSystems && tool.systemRequirements.operatingSystems.length > 0 && (
+              <div className="bg-accent/5 rounded-lg p-4 border border-accent/20">
+                <h3 className="font-semibold text-card-foreground text-sm mb-3 flex items-center gap-2">
+                  <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  Operating Systems
+                </h3>
+                <ul className="space-y-1.5">
+                  {tool.systemRequirements.operatingSystems.map((os, i) => (
+                    <li key={i} className="text-sm text-card-foreground/80 flex items-center gap-2">
+                      <span className="text-accent">✓</span>
+                      {os}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Prerequisites */}
+            {tool.systemRequirements.prerequisites && tool.systemRequirements.prerequisites.length > 0 && (
+              <div className="bg-warning/5 rounded-lg p-4 border border-warning/20">
+                <h3 className="font-semibold text-card-foreground text-sm mb-3 flex items-center gap-2">
+                  <svg className="w-4 h-4 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  You&apos;ll Need First
+                </h3>
+                <ul className="space-y-1.5">
+                  {tool.systemRequirements.prerequisites.map((prereq, i) => (
+                    <li key={i} className="text-sm text-card-foreground/80 flex items-center gap-2">
+                      <span className="text-warning">→</span>
+                      {prereq}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Not Supported */}
+            {tool.systemRequirements.notSupported && tool.systemRequirements.notSupported.length > 0 && (
+              <div className="bg-error/5 rounded-lg p-4 border border-error/20">
+                <h3 className="font-semibold text-card-foreground text-sm mb-3 flex items-center gap-2">
+                  <svg className="w-4 h-4 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  Not Supported
+                </h3>
+                <ul className="space-y-1.5">
+                  {tool.systemRequirements.notSupported.map((item, i) => (
+                    <li key={i} className="text-sm text-card-foreground/80 flex items-center gap-2">
+                      <span className="text-error">✗</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       )}
 

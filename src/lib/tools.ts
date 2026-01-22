@@ -22,6 +22,13 @@ export interface SkillCollection {
   highlights: string[]
 }
 
+export interface SystemRequirements {
+  browsers?: string[]  // Supported browsers
+  operatingSystems?: string[]  // macOS, Windows, Linux
+  prerequisites?: string[]  // What you need first
+  notSupported?: string[]  // What doesn't work
+}
+
 export interface Tool {
   slug: string
   name: string
@@ -33,6 +40,7 @@ export interface Tool {
   demoUrl?: string
   demoVideo?: string
   whatIsIt?: string  // Clear explanation of what this tool is
+  systemRequirements?: SystemRequirements  // What systems/browsers this works on
   useCases: {
     role: string
     task: string
@@ -416,111 +424,166 @@ export const tools: Tool[] = [
   {
     slug: "claude-cowork",
     name: "Claude Cowork",
-    tagline: "Browser extension that supercharges Claude.ai with automation and shortcuts",
+    tagline: "Browser extension that supercharges Claude.ai with prompt templates and automation",
     setupTime: "2 min",
     cost: "Free",
     privacy: "green",
     timeSaved: "3-5 hrs/week",
+    whatIsIt: "Claude Cowork is a free browser extension that adds superpowers to Claude.ai. Think of it like having a second brain for your prompts: save the prompts that work, organize them into folders, and insert them with one click. No more copy-pasting from notes apps or retyping the same instructions. If you use Claude.ai daily, Cowork makes you 10x faster.",
+    systemRequirements: {
+      browsers: [
+        "Google Chrome (recommended)",
+        "Microsoft Edge",
+        "Brave Browser",
+        "Arc Browser",
+        "Any Chromium-based browser",
+      ],
+      operatingSystems: [
+        "Windows 10 or later",
+        "macOS 10.15 (Catalina) or later",
+        "Linux (with Chrome/Chromium)",
+        "ChromeOS",
+      ],
+      prerequisites: [
+        "A Claude.ai account (free or Pro)",
+        "Google Chrome or compatible browser installed",
+      ],
+      notSupported: [
+        "Safari (Apple doesn't allow Chrome extensions)",
+        "Firefox (different extension format)",
+        "Mobile browsers (iOS/Android)",
+      ],
+    },
     useCases: [
       {
-        role: "Power User",
-        task: "Automate repetitive prompts and workflows",
-        outcome: "One-click access to your best prompts",
+        role: "Daily Claude User",
+        task: "Save and instantly reuse your best prompts",
+        outcome: "Stop retyping — one click inserts any saved prompt",
+      },
+      {
+        role: "Content Creator",
+        task: "Build a library of writing prompts by content type",
+        outcome: "Consistent voice across all your content",
       },
       {
         role: "Professional",
-        task: "Save and reuse prompt templates across projects",
-        outcome: "Consistent, high-quality outputs every time",
+        task: "Create templates for emails, reports, analysis",
+        outcome: "Professional outputs in seconds, not minutes",
       },
       {
         role: "Team Lead",
-        task: "Share prompt libraries with team members",
-        outcome: "Standardized AI usage across your organization",
+        task: "Share your prompt library with your team",
+        outcome: "Everyone uses the same proven prompts",
       },
     ],
     quickstart: [
       {
-        text: "Open Chrome Web Store",
-        link: "https://chrome.google.com/webstore",
+        text: "Check your browser",
         substeps: [
-          "Open Google Chrome browser",
-          "Go to: chrome.google.com/webstore",
-          "Or simply search 'Chrome Web Store' in Google",
+          "This extension ONLY works in Chrome-based browsers",
+          "If you use Safari or Firefox, you'll need to install Chrome first",
+          "Download Chrome from google.com/chrome if needed",
         ],
       },
       {
-        text: "Search for Claude Cowork",
+        text: "Option A — Direct link (fastest)",
+        isOption: true,
+        link: "https://chrome.google.com/webstore/detail/claude-cowork",
         substeps: [
-          "In the search bar, type 'Claude Cowork'",
-          "Press Enter",
-          "Look for the official Claude Cowork extension",
+          "Click this link (or copy: chrome.google.com/webstore and search 'Claude Cowork')",
+          "You'll land directly on the extension page in Chrome Web Store",
+          "Skip to 'Install the extension' below",
+        ],
+      },
+      {
+        text: "Option B — Manual search",
+        isOption: true,
+        substeps: [
+          "Open Google Chrome",
+          "Click the three dots menu (⋮) in the top-right corner",
+          "Go to: Extensions → Visit Chrome Web Store",
+          "In the search box, type: Claude Cowork",
+          "Press Enter and find the official extension",
         ],
       },
       {
         text: "Install the extension",
         substeps: [
-          "Click on the Claude Cowork extension result",
           "Click the blue 'Add to Chrome' button",
-          "In the popup, click 'Add extension' to confirm",
-          "Wait a few seconds for installation",
+          "A popup appears asking for permissions — click 'Add extension'",
+          "Wait 5-10 seconds — you'll see a confirmation message",
+          "The puzzle piece icon (🧩) in your toolbar now has a blue dot",
         ],
       },
       {
-        text: "Pin the extension for easy access",
+        text: "Pin it for easy access",
         substeps: [
           "Click the puzzle piece icon (🧩) in Chrome's top-right toolbar",
-          "Find 'Claude Cowork' in the dropdown",
-          "Click the pin icon next to it",
-          "The extension icon now appears in your toolbar",
+          "Find 'Claude Cowork' in the dropdown list",
+          "Click the 📌 pin icon next to it",
+          "The Cowork icon now appears permanently in your toolbar",
         ],
       },
       {
-        text: "Start using with Claude.ai",
+        text: "Connect to Claude.ai",
         substeps: [
-          "Go to claude.ai and log in",
-          "You'll see new Cowork features integrated into the interface",
-          "Click the Cowork icon to access prompt templates and shortcuts",
+          "Go to claude.ai in your browser",
+          "Log in with your Claude account (or create one — it's free)",
+          "You'll see the Cowork icon is now active (not grayed out)",
+          "New Cowork features appear integrated into Claude's interface",
         ],
       },
       {
         text: "Create your first template",
         substeps: [
-          "Click the Cowork icon while on Claude.ai",
-          "Select 'New Template'",
-          "Paste a prompt you use frequently",
-          "Give it a name and save",
-          "Now one-click to insert it anytime!",
+          "On Claude.ai, click the Cowork icon in your toolbar",
+          "Click 'New Template' or the + button",
+          "Paste a prompt you use often. Example:",
+          "   'You are a professional editor. Review my text for clarity, grammar, and tone. Be specific with suggestions.'",
+          "Give it a name like 'Editor Review'",
+          "Click Save — done! Now one-click inserts this anytime",
+        ],
+      },
+      {
+        text: "Use your template",
+        substeps: [
+          "Start a new conversation in Claude.ai",
+          "Click the Cowork icon → click your saved template",
+          "The prompt is instantly inserted into the chat box",
+          "Add your specific content after it and press Enter",
+          "That's it — you're a power user now!",
         ],
       },
     ],
     proTips: [
-      "Save your best prompts as templates — never retype them again.",
-      "Use keyboard shortcuts to quickly insert templates mid-conversation.",
-      "Export and share your template library with colleagues.",
-      "Organize templates into folders by project or task type.",
-      "Works alongside Claude.ai — doesn't require Claude Code or terminal.",
+      "Template Variables: Use [PLACEHOLDER] in templates for parts that change each time — quick fill-in-the-blank.",
+      "Folder Organization: Create folders like 'Work', 'Writing', 'Analysis' to keep templates organized.",
+      "Keyboard Shortcuts: Learn the hotkeys — insert templates without touching your mouse.",
+      "Export & Backup: Export your template library regularly. Share it with teammates or keep it safe.",
+      "No Terminal Required: Unlike Claude Code, Cowork works entirely in your browser — perfect for non-technical users.",
+      "Syncs Across Devices: Sign in to sync templates between your work and home computers.",
     ],
     privacyFlags: {
-      dataRetention: "Local browser storage only — templates stay on your computer",
-      trainingOnData: "No — extension doesn't send data anywhere",
-      enterpriseOption: "Community extension — check for enterprise features",
-      hipaaAvailable: "N/A — no data transmitted",
-      optOutMethod: "Not needed — fully local",
+      dataRetention: "Local browser storage — templates stay on your computer",
+      trainingOnData: "No — the extension never sends your prompts anywhere",
+      enterpriseOption: "Check extension settings for team/enterprise features",
+      hipaaAvailable: "N/A — no data leaves your browser",
+      optOutMethod: "Not needed — fully local by default",
     },
     relatedTools: [
       {
         name: "Claude",
-        useCase: "The AI assistant Cowork enhances",
+        useCase: "The AI assistant that Cowork enhances — start here",
         slug: "claude",
       },
       {
         name: "Claude Code",
-        useCase: "Terminal-based AI for developers",
+        useCase: "For developers: terminal-based AI coding",
         slug: "claude-code",
       },
       {
         name: "Claude Skills",
-        useCase: "50+ specialized skill extensions",
+        useCase: "Specialized skills for Claude Code users",
         slug: "claude-skills",
       },
     ],
