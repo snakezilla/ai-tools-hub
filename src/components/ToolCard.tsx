@@ -45,6 +45,7 @@ export function ToolCard({ tool, variant = "grid" }: ToolCardProps) {
         </div>
 
         <DemoLoop
+          src={tool.demoVideo}
           alt={`${tool.name} demo`}
           className="w-full h-40 object-cover mb-4"
         />
@@ -102,8 +103,10 @@ export function ToolCard({ tool, variant = "grid" }: ToolCardProps) {
       {/* Demo */}
       <div className="p-4 md:p-8 border-b border-border">
         <DemoLoop
+          src={tool.demoVideo}
           alt={`${tool.name} demo showing prompt to output`}
-          className="w-full h-48 md:h-64 object-cover rounded-lg"
+          className="w-full h-48 md:h-80 object-cover"
+          variant="interactive"
         />
       </div>
 

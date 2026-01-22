@@ -22,6 +22,7 @@ export interface Tool {
   privacy: "green" | "yellow" | "red"
   timeSaved: string
   demoUrl?: string
+  demoVideo?: string
   useCases: {
     role: string
     task: string
@@ -48,6 +49,7 @@ export const tools: Tool[] = [
     cost: "Free / $20/mo Pro",
     privacy: "green",
     timeSaved: "5-10 hrs/week",
+    demoVideo: "/demos/claude-demo.mp4",
     useCases: [
       {
         role: "Marketer",
