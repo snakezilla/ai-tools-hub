@@ -11,7 +11,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aitoolshub.com"),
+  metadataBase: new URL("https://practicallibrary.com"),
   title: {
     default: "AI Tools Hub | Learn AI Tools in 5 Minutes",
     template: "%s | AI Tools Hub",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Tools Hub | Learn AI Tools in 5 Minutes",
     description: "AI tools that save 10+ hours/week. Learn them in 5 minutes.",
-    url: "https://aitoolshub.com",
+    url: "https://practicallibrary.com",
     siteName: "AI Tools Hub",
     locale: "en_US",
     type: "website",
