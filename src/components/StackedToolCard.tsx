@@ -66,22 +66,10 @@ export function StackedToolCard({ parentTool, childTool }: StackedToolCardProps)
         </div>
       </Link>
 
-      {/* Connector Visual */}
-      <div className="relative">
-        <div className="absolute left-1/2 -translate-x-1/2 -top-1 w-px h-3 bg-gradient-to-b from-border to-accent/30" />
-        <div className="absolute left-1/2 -translate-x-1/2 top-1 flex items-center justify-center">
-          <div className="w-6 h-6 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center">
-            <svg className="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
       {/* Child Card - Claude Skills (Attached Extension) */}
       <Link
         href={`/tools/${childTool.slug}`}
-        className="group block bg-gradient-to-b from-accent/5 to-card rounded-b-card border border-border border-t-accent/20 p-4 shadow-card hover:shadow-card-hover transition-all duration-200 -mt-px"
+        className="group block bg-gradient-to-b from-accent/5 to-card rounded-b-card border border-border border-t-0 p-4 shadow-card hover:shadow-card-hover transition-all duration-200"
       >
         <div className="flex items-center gap-3">
           {/* Extension Icon */}

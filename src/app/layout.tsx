@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     default: "Practical Library | Learn AI Tools in 5 Minutes",
     template: "%s | Practical Library",
   },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   description:
     "AI tools that save 10+ hours/week. Learn them in 5 minutes. Free educational content for marketers, accountants, and small teams.",
   keywords: [

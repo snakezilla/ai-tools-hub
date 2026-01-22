@@ -2,6 +2,7 @@ export interface QuickstartStep {
   text: string
   substeps?: string[]
   link?: string
+  isOption?: boolean  // When true, this step is an alternative path (not sequential)
 }
 
 export interface PrivacyFlags {
@@ -269,16 +270,18 @@ export const tools: Tool[] = [
         ],
       },
       {
-        text: "Option A: Let Claude Code install skills for you (easiest)",
+        text: "Option A — Let Claude Code install for you (easiest)",
+        isOption: true,
         substeps: [
           "Open Terminal and start Claude Code: claude",
           "Just ask: \"Install the marketing skills from github.com/coreyhaines31/marketingskills\"",
           "Claude Code will clone the repo and install automatically",
-          "Done! Skills are ready to use",
+          "Done! Skills are ready to use — skip to step 4",
         ],
       },
       {
-        text: "Option B: Manual installation",
+        text: "Option B — Manual installation",
+        isOption: true,
         substeps: [
           "Open Terminal",
           "Clone the skills repo: git clone https://github.com/travisvn/awesome-claude-skills",
@@ -301,12 +304,21 @@ export const tools: Tool[] = [
           "You should see your installed skills listed",
         ],
       },
+      {
+        text: "Recommended Skill Collections (free to use)",
+        substeps: [
+          "Marketing Skills — github.com/coreyhaines31/marketingskills — 23 skills that augment marketers with CRO, SEO, copywriting, and campaign expertise",
+          "Awesome Claude Skills — github.com/travisvn/awesome-claude-skills — 50+ curated skills across development, writing, and productivity",
+          "Ralph Loop — github.com/frankbria/ralph-claude-code — Advanced: autonomous development loop that lets Claude work while you sleep (see Ralph guide for setup)",
+        ],
+      },
     ],
     proTips: [
       "Auto-Install: Just tell Claude Code 'Install [skill-name] skill' and it handles everything.",
       "Natural Language: After invoking a skill, just describe what you want in plain English—no special syntax.",
       "Stack Skills: Install multiple skills and Claude automatically uses the right one for each task.",
       "Custom Skills: Create your own by adding a folder with a markdown file to ~/.claude/skills/",
+      "Skills augment your team: Marketers get CRO/SEO experts, developers get code reviewers, writers get editors—all working alongside you.",
     ],
     privacyFlags: {
       dataRetention: "100% local — nothing leaves your computer",
@@ -326,9 +338,133 @@ export const tools: Tool[] = [
         useCase: "23 marketing-specific skills",
         slug: "marketing-skills",
       },
+      {
+        name: "Ralph",
+        useCase: "Autonomous development loop",
+        slug: "ralph",
+      },
+      {
+        name: "Claude Cowork",
+        useCase: "Browser extension for Claude.ai",
+        slug: "claude-cowork",
+      },
     ],
     category: "Development",
     isFoundation: true,
+  },
+  {
+    slug: "claude-cowork",
+    name: "Claude Cowork",
+    tagline: "Browser extension that supercharges Claude.ai with automation and shortcuts",
+    setupTime: "2 min",
+    cost: "Free",
+    privacy: "green",
+    timeSaved: "3-5 hrs/week",
+    useCases: [
+      {
+        role: "Power User",
+        task: "Automate repetitive prompts and workflows",
+        outcome: "One-click access to your best prompts",
+      },
+      {
+        role: "Professional",
+        task: "Save and reuse prompt templates across projects",
+        outcome: "Consistent, high-quality outputs every time",
+      },
+      {
+        role: "Team Lead",
+        task: "Share prompt libraries with team members",
+        outcome: "Standardized AI usage across your organization",
+      },
+    ],
+    quickstart: [
+      {
+        text: "Open Chrome Web Store",
+        link: "https://chrome.google.com/webstore",
+        substeps: [
+          "Open Google Chrome browser",
+          "Go to: chrome.google.com/webstore",
+          "Or simply search 'Chrome Web Store' in Google",
+        ],
+      },
+      {
+        text: "Search for Claude Cowork",
+        substeps: [
+          "In the search bar, type 'Claude Cowork'",
+          "Press Enter",
+          "Look for the official Claude Cowork extension",
+        ],
+      },
+      {
+        text: "Install the extension",
+        substeps: [
+          "Click on the Claude Cowork extension result",
+          "Click the blue 'Add to Chrome' button",
+          "In the popup, click 'Add extension' to confirm",
+          "Wait a few seconds for installation",
+        ],
+      },
+      {
+        text: "Pin the extension for easy access",
+        substeps: [
+          "Click the puzzle piece icon (🧩) in Chrome's top-right toolbar",
+          "Find 'Claude Cowork' in the dropdown",
+          "Click the pin icon next to it",
+          "The extension icon now appears in your toolbar",
+        ],
+      },
+      {
+        text: "Start using with Claude.ai",
+        substeps: [
+          "Go to claude.ai and log in",
+          "You'll see new Cowork features integrated into the interface",
+          "Click the Cowork icon to access prompt templates and shortcuts",
+        ],
+      },
+      {
+        text: "Create your first template",
+        substeps: [
+          "Click the Cowork icon while on Claude.ai",
+          "Select 'New Template'",
+          "Paste a prompt you use frequently",
+          "Give it a name and save",
+          "Now one-click to insert it anytime!",
+        ],
+      },
+    ],
+    proTips: [
+      "Save your best prompts as templates — never retype them again.",
+      "Use keyboard shortcuts to quickly insert templates mid-conversation.",
+      "Export and share your template library with colleagues.",
+      "Organize templates into folders by project or task type.",
+      "Works alongside Claude.ai — doesn't require Claude Code or terminal.",
+    ],
+    privacyFlags: {
+      dataRetention: "Local browser storage only — templates stay on your computer",
+      trainingOnData: "No — extension doesn't send data anywhere",
+      enterpriseOption: "Community extension — check for enterprise features",
+      hipaaAvailable: "N/A — no data transmitted",
+      optOutMethod: "Not needed — fully local",
+    },
+    relatedTools: [
+      {
+        name: "Claude",
+        useCase: "The AI assistant Cowork enhances",
+        slug: "claude",
+      },
+      {
+        name: "Claude Code",
+        useCase: "Terminal-based AI for developers",
+        slug: "claude-code",
+      },
+      {
+        name: "Claude Skills",
+        useCase: "50+ specialized skill extensions",
+        slug: "claude-skills",
+      },
+    ],
+    category: "Productivity",
+    isFoundation: false,
   },
   {
     slug: "chatgpt",
@@ -789,9 +925,9 @@ export const tools: Tool[] = [
   },
   {
     slug: "ralph",
-    name: "Ralph",
+    name: "Ralph Loop",
     tagline: "Autonomous development loop that lets Claude Code work while you sleep",
-    setupTime: "15 min",
+    setupTime: "20 min",
     cost: "Free (open source)",
     privacy: "green",
     timeSaved: "20-40 hrs/week",
@@ -814,68 +950,98 @@ export const tools: Tool[] = [
     ],
     quickstart: [
       {
-        text: "Prerequisites",
+        text: "IMPORTANT: Check all prerequisites first",
         substeps: [
-          "Claude Code must be installed and authenticated (see Claude Code setup)",
-          "Node.js 18+ installed on your machine",
-          "A project folder with code you want to work on",
+          "Claude Code MUST be installed and working (test by running 'claude' in Terminal)",
+          "You must be logged into Claude Code (run 'claude' then '/login' if needed)",
+          "Node.js version 18 or higher required (check with: node --version)",
+          "tmux must be installed (Mac: brew install tmux | Linux: apt install tmux)",
+          "Git must be installed (check with: git --version)",
         ],
       },
       {
-        text: "Install Ralph",
+        text: "Clone the Ralph Loop repository",
+        link: "https://github.com/frankbria/ralph-claude-code",
         substeps: [
-          "Open Terminal (Mac: Cmd+Space → 'Terminal'. Windows: search 'PowerShell')",
-          "Run: npm install -g ralph-claude-code",
-          "Verify installation: ralph --version",
+          "Open Terminal (Mac: Cmd+Space → type 'Terminal' → Enter)",
+          "Navigate to where you want Ralph installed: cd ~/Documents",
+          "Clone the repo: git clone https://github.com/frankbria/ralph-claude-code.git",
+          "Enter the folder: cd ralph-claude-code",
         ],
       },
       {
-        text: "Navigate to your project",
+        text: "Install Ralph Loop dependencies",
         substeps: [
-          "cd ~/your-project (replace with your actual project path)",
-          "Make sure you're in the root folder of your project",
+          "While inside the ralph-claude-code folder, run: npm install",
+          "Wait for all packages to download (may take 1-2 minutes)",
+          "You should see 'added X packages' when complete",
         ],
       },
       {
-        text: "Initialize Ralph in your project",
+        text: "Make the Ralph script executable",
         substeps: [
-          "Run: ralph-setup",
-          "This creates a .ralph folder with configuration files",
+          "Run: chmod +x ralph.sh",
+          "This allows you to run the Ralph Loop script",
         ],
       },
       {
-        text: "Create your requirements document",
+        text: "Create your project requirements file",
         substeps: [
-          "Create a file called requirements.md in your project root",
-          "Describe what you want built in plain English",
-          "Be specific about features, acceptance criteria, and priorities",
-          "Example: 'Build a user authentication system with email/password login, password reset, and session management'",
+          "Navigate to YOUR project folder (not Ralph's folder): cd ~/your-actual-project",
+          "Create a requirements.md file in your project root",
+          "Write what you want built in plain English — be specific!",
+          "Example content for requirements.md:",
+          "  # Project: User Authentication System",
+          "  ## Features to Build:",
+          "  1. Email/password registration with validation",
+          "  2. Login with session management",
+          "  3. Password reset via email link",
+          "  4. 'Remember me' checkbox functionality",
+          "  ## Acceptance Criteria:",
+          "  - All forms must have client-side validation",
+          "  - Passwords must be hashed with bcrypt",
+          "  - Sessions expire after 24 hours",
         ],
       },
       {
-        text: "Start the autonomous loop",
+        text: "Start the Ralph Loop",
         substeps: [
-          "Run: ralph start",
-          "Ralph will begin working through your requirements",
-          "A tmux dashboard shows real-time progress",
-          "You can safely close the terminal — Ralph continues in the background",
+          "Make sure you're in YOUR project folder (not Ralph's folder)",
+          "Run the Ralph script: ~/Documents/ralph-claude-code/ralph.sh",
+          "Or if you added it to PATH: ralph start",
+          "A tmux window will open showing Claude Code working autonomously",
+          "Ralph reads your requirements.md and starts building!",
         ],
       },
       {
-        text: "Monitor and check results",
+        text: "Monitor progress (optional)",
         substeps: [
-          "Run: ralph status — see current progress",
-          "Run: ralph logs — view recent activity",
-          "Check back periodically, or let it run overnight",
+          "The tmux dashboard shows real-time progress",
+          "You can safely close the terminal — Ralph continues in background",
+          "To reattach to the session later: tmux attach -t ralph",
+          "To check status: tmux ls (shows if ralph session is running)",
+          "To stop Ralph: press Ctrl+C in the tmux window, or: tmux kill-session -t ralph",
+        ],
+      },
+      {
+        text: "Check results",
+        substeps: [
+          "Come back in a few hours (or overnight)",
+          "Review the code changes Ralph made",
+          "Test the implemented features",
+          "Use git diff to see all changes",
+          "Commit the good changes: git add . && git commit -m 'Features built by Ralph'",
         ],
       },
     ],
     proTips: [
-      "Ralph has intelligent exit detection—it knows when a task is truly complete.",
-      "Built-in rate limiting prevents runaway API usage (default: 100 calls/hour).",
-      "5-hour API limit handling: Ralph pauses gracefully when limits are reached.",
-      "Use ralph-import to convert existing PRDs or specs into Ralph format.",
-      "Live monitoring via tmux dashboard shows real-time progress.",
+      "Ralph is ADVANCED: Make sure you're comfortable with Claude Code first before using Ralph.",
+      "Write detailed requirements — the more specific, the better Ralph performs.",
+      "Ralph has intelligent exit detection — it knows when a task is truly complete.",
+      "Built-in rate limiting prevents runaway API usage.",
+      "Ralph handles the 5-hour API limit gracefully — it pauses and resumes automatically.",
+      "Use tmux attach -t ralph to reconnect to a running Ralph session.",
+      "Keep requirements.md focused — one project/feature at a time works best.",
     ],
     privacyFlags: {
       dataRetention: "100% local — only your code stays on your machine",
@@ -889,6 +1055,11 @@ export const tools: Tool[] = [
         name: "Claude Code",
         useCase: "AI assistant Ralph controls",
         slug: "claude-code",
+      },
+      {
+        name: "Claude Skills",
+        useCase: "Specialized skills for Claude",
+        slug: "claude-skills",
       },
       {
         name: "Remotion",
