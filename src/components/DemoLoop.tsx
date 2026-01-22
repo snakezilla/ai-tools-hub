@@ -26,8 +26,10 @@ export function DemoLoop({
   const [isLoaded, setIsLoaded] = useState(false)
   const [progress, setProgress] = useState(0)
 
-  // Intersection Observer for autoplay when in view
+  // Intersection Observer for autoplay when in view (interactive variant only)
   useEffect(() => {
+    if (variant === "simple") return // Simple variant uses hover, not scroll-based autoplay
+
     const video = videoRef.current
     const container = containerRef.current
     if (!video || !container || !src) return
@@ -49,10 +51,12 @@ export function DemoLoop({
     return () => {
       observer.disconnect()
     }
-  }, [src])
+  }, [src, variant])
 
-  // Handle autoplay based on visibility
+  // Handle autoplay based on visibility (interactive variant only)
   useEffect(() => {
+    if (variant === "simple") return // Simple variant uses hover, not scroll-based autoplay
+
     const video = videoRef.current
     if (!video || !src) return
 
@@ -63,7 +67,7 @@ export function DemoLoop({
     } else if (!isInView && !hasInteracted) {
       video.pause()
     }
-  }, [isInView, hasInteracted, src])
+  }, [isInView, hasInteracted, src, variant])
 
   // Track video state
   useEffect(() => {
