@@ -4,13 +4,18 @@ import { StackedToolCard } from "./StackedToolCard"
 
 export function ToolsGrid() {
   const foundationTools = getFoundationTools()
+  const claude = getToolBySlug("claude")
+  const claudeCowork = getToolBySlug("claude-cowork")
   const claudeCode = getToolBySlug("claude-code")
   const claudeSkills = getToolBySlug("claude-skills")
 
-  // Filter out Claude Code and Claude Skills from regular display
-  // Claude Skills will be shown stacked under Claude Code
+  // Filter out tools that will be shown in stacked cards
   const regularTools = foundationTools.filter(
-    tool => tool.slug !== "claude-code" && tool.slug !== "claude-skills"
+    tool =>
+      tool.slug !== "claude" &&
+      tool.slug !== "claude-cowork" &&
+      tool.slug !== "claude-code" &&
+      tool.slug !== "claude-skills"
   )
 
   return (
@@ -27,10 +32,10 @@ export function ToolsGrid() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* First tool - Claude (regular card) */}
-          {regularTools.slice(0, 1).map((tool) => (
-            <ToolCard key={tool.slug} tool={tool} />
-          ))}
+          {/* Stacked Card: Claude + Claude Cowork */}
+          {claude && claudeCowork && (
+            <StackedToolCard parentTool={claude} childTool={claudeCowork} />
+          )}
 
           {/* Stacked Card: Claude Code + Claude Skills */}
           {claudeCode && claudeSkills && (
@@ -38,7 +43,7 @@ export function ToolsGrid() {
           )}
 
           {/* Remaining tools */}
-          {regularTools.slice(1).map((tool) => (
+          {regularTools.map((tool) => (
             <ToolCard key={tool.slug} tool={tool} />
           ))}
         </div>
