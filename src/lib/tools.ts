@@ -13,6 +13,15 @@ export interface PrivacyFlags {
   optOutMethod?: string
 }
 
+export interface SkillCollection {
+  name: string
+  github: string
+  description: string
+  skillCount: string
+  forWho: string
+  highlights: string[]
+}
+
 export interface Tool {
   slug: string
   name: string
@@ -23,6 +32,7 @@ export interface Tool {
   timeSaved: string
   demoUrl?: string
   demoVideo?: string
+  whatIsIt?: string  // Clear explanation of what this tool is
   useCases: {
     role: string
     task: string
@@ -30,6 +40,7 @@ export interface Tool {
   }[]
   quickstart: QuickstartStep[]
   proTips?: string[]
+  skillCollections?: SkillCollection[]  // For tools that have skill repos
   privacyFlags: PrivacyFlags
   relatedTools: {
     name: string
@@ -246,6 +257,7 @@ export const tools: Tool[] = [
     cost: "Free (open source)",
     privacy: "green",
     timeSaved: "5-15 hrs/week",
+    whatIsIt: "A Skill is a small instruction file that teaches Claude Code how to be an expert at a specific task. Think of skills like hiring a specialist: instead of explaining CRO best practices every time, a /page-cro skill already knows the frameworks, metrics, and techniques. Skills are free, open-source, and run 100% locally on your computer. Install once, use forever.",
     useCases: [
       {
         role: "Marketer",
@@ -263,6 +275,60 @@ export const tools: Tool[] = [
         outcome: "On-brand content every time",
       },
     ],
+    skillCollections: [
+      {
+        name: "Marketing Skills",
+        github: "https://github.com/coreyhaines31/marketingskills",
+        description: "23 battle-tested skills that turn Claude into your marketing team. Covers the full marketing stack from conversion optimization to email campaigns.",
+        skillCount: "23 skills",
+        forWho: "Marketers, Growth Teams, Founders",
+        highlights: [
+          "/page-cro — Analyzes landing pages and gives specific conversion improvements",
+          "/seo-audit — Technical SEO analysis with actionable recommendations",
+          "/copywriting — High-converting copy using proven frameworks (PAS, AIDA)",
+          "/email-sequence — Creates complete email campaigns with subject lines",
+        ],
+      },
+      {
+        name: "Awesome Claude Skills",
+        github: "https://github.com/travisvn/awesome-claude-skills",
+        description: "The largest curated collection of Claude Code skills. Community-maintained with skills for development, writing, productivity, and more.",
+        skillCount: "50+ skills",
+        forWho: "Developers, Writers, Power Users",
+        highlights: [
+          "/frontend-design — UI/UX expertise for building interfaces",
+          "/code-review — Systematic code review with security checks",
+          "/technical-writing — Documentation and technical content",
+          "/project-planning — Break down projects into actionable tasks",
+        ],
+      },
+      {
+        name: "Ralph Loop",
+        github: "https://github.com/frankbria/ralph-claude-code",
+        description: "Advanced autonomous agent that lets Claude Code work continuously on your projects. Write requirements, start Ralph, and come back to completed features.",
+        skillCount: "Autonomous Agent",
+        forWho: "Developers, Tech Leads, Startup Founders",
+        highlights: [
+          "Works while you sleep — give it a task, check back in hours",
+          "Intelligent exit detection — knows when work is truly done",
+          "Built-in rate limiting — prevents runaway API costs",
+          "Handles API limits gracefully — pauses and resumes automatically",
+        ],
+      },
+      {
+        name: "Business Skills Pack",
+        github: "https://github.com/anthropics/claude-code-skills",
+        description: "Official Anthropic skills for business workflows. Includes document analysis, data processing, and enterprise automation patterns.",
+        skillCount: "15+ skills",
+        forWho: "Business Users, Analysts, Operations",
+        highlights: [
+          "/data-analysis — Analyze spreadsheets and generate insights",
+          "/report-generator — Create professional reports from data",
+          "/meeting-notes — Transform meetings into actionable summaries",
+          "/process-automation — Design and document workflows",
+        ],
+      },
+    ],
     quickstart: [
       {
         text: "Prerequisites",
@@ -278,7 +344,7 @@ export const tools: Tool[] = [
           "Open Terminal and start Claude Code: claude",
           "Just ask: \"Install the marketing skills from github.com/coreyhaines31/marketingskills\"",
           "Claude Code will clone the repo and install automatically",
-          "Done! Skills are ready to use — skip to step 4",
+          "Done! Skills are ready to use — skip to Using Skills",
         ],
       },
       {
@@ -297,28 +363,21 @@ export const tools: Tool[] = [
           "Skills activate automatically when Claude detects a relevant task",
           "Or invoke directly by typing /skill-name (e.g., /page-cro, /seo-audit)",
           "After invoking, just describe what you need in plain English",
+          "Example: Type /page-cro then say 'Analyze my homepage at example.com'",
         ],
       },
       {
         text: "Verify installation",
         substeps: [
           "In Claude Code, type: /help",
-          "You should see your installed skills listed",
-        ],
-      },
-      {
-        text: "Recommended Skill Collections (free to use)",
-        substeps: [
-          "Marketing Skills — github.com/coreyhaines31/marketingskills — 23 skills that augment marketers with CRO, SEO, copywriting, and campaign expertise",
-          "Awesome Claude Skills — github.com/travisvn/awesome-claude-skills — 50+ curated skills across development, writing, and productivity",
-          "Ralph Loop — github.com/frankbria/ralph-claude-code — Advanced: autonomous development loop that lets Claude work while you sleep (see Ralph guide for setup)",
+          "You should see your installed skills listed under 'Available Skills'",
         ],
       },
     ],
     proTips: [
       "Auto-Install: Just tell Claude Code 'Install [skill-name] skill' and it handles everything.",
       "Natural Language: After invoking a skill, just describe what you want in plain English—no special syntax.",
-      "Stack Skills: Install multiple skills and Claude automatically uses the right one for each task.",
+      "Stack Skills: Install multiple skill collections and Claude automatically uses the right one for each task.",
       "Custom Skills: Create your own by adding a folder with a markdown file to ~/.claude/skills/",
       "Skills augment your team: Marketers get CRO/SEO experts, developers get code reviewers, writers get editors—all working alongside you.",
     ],
@@ -341,7 +400,7 @@ export const tools: Tool[] = [
         slug: "marketing-skills",
       },
       {
-        name: "Ralph",
+        name: "Ralph Loop",
         useCase: "Autonomous development loop",
         slug: "ralph",
       },
