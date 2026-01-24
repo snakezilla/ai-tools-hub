@@ -1,6 +1,8 @@
 import Link from "next/link"
 import type { Tool } from "@/lib/tools"
 import { DemoLoop } from "./DemoLoop"
+import { DifficultyBadge } from "./ui/DifficultyBadge"
+import { ReadTimeBadge } from "./ui/ReadTimeBadge"
 
 interface ToolCardProps {
   tool: Tool
@@ -80,11 +82,30 @@ export function ToolCard({ tool, variant = "grid" }: ToolCardProps) {
     <div className="bg-card rounded-card border border-border shadow-card overflow-hidden">
       {/* Header */}
       <div className="p-4 md:p-8 border-b border-border">
-        <div className="flex items-start justify-between gap-3 mb-2">
-          <h1 className="text-heading-md md:text-heading-lg text-card-foreground">{tool.name}</h1>
+        <div className="flex items-start justify-between gap-3 mb-4">
+          <div>
+            <h1 className="text-heading-md md:text-heading-lg text-card-foreground">{tool.name}</h1>
+            <p className="text-body text-muted mt-1">{tool.tagline}</p>
+          </div>
           <PrivacyBadge level={tool.privacy} />
         </div>
-        <p className="text-body text-muted">{tool.tagline}</p>
+
+        {/* Badges Row */}
+        <div className="flex flex-wrap items-center gap-3">
+          {tool.difficulty && <DifficultyBadge level={tool.difficulty} />}
+          {tool.readTime && <ReadTimeBadge minutes={tool.readTime} />}
+          {tool.fullGuideSlug && (
+            <Link
+              href={`/guides/${tool.fullGuideSlug}`}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full hover:bg-accent/20 transition-colors"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Full Guide
+            </Link>
+          )}
+        </div>
       </div>
 
       {/* Stats Bar */}

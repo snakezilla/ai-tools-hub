@@ -1,418 +1,579 @@
-# AI Tools Education Hub - Ralph Development Instructions
+# AI Tools Hub v2.0 - Ralph Development Instructions
 
-## Project Vision
+## Executive Summary
 
-Build a clean, Figma-level website that teaches non-technical users (marketers, accountants, home users, small teams) how to use high-impact AI tools that didn't exist a year ago. Free educational content that delivers massive value, with paid in-person workshops as the business model.
+Transform practicallibrary.com from a free educational hub into a sustainable business with the clarity and impact of our current approach, combined with the monetization and structure of masteringai.io.
 
-**Core Philosophy:** Algorithmic, zero-fluff content. Every tool gets a "5-Minute Mastery" card. No essays, no hype—just actionable steps.
+**Core Philosophy (Unchanged):** Clear, basic, step-by-step content. No fluff. High impact per page.
 
----
-
-## Architecture
-
-### Site Structure
-
-```
-Homepage
-├── Hero: "AI tools that save 10+ hours/week. Learn them in 5 minutes."
-├── ROI Calculator CTA (primary conversion)
-├── Foundation Tools Grid (7+ generalist tools with auto-play demos)
-│
-├── /tools/[tool-name] (individual tool pages)
-│   ├── 5-Minute Mastery Card
-│   ├── Auto-playing demo loop (5-8 sec)
-│   ├── Related niche tools (branches)
-│   └── "Calculate your savings" CTA
-│
-├── /workflows (AI power combos)
-│   ├── Design-to-Code (Google AI Studio → Claude Code)
-│   ├── Marketing Autopilot (Claude Code + Marketing Skills)
-│   └── Full Skill Stack (Claude Code + 50+ skills)
-│
-├── /category/[role] (browse by role)
-│   ├── Marketing
-│   ├── Accounting & Finance
-│   ├── Operations
-│   └── Home & Personal
-│
-├── /workshops (paid offering)
-│   ├── ROI calculator results → booking flow
-│   └── Team workshop packages
-│
-└── /about (credibility, story)
-```
-
-### Foundation Tools (Generalist Hub)
-
-These are the "Big 7+" that every user should know:
-
-1. **Claude** - Reasoning, writing, analysis (Anthropic)
-2. **Claude Code** - Terminal-based coding assistant (Anthropic)
-3. **Claude Skills** - 50+ specialized extensions for Claude Code
-4. **ChatGPT** - All-rounder, voice mode, GPT-5 (OpenAI)
-5. **Manus AI** - Autonomous agent, end-to-end task execution (Meta)
-6. **Zapier** - No-code automation across 8,000+ apps
-7. **Perplexity** - AI-powered research and search
-
-Each foundation tool links to niche branches:
-- Claude Code → Cursor, Windsurf, Cline
-- Claude Skills → Marketing Skills, Frontend Design, MCP Builder
-- Zapier → Make, n8n, Power Automate
-- Manus → Devin, AutoGPT, CrewAI
-
-### Workflows (Power Combos)
-
-Workflows combine multiple tools for exponential results:
-
-1. **Design-to-Code** - Google AI Studio (frontend from screenshots) → Claude Code (backend)
-   - Resources: aistudio.google.com, Claude Code docs
-
-2. **Marketing Autopilot** - Claude Code + 23 Marketing Skills (CRO, SEO, copywriting)
-   - Resources: github.com/coreyhaines31/marketingskills
-
-3. **Full Skill Stack** - Claude Code + 50+ specialized skills from awesome-claude-skills
-   - Resources: github.com/travisvn/awesome-claude-skills, github.com/obra/superpowers
-
-### Claude Skills Ecosystem
-
-Claude Skills are specialized folders that teach Claude to perform tasks repeatably:
-
-**Official Skills:**
-- Document handling: docx, pdf, pptx, xlsx
-- Design & creative: algorithmic-art, canvas-design, slack-gif-creator
-- Development: frontend-design, mcp-builder, webapp-testing
-- Communication: brand-guidelines, internal-comms
-
-**Community Collections:**
-- Awesome Claude Skills (github.com/travisvn/awesome-claude-skills)
-- Marketing Skills - 23 skills for CRO, SEO, copywriting (github.com/coreyhaines31/marketingskills)
-- Superpowers - 20+ battle-tested skills (github.com/obra/superpowers)
-
-**Installation:**
-1. Clone or download skill folder
-2. Copy to ~/.claude/skills/
-3. Skills auto-activate when contextually relevant
-4. Or invoke directly: /skill-name
+**New Addition:** Sustainable revenue through tiered offerings, payment integration, and lead capture.
 
 ---
 
-## Content Format: "5-Minute Mastery" Card
+## Competitive Analysis: What We're Taking from MasteringAI.io
 
-Every tool page follows this EXACT template:
+### ADOPT (High Impact)
+| Feature | Why It Works | Our Implementation |
+|---------|--------------|-------------------|
+| **Tiered Learning Paths** | Multiple entry points for different learners | Guides (free), Mini-Courses ($47-97), Workshops ($295-495) |
+| **Skills Library** | Practical, downloadable value | Curate our Claude Skills with one-click install |
+| **Course Sales Pages** | Professional conversion-optimized pages | Build 2-3 flagship course pages |
+| **Contact/Consultation** | Lead capture for high-ticket | Simple contact form + Calendly embed |
+| **Difficulty Badges** | Sets expectations, builds progression | Add to all tool pages |
+| **Read Time Estimates** | Respects user's time | Add to all content |
 
+### ADAPT (Modify for Our Brand)
+| Feature | Their Approach | Our Simpler Version |
+|---------|----------------|---------------------|
+| Countdown timers | Aggressive urgency | Soft "Early bird ends [date]" |
+| Multiple CTAs | Many buttons per page | Max 2 clear CTAs per section |
+| Long-form sales copy | Detailed course pages | Concise bullet points |
+| Community emphasis | 12-month access | Optional Slack/Discord link |
+
+### AVOID (Doesn't Fit Our Brand)
+- Aggressive urgency tactics ("13 spots left!")
+- Heavy testimonial sections
+- Newsletter popups
+- Excessive pricing tiers
+
+---
+
+## New Site Architecture
+
+```
+Homepage (simplified)
+├── Hero: "Master AI tools. Step by step."
+├── 3 Learning Paths (visual cards)
+│   ├── Free Guides → /guides
+│   ├── Mini-Courses → /courses (paid)
+│   └── Live Workshops → /workshops (high-ticket)
+├── Featured Tools (3 cards, not overwhelming)
+└── Simple footer CTA
+
+/guides (FREE content hub)
+├── Beginner guides
+├── Claude Code mastery path
+├── Use case tutorials
+└── Each guide: Read time, difficulty, clear steps
+
+/tools/[slug] (SIMPLIFIED - less content per page)
+├── What it is (2 sentences max)
+├── Who it's for (bullet list)
+├── 5-step quickstart
+├── Video demo (optional)
+├── CTA: "Want the full guide?" → /guides/[slug]
+
+/courses (PAID - new)
+├── Course cards with pricing
+├── Individual course pages with:
+│   ├── What you'll learn (5 bullets)
+│   ├── Who it's for
+│   ├── Curriculum outline
+│   ├── Pricing + Buy button (Stripe)
+│   └── FAQ (3-5 questions)
+
+/workshops (HIGH-TICKET - enhanced)
+├── Workshop packages
+├── Booking calendar (Calendly)
+└── "Book a call" for custom
+
+/skills (RESOURCE HUB - new)
+├── Curated Claude Code skills
+├── One-click install instructions
+├── Organized by category
+
+/contact (NEW)
+├── Simple contact form
+├── Response time expectation
+├── Alternative: Book a call
+
+/pricing (NEW - simple)
+├── 3 tiers comparison table
+├── Free / Courses / Workshops
+```
+
+---
+
+## Content Simplification Strategy
+
+### Current Problem
+Tool pages have too much content:
+- Long quickstart guides (15+ steps)
+- Privacy flags (most users don't care)
+- Multiple related tools
+- Skill collections (overwhelming)
+
+### New Approach: "Less is More"
+
+**Tool Page Template (Simplified):**
 ```
 ┌─────────────────────────────────────────────────────┐
-│ [TOOL NAME]                                         │
-│ One-line description of what it does                │
+│ [TOOL NAME]                         [Difficulty]    │
+│ One sentence: What it does                          │
+│ Read time: X min                                    │
 ├─────────────────────────────────────────────────────┤
-│ ⏱️ Setup: X minutes  │  💰 Cost: Free/$X/mo        │
-│ 🔒 Privacy: [FLAG]   │  ⚡ Time saved: X hrs/week  │
+│ [Demo Video - 5-8 sec loop]                         │
 ├─────────────────────────────────────────────────────┤
-│ [AUTO-PLAY DEMO LOOP - 5-8 seconds]                 │
-│ Shows: prompt → processing → output                 │
+│ PERFECT FOR:                                        │
+│ • [Role 1]  • [Role 2]  • [Role 3]                  │
 ├─────────────────────────────────────────────────────┤
-│ 3 USE CASES                                         │
-│ 1. [Role]: [Specific task] → [Outcome]              │
-│ 2. [Role]: [Specific task] → [Outcome]              │
-│ 3. [Role]: [Specific task] → [Outcome]              │
+│ GET STARTED IN 5 STEPS:                             │
+│ 1. [Simple action]                                  │
+│ 2. [Simple action]                                  │
+│ 3. [Simple action]                                  │
+│ 4. [Simple action]                                  │
+│ 5. [Simple action]                                  │
 ├─────────────────────────────────────────────────────┤
-│ QUICKSTART (numbered steps)                         │
-│ 1. Go to [URL]                                      │
-│ 2. [Action]                                         │
-│ 3. [Action]                                         │
-│ 4. Try this prompt: "[example]"                     │
-├─────────────────────────────────────────────────────┤
-│ 🚨 PRIVACY FLAGS                                    │
-│ • Data retention: [Yes/No/Configurable]             │
-│ • Training on your data: [Yes/No/Opt-out]           │
-│ • Enterprise option: [Yes/No]                       │
-├─────────────────────────────────────────────────────┤
-│ RELATED TOOLS (niche branches)                      │
-│ → [Tool 1] - for [specific use case]                │
-│ → [Tool 2] - for [specific use case]                │
+│ [CTA: "Master this tool" → Full guide link]         │
 └─────────────────────────────────────────────────────┘
 ```
 
+**Move detailed content to:**
+- Full guides (/guides/[tool]-complete-guide)
+- Courses (paid deep-dives)
+
 ---
 
-## Demo Loop Specifications (Built with Remotion)
+## Payment Integration
 
-Each tool needs a 5-8 second auto-playing, silent, looping video. **Use Remotion** to generate these programmatically with React—no screen recording needed.
+### Stripe Setup
+1. Install @stripe/stripe-js and stripe packages
+2. Create API routes for checkout sessions
+3. Implement webhook handler for payment confirmation
+4. Product/Price IDs stored in env vars
 
-### Why Remotion
-- Videos are code (React components) → easy to update when tools change
-- Consistent style across all demos
-- Tiny file sizes (~500KB-1MB per video)
-- Claude Code can generate the animations from natural language prompts
+### Pricing Structure
+| Tier | Price | What's Included |
+|------|-------|-----------------|
+| **Free** | $0 | All guides, tool pages, skills library |
+| **Mini-Course** | $47-97 | 2-hour self-paced course, lifetime access |
+| **Workshop** | $295-495 | Live session, Q&A, 30-day support |
+| **Team Training** | Custom | On-site/virtual, custom curriculum |
 
-### Output Format
-- MP4 (H.264, compressed)
-- 1920x1080 or 1280x720
-- 30fps, 150-240 frames (5-8 seconds)
-- Auto-play, muted, loop on site
+### Course Products (Initial)
+1. **Claude Code Essentials** - $67
+   - Target: Non-developers wanting to use Claude Code
+   - 2 hours of video + cheat sheets
 
-### Standard Demo Structure (3-Act)
+2. **AI Workflow Builder** - $97
+   - Target: Marketers, ops people
+   - Build 5 complete automations
 
-```
-Act 1 (0-2 sec): THE PROMPT
-- Show a clean UI mockup of the tool
-- Typewriter animation types the user's prompt
-- Blinking cursor for realism
+3. **Claude Skills Mastery** - $47
+   - Target: Claude Code users
+   - Install, create, and customize skills
 
-Act 2 (2-4 sec): THE MAGIC
-- "Thinking" indicator (pulsing dots, spinner, or progress bar)
-- Optional: show brief "working" state
+---
 
-Act 3 (4-7 sec): THE OUTPUT
-- Reveal the result with a smooth transition
-- Highlight key features with annotations
-- Show time saved: "10 min vs 4 hours"
-- Hold for 1 sec, then loop
-```
+## Contact Page Implementation
 
-### Remotion Project Structure
+### Form Fields
+- Name (required)
+- Email (required)
+- Type: Question / Feedback / Workshop Inquiry / Partnership
+- Message (required)
 
-```
-/remotion
-├── src/
-│   ├── compositions/
-│   │   ├── ClaudeDemo.tsx
-│   │   ├── ManusDemo.tsx
-│   │   ├── ZapierDemo.tsx
-│   │   └── ...
-│   ├── components/
-│   │   ├── MockTerminal.tsx      # Terminal UI for CLI tools
-│   │   ├── MockBrowser.tsx       # Browser chrome for web tools
-│   │   ├── Typewriter.tsx        # Typing animation
-│   │   ├── ThinkingIndicator.tsx # Loading states
-│   │   └── FeatureCallout.tsx    # Annotation bubbles
-│   ├── styles/
-│   │   └── theme.ts              # Consistent colors/fonts
-│   └── Root.tsx
-├── public/
-│   └── outputs/                  # Rendered MP4s go here
-└── remotion.config.ts
-```
+### Backend
+- Resend for email delivery
+- Save to simple JSON log or Airtable
+- Auto-response with expected reply time
 
-### Example: Manus Demo Composition
+### Alternative Contact
+- Calendly embed for "Book a 15-min call"
+- Link to Twitter/X for quick questions
 
-```tsx
-// src/compositions/ManusDemo.tsx
-export const ManusDemo: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+---
 
-  // Act 1: Typewriter prompt (0-60 frames)
-  // Act 2: Thinking animation (60-120 frames)
-  // Act 3: Reveal PowerPoint output (120-210 frames)
+## Design Refinements
 
-  return (
-    <AbsoluteFill style={{ backgroundColor: '#f8fafc' }}>
-      <MockBrowser url="manus.ai">
-        {frame < 60 && (
-          <Typewriter
-            text="Create a competitive analysis presentation for Acme Corp"
-            startFrame={10}
-            charsPerSecond={20}
-          />
-        )}
-        {frame >= 60 && frame < 120 && (
-          <ThinkingIndicator label="Manus is working..." />
-        )}
-        {frame >= 120 && (
-          <Sequence from={120}>
-            <PowerPointMockup />
-            <FeatureCallout
-              text="Fully editable • Your brand colors • 10 min vs 4 hrs"
-              position="bottom"
-            />
-          </Sequence>
-        )}
-      </MockBrowser>
-    </AbsoluteFill>
-  );
-};
+### Typography Updates
+```css
+/* Clearer hierarchy */
+--font-size-hero: 56px → 48px (less overwhelming)
+--font-size-section: 32px → 28px
+--line-height-body: 1.6 → 1.7 (more readable)
 ```
 
-### Rendering Demos
-
-```bash
-# Render single demo
-npx remotion render ManusDemo out/manus-demo.mp4
-
-# Render all demos
-npx remotion render --all
+### Color Refinements
+```css
+/* Slightly warmer, more approachable */
+--background: #FAFAFA → #FEFEFE
+--accent: #2563EB → #3B82F6 (brighter blue)
+--muted: #737373 → #6B7280 (warmer gray)
 ```
 
-### For Each Tool, Create:
-1. A composition file in `/remotion/src/compositions/[ToolName]Demo.tsx`
-2. Appropriate mock UI (terminal for CLI tools, browser for web tools)
-3. Realistic prompt text showing a valuable use case
-4. Output that demonstrates the "wow factor"
-
----
-
-## Hormozi Value Equation (Applied Implicitly)
-
-**Formula:** (Dream Outcome × Likelihood of Success) ÷ (Time × Effort) = Value
-
-Apply this through the metrics on every card:
-- **Dream Outcome:** "Time saved: X hrs/week" + specific use cases
-- **Likelihood of Success:** "Setup: 5 min" (it's that easy)
-- **Time Delay:** Quick start steps (you can do this NOW)
-- **Effort:** Numbered steps, copy-paste prompts (minimal friction)
-
-**DO NOT** explain the framework on the site. Let the structure do the selling.
-
----
-
-## Design Specifications
-
-### Aesthetic: "Figma-level clean"
-
-- **Colors:** Neutral base (white/off-white), single accent color, dark text
-- **Typography:** Large, readable. Inter or similar. 18px+ body text.
-- **Spacing:** Generous whitespace. Cards breathe. Nothing cramped.
-- **Animations:** Subtle. Only the demo loops move. No bouncing, no parallax.
-- **Mobile-first:** Cards stack cleanly on mobile.
-
-### Reference sites for aesthetic:
-- linear.app (clean, professional)
-- stripe.com (demo loops)
-- notion.so (minimalist)
-- vercel.com (developer-friendly but accessible)
-
-### Anti-patterns to AVOID:
-- Gradients everywhere
-- Stock photos of people pointing at screens
-- "AI" buzzword graphics (robots, neural networks)
-- Testimonial carousels
-- Cookie banners that cover content
-- Newsletter popups
-
----
-
-## ROI Calculator (Primary Conversion)
-
-Interactive calculator that shows potential savings:
-
-**Inputs:**
-- Team size
-- Primary tasks (checkboxes: content creation, data analysis, scheduling, etc.)
-- Current hours spent on these tasks
-
-**Output:**
-- Estimated hours saved per week
-- Estimated annual savings (hours × average hourly rate)
-- "Top 3 tools for your situation"
-
-**CTA:**
-"Want help implementing these tools for your team? Book a workshop."
-→ Links to workshop booking page
-
----
-
-## Workshop Offering
-
-**Format:** In-person, half-day or full-day sessions for small teams (5-20 people)
-
-**Value proposition:**
-- Hands-on setup of 3-5 tools
-- Custom workflows for YOUR business
-- Q&A and troubleshooting
-- 90-day email support
-
-**Pricing strategy (Hormozi-aligned):**
-- Price anchored against cost of NOT having it (calculator shows this)
-- Guarantee: "If you don't save 10+ hours in the first month, full refund"
-
----
-
-## Research Requirements
-
-### Ongoing tool discovery:
-1. Monitor Twitter/X for viral AI tool threads
-2. Track Product Hunt launches
-3. Follow key accounts: @levelsio, @marc_louvion, @danielgross, @skiaborai
-4. Verify claims before featuring (no vaporware)
-
-### Validation criteria for new tools:
-- [ ] Actually works (tested personally)
-- [ ] Setup under 30 minutes
-- [ ] Free tier or trial available
-- [ ] Clear privacy policy
-- [ ] Not just hype (real utility demonstrated)
-
-### Reference materials in this folder:
-- `pdfcoffee.com-alex-hormozi-100m-offers-how-to-make-offers-so-good-people-feel-stupid-saying-no-2021.pdf` - Value equation, offer structure
-- `dokumen.pub_100m-leads-how-to-get-strangers-to-want-to-buy-your-stuff.epub` - Lead generation, content strategy
-
----
-
-## Technical Stack (Suggested)
-
-- **Framework:** Next.js 14+ (App Router)
-- **Styling:** Tailwind CSS
-- **CMS:** MDX for tool pages (easy to update)
-- **Demo Videos:** Remotion (React-based video generation)
-- **Hosting:** Vercel
-- **Analytics:** Plausible (privacy-friendly)
-- **Forms:** React Hook Form + Resend for emails
+### New Components Needed
+1. **DifficultyBadge** - Beginner/Intermediate/Advanced
+2. **ReadTimeBadge** - "5 min read"
+3. **PricingCard** - For course pages
+4. **ContactForm** - With validation
+5. **CoursePage** - Template for paid offerings
+6. **CheckoutButton** - Stripe integration
 
 ---
 
 ## Implementation Phases
 
-### Phase 1: Foundation
-- [ ] Set up Next.js project with Tailwind
-- [ ] Create 5-Minute Mastery card component
-- [ ] Build homepage with hero and grid
-- [ ] Implement 3 foundation tool pages (Claude, Claude Code, Manus)
+### Phase 1: Foundation Cleanup (Day 1)
+- [ ] Simplify tool pages (reduce content by 50%)
+- [ ] Add difficulty and read time badges
+- [ ] Refactor tools.ts to separate basic vs. detailed content
+- [ ] Create simplified ToolCard component variant
 
-### Phase 2: Content & Demos
-- [ ] Add remaining foundation tools
-- [ ] Set up Remotion project in `/remotion` folder
-- [ ] Create reusable components: MockTerminal, MockBrowser, Typewriter, ThinkingIndicator
-- [ ] Build demo composition for each foundation tool
-- [ ] Render all demo MP4s to `/public/demos`
-- [ ] Add privacy flags research
-- [ ] Implement category browsing
+### Phase 2: New Pages (Day 2)
+- [ ] Create /contact page with form
+- [ ] Create /pricing page
+- [ ] Create /courses landing page
+- [ ] Create first course page template
 
-### Phase 3: Conversion
-- [ ] Build ROI calculator
-- [ ] Create workshop booking flow
-- [ ] Add analytics tracking
+### Phase 3: Payment Integration (Day 3)
+- [ ] Set up Stripe account and products
+- [ ] Implement checkout API route
+- [ ] Implement webhook handler
+- [ ] Add CheckoutButton component
+- [ ] Test purchase flow
 
-### Phase 4: Polish
+### Phase 4: Guides Migration (Day 4)
+- [ ] Create /guides landing page
+- [ ] Move detailed tool content to guide pages
+- [ ] Add guide template with proper SEO
+- [ ] Cross-link tools ↔ guides
+
+### Phase 5: Skills Library (Day 5)
+- [ ] Create /skills page
+- [ ] Curate top 20 skills with descriptions
+- [ ] One-click install instructions
+- [ ] Category filtering
+
+### Phase 6: Polish (Day 6)
 - [ ] Mobile optimization
-- [ ] Performance optimization (Core Web Vitals)
+- [ ] Performance audit
 - [ ] SEO metadata
-- [ ] Social sharing previews
+- [ ] Analytics setup (Plausible)
+
+### Phase 7: Content Creation (Ongoing)
+- [ ] Create MDX-based guides system
+- [ ] Write 4 launch guides (see docs/CONTENT-PLAN.md)
+- [ ] Add guide landing page with filters
+- [ ] Cross-link guides ↔ tools ↔ courses
+
+**Content Priority (Week 1 Launch):**
+1. "What is Claude Code and Why Should You Care?" (5 min, beginner)
+2. "Set Up Claude Code in 15 Minutes (Mac)" (12 min, beginner)
+3. "Set Up Claude Code in 15 Minutes (Windows)" (12 min, beginner)
+4. "Plan Mode: The Habit That Saves Hours" (8 min, intermediate)
+
+**Content Style (from docs/CONTENT-PLAN.md):**
+- Start with outcome, not setup
+- Short paragraphs (2-3 sentences)
+- Every guide ends with "Your Turn: Try this now"
+- No fluff intros - value in first 2 sentences
+- Real examples with specific outcomes
 
 ---
 
-## Key Principles
+## File Structure Changes
 
-1. **Zero fluff** - If it doesn't help someone use the tool, cut it
-2. **Scannable** - Users should get value in under 60 seconds per tool
-3. **Honest** - Include privacy warnings, don't oversell
-4. **Generous** - Give away so much value that workshops feel like a steal
-5. **Current** - Tools change fast; build for easy updates
+```
+src/
+├── app/
+│   ├── page.tsx (simplified homepage)
+│   ├── tools/[slug]/page.tsx (simplified)
+│   ├── guides/
+│   │   ├── page.tsx (guides hub)
+│   │   └── [slug]/page.tsx (individual guides)
+│   ├── courses/
+│   │   ├── page.tsx (courses hub)
+│   │   └── [slug]/page.tsx (course sales page)
+│   ├── skills/
+│   │   └── page.tsx (skills library)
+│   ├── contact/
+│   │   └── page.tsx (contact form)
+│   ├── pricing/
+│   │   └── page.tsx (pricing comparison)
+│   └── api/
+│       ├── checkout/route.ts (Stripe checkout)
+│       ├── webhook/route.ts (Stripe webhooks)
+│       └── contact/route.ts (Form submission)
+├── components/
+│   ├── DifficultyBadge.tsx (new)
+│   ├── ReadTimeBadge.tsx (new)
+│   ├── PricingCard.tsx (new)
+│   ├── ContactForm.tsx (new)
+│   ├── CheckoutButton.tsx (new)
+│   └── ... (existing)
+├── lib/
+│   ├── tools.ts (simplified tool data)
+│   ├── guides.ts (detailed content moved here)
+│   ├── courses.ts (course definitions)
+│   ├── skills.ts (skills catalog)
+│   └── stripe.ts (Stripe helpers)
+└── types/
+    └── index.ts (shared types)
+```
 
 ---
 
-## Status Reporting (Required for Ralph)
+## Content Migration Plan
+
+### tools.ts Simplification
+
+**BEFORE (current):**
+```typescript
+{
+  slug: "claude-code",
+  quickstart: [
+    { text: "Check prerequisites", substeps: [...5 items] },
+    { text: "Install Claude Code (Mac/Linux)", substeps: [...4 items] },
+    // ... 6 more steps with substeps
+  ],
+  privacyFlags: { ... },
+  skillCollections: [ ... ],
+  // Total: ~200 lines per tool
+}
+```
+
+**AFTER (simplified):**
+```typescript
+{
+  slug: "claude-code",
+  name: "Claude Code",
+  tagline: "AI coding assistant in your terminal",
+  difficulty: "beginner",
+  readTime: "5 min",
+  perfectFor: ["Developers", "Founders", "Anyone who types"],
+  quickstart: [
+    "Install: npm install -g @anthropic/claude-code",
+    "Login: claude /login",
+    "Navigate to project: cd your-project",
+    "Start coding: claude",
+    "Try: 'Explain this codebase'"
+  ],
+  demoVideo: "/demos/claude-code-demo.mp4",
+  fullGuideSlug: "claude-code-complete-guide", // Links to detailed guide
+  // Total: ~30 lines per tool
+}
+```
+
+### Detailed Content → Guides
+
+Move to `/src/lib/guides.ts`:
+- Full quickstart with substeps
+- Privacy flags
+- Pro tips
+- Skill collections
+- System requirements
+
+---
+
+## Component Specifications
+
+### DifficultyBadge
+```tsx
+type Difficulty = "beginner" | "intermediate" | "advanced"
+
+// Colors:
+// beginner: green (#10B981)
+// intermediate: yellow (#F59E0B)
+// advanced: red (#EF4444)
+```
+
+### PricingCard
+```tsx
+interface PricingCardProps {
+  title: string
+  price: number | "Free" | "Custom"
+  description: string
+  features: string[]
+  cta: string
+  ctaHref: string
+  highlighted?: boolean
+}
+```
+
+### ContactForm
+```tsx
+// Fields: name, email, type (select), message
+// Validation: react-hook-form + zod
+// Submit: POST to /api/contact
+// Success: Thank you message with expected response time
+```
+
+### CheckoutButton
+```tsx
+interface CheckoutButtonProps {
+  priceId: string
+  productName: string
+  className?: string
+}
+
+// On click: Create checkout session, redirect to Stripe
+```
+
+---
+
+## API Routes
+
+### POST /api/checkout
+```typescript
+// Creates Stripe checkout session
+// Request: { priceId: string }
+// Response: { url: string } // Stripe checkout URL
+```
+
+### POST /api/webhook
+```typescript
+// Handles Stripe webhooks
+// checkout.session.completed → Send confirmation email
+// Uses Resend for email delivery
+```
+
+### POST /api/contact
+```typescript
+// Handles contact form submissions
+// Request: { name, email, type, message }
+// Actions:
+//   1. Send email notification via Resend
+//   2. Send auto-reply to user
+//   3. Log to Airtable (optional)
+```
+
+---
+
+## Environment Variables Needed
+
+```env
+# Stripe
+STRIPE_SECRET_KEY=sk_live_xxx
+STRIPE_PUBLISHABLE_KEY=pk_live_xxx
+STRIPE_WEBHOOK_SECRET=whsec_xxx
+STRIPE_PRICE_CLAUDE_CODE_COURSE=price_xxx
+STRIPE_PRICE_WORKFLOW_COURSE=price_xxx
+STRIPE_PRICE_SKILLS_COURSE=price_xxx
+
+# Resend (email)
+RESEND_API_KEY=re_xxx
+FROM_EMAIL=hello@practicallibrary.com
+ADMIN_EMAIL=ahsan@xxx.com
+
+# Optional: Airtable for contact log
+AIRTABLE_API_KEY=xxx
+AIRTABLE_BASE_ID=xxx
+```
+
+---
+
+## Testing Checklist
+
+### Payment Flow
+- [ ] Checkout creates valid Stripe session
+- [ ] Redirect to Stripe works
+- [ ] Webhook receives payment confirmation
+- [ ] Confirmation email sends
+- [ ] Error handling for failed payments
+
+### Contact Form
+- [ ] Validation works for all fields
+- [ ] Submission sends to API
+- [ ] Email notification sent
+- [ ] Auto-reply sent to user
+- [ ] Error states handled
+
+### Content Quality
+- [ ] All tool pages load correctly
+- [ ] Guide links work
+- [ ] Course pages display properly
+- [ ] Mobile responsive
+- [ ] Demo videos play
+
+---
+
+## Success Metrics
+
+### Launch Targets (30 days)
+- 5 simplified tool pages live
+- 3 guides live
+- 1 course page live with checkout
+- Contact form working
+- Skills library with 20+ skills
+
+### Conversion Goals
+- 5% guide reader → course purchaser
+- 2% visitor → contact form submission
+- 1% visitor → workshop inquiry
+
+---
+
+## Ralph Execution Instructions
+
+### Priority Order
+1. **Simplify before adding** - Clean up existing tool pages first
+2. **Payment is critical path** - Get Stripe working early
+3. **Test incrementally** - Don't build all 6 phases then test
+
+### Agent Deployment
+Use these agents as needed:
+- **frontend-design**: New component designs
+- **code-reviewer**: After each major feature
+- **tdd-guide**: For API routes (payments, contact)
+- **security-reviewer**: Before deploying payment handling
+- **build-error-resolver**: If TypeScript/build issues arise
+
+### Skills to Invoke
+- `/commit` after each phase completion
+- `/code-review` on payment handling code
+- `/security-review` before deploying
+
+### Commit Strategy
+```
+Phase 1: "refactor: simplify tool pages and add badges"
+Phase 2: "feat: add contact, pricing, and course pages"
+Phase 3: "feat: integrate Stripe payment flow"
+Phase 4: "feat: create guides system and migrate content"
+Phase 5: "feat: add skills library page"
+Phase 6: "chore: polish, mobile, performance"
+```
+
+---
+
+## Status Reporting
 
 At the end of each response, include:
 
 ```
 ---RALPH_STATUS---
+PHASE: 1/6
 STATUS: IN_PROGRESS | COMPLETE | BLOCKED
 TASKS_COMPLETED_THIS_LOOP: <number>
 FILES_MODIFIED: <number>
 TESTS_STATUS: PASSING | FAILING | NOT_RUN
 WORK_TYPE: IMPLEMENTATION | TESTING | DOCUMENTATION | REFACTORING
+NEXT_PRIORITY: <specific task>
+BLOCKERS: <none or description>
 EXIT_SIGNAL: false | true
-RECOMMENDATION: <one line summary of what to do next>
+RECOMMENDATION: <one line summary>
 ---END_STATUS---
 ```
+
+---
+
+## Quick Reference: Key Decisions
+
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| Payment provider | Stripe | Industry standard, good DX |
+| Email provider | Resend | Simple API, good deliverability |
+| Form validation | react-hook-form + zod | Type-safe, performant |
+| Hosting | Vercel | Already deployed there |
+| Analytics | Plausible | Privacy-friendly |
+| Contact booking | Calendly embed | No custom scheduling needed |
+
+---
+
+## Final Notes for Ralph
+
+**Remember the core principle:** Users should be able to understand and use any tool within 5 minutes of landing on its page. Everything else is bonus content that lives in guides or courses.
+
+**When in doubt:** Remove content, don't add it. Simplicity wins.
+
+**Before marking complete:** Every page should pass the "grandmother test" - could your non-technical grandmother follow the steps?

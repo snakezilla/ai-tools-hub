@@ -15,14 +15,19 @@
     "render:all": "npm run render:claude && npm run render:claude-code && npm run render:manus && npm run render:chatgpt && npm run render:copilot && npm run render:zapier && npm run render:perplexity"
   },
   "dependencies": {
-    "@remotion/cli": "^4.0.0",
+    "@remotion/bundler": "^4.0.409",
+    "@remotion/cli": "^4.0.409",
     "@remotion/player": "^4.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "remotion": "^4.0.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.409"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "typescript": "^5.0.0"
-  }
+    "@types/react": "^18.3.27",
+    "typescript": "^5.9.3"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

@@ -41,6 +41,8 @@ export interface Tool {
   demoUrl?: string
   demoVideo?: string
   whatIsIt?: string  // Clear explanation of what this tool is
+  difficulty?: 'beginner' | 'intermediate' | 'advanced'  // NEW: Difficulty level
+  readTime?: number  // NEW: Minutes to read
   systemRequirements?: SystemRequirements  // What systems/browsers this works on
   useCases: {
     role: string
@@ -59,6 +61,7 @@ export interface Tool {
   category: string
   isFoundation: boolean
   tier?: 1 | 2  // 1 = Start Here (essential), 2 = Power Tools
+  fullGuideSlug?: string  // NEW: Link to detailed guide (move long content here)
 }
 
 export const tools: Tool[] = [
@@ -72,6 +75,9 @@ export const tools: Tool[] = [
     privacy: "green",
     timeSaved: "5-10 hrs/week",
     demoVideo: "/demos/claude-demo.mp4",
+    difficulty: "beginner",
+    readTime: 5,
+    fullGuideSlug: "claude-for-writers",
     tier: 1,
     useCases: [
       {
@@ -161,6 +167,9 @@ export const tools: Tool[] = [
     privacy: "green",
     timeSaved: "10-20 hrs/week",
     demoVideo: "/demos/claude-code-demo.mp4",
+    difficulty: "intermediate",
+    readTime: 8,
+    fullGuideSlug: "claude-code-complete-guide",
     tier: 1,
     useCases: [
       {
