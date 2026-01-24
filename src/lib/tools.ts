@@ -282,6 +282,9 @@ export const tools: Tool[] = [
     cost: "Free (open source)",
     privacy: "green",
     timeSaved: "5-15 hrs/week",
+    difficulty: "intermediate",
+    readTime: 7,
+    fullGuideSlug: "claude-skills-ecosystem",
     whatIsIt: "A Skill is a small instruction file that teaches Claude Code how to be an expert at a specific task. Think of skills like hiring a specialist: instead of explaining CRO best practices every time, a /page-cro skill already knows the frameworks, metrics, and techniques. Skills are free, open-source, and run 100% locally on your computer. Install once, use forever.",
     useCases: [
       {
@@ -448,6 +451,9 @@ export const tools: Tool[] = [
     privacy: "green",
     timeSaved: "5-15 hrs/week",
     whatIsIt: "Claude Cowork is an AI desktop agent built into the Claude app. Think of it as 'Claude Code for everyone else'—it can autonomously organize your Downloads folder, turn scattered notes into formatted documents, process receipts into expense reports, or batch rename hundreds of files. You give it access to a folder, describe what you want, and it works independently while you do other things. It runs in a secure sandbox so it can't accidentally break your system.",
+    difficulty: "beginner",
+    readTime: 6,
+    fullGuideSlug: "claude-cowork-automation-guide",
     systemRequirements: {
       operatingSystems: [
         "macOS 13 (Ventura) or later (required)",
@@ -597,6 +603,9 @@ export const tools: Tool[] = [
     privacy: "yellow",
     timeSaved: "5-10 hrs/week",
     tier: 2,
+    difficulty: "beginner",
+    readTime: 4,
+    fullGuideSlug: "chatgpt-power-user-guide",
     useCases: [
       {
         role: "Anyone",
@@ -689,6 +698,9 @@ export const tools: Tool[] = [
     timeSaved: "5-15 hrs/week",
     demoVideo: "/demos/manus-demo.mp4",
     tier: 1,
+    difficulty: "beginner",
+    readTime: 5,
+    fullGuideSlug: "manus-ai-advanced-automation",
     useCases: [
       {
         role: "Marketer",
@@ -778,6 +790,9 @@ export const tools: Tool[] = [
     privacy: "green",
     timeSaved: "5-20 hrs/week",
     tier: 2,
+    difficulty: "intermediate",
+    readTime: 8,
+    fullGuideSlug: "zapier-complex-workflows",
     useCases: [
       {
         role: "Sales Team",
@@ -877,6 +892,9 @@ export const tools: Tool[] = [
     privacy: "green",
     timeSaved: "3-8 hrs/week",
     tier: 2,
+    difficulty: "beginner",
+    readTime: 3,
+    fullGuideSlug: "perplexity-research-workflows",
     useCases: [
       {
         role: "Researcher",
@@ -964,6 +982,9 @@ export const tools: Tool[] = [
     cost: "Free (open source)",
     privacy: "green",
     timeSaved: "10-20 hrs/week",
+    difficulty: "intermediate",
+    readTime: 6,
+    fullGuideSlug: "marketing-skills-framework",
     useCases: [
       {
         role: "Growth Marketer",
@@ -1061,6 +1082,9 @@ export const tools: Tool[] = [
     cost: "Free (open source)",
     privacy: "green",
     timeSaved: "20-40 hrs/week",
+    difficulty: "advanced",
+    readTime: 12,
+    fullGuideSlug: "ralph-loop-autonomous-development",
     useCases: [
       {
         role: "Solo Developer",
@@ -1208,6 +1232,9 @@ export const tools: Tool[] = [
     cost: "Free (open source) / $15/mo for cloud rendering",
     privacy: "green",
     timeSaved: "5-15 hrs/week",
+    difficulty: "intermediate",
+    readTime: 10,
+    fullGuideSlug: "remotion-video-automation",
     useCases: [
       {
         role: "Marketing Team",
