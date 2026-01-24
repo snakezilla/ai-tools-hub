@@ -23,6 +23,8 @@ export function middleware(request: NextRequest) {
     if (allowedOrigins.length === 0) {
       // Default to local development and Vercel deployment
       allowedOrigins.push('http://localhost:3000')
+      allowedOrigins.push('https://practicallibrary.com')
+      allowedOrigins.push('https://www.practicallibrary.com')
       if (process.env.VERCEL_URL) {
         allowedOrigins.push(`https://${process.env.VERCEL_URL}`)
       }

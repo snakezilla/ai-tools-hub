@@ -66,6 +66,9 @@ export function Header() {
           <Link href="/about" className="text-body-sm text-muted hover:text-foreground transition-colors">
             About
           </Link>
+          <Link href="/contact" className="text-body-sm text-muted hover:text-foreground transition-colors">
+            Contact
+          </Link>
           <Link href="/#calculator" className="btn-primary text-body-sm">
             Calculate ROI
           </Link>
@@ -153,6 +156,13 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               About
+            </Link>
+            <Link
+              href="/contact"
+              className="text-body text-muted hover:text-foreground transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact
             </Link>
             <Link
               href="/#calculator"

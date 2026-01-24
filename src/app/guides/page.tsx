@@ -140,7 +140,7 @@ export default function GuidesPage() {
             Video courses with step-by-step walkthroughs, downloadable resources, and lifetime access.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Claude Code Essentials */}
             <Link href="/courses/claude-code-essentials">
               <div className="h-full p-6 bg-white rounded-card border-2 border-accent/20 hover:border-accent hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 flex flex-col">
@@ -198,25 +198,100 @@ export default function GuidesPage() {
         </div>
       </section>
 
-      {/* 1:1 Walkthrough CTA */}
-      <section className="px-4 py-16 bg-gray-50 border-t border-border">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-heading-sm text-foreground mb-4">Want someone to set it up for you?</h2>
-          <p className="text-body text-muted mb-6">
-            Book a 1:1 walkthrough with our automation team. We&apos;ll get your workflows running in one session.
+      {/* 1:1 Walkthrough Section */}
+      <section id="one-on-one" className="px-4 py-16 border-t border-border bg-gradient-to-b from-purple-50/50 to-white">
+        <div className="max-w-content mx-auto">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+            <h2 className="text-heading-sm text-foreground">1:1 Walkthroughs</h2>
+            <span className="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs font-semibold rounded">HANDS-ON</span>
+          </div>
+          <p className="text-body text-muted mb-8 max-w-2xl">
+            Want someone to set it up for you? Our automation team will get your workflows running in one session.
           </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Link
-              href="/contact"
-              className="inline-block px-8 py-4 bg-accent text-accent-foreground rounded-button font-semibold text-lg hover:bg-accent-dark transition"
-            >
-              Book 1:1 Session ($650)
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
+            {/* 1:1 Walkthrough - One-time */}
+            <Link href="/pricing#one-on-one">
+              <div className="h-full p-6 bg-white rounded-card border-2 border-purple-200 hover:border-purple-500 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded">ONE-TIME</span>
+                  <span className="text-lg font-bold text-foreground">$650</span>
+                </div>
+                <h3 className="text-lg font-bold text-foreground mb-2">1:1 Walkthrough</h3>
+                <p className="text-body-sm text-muted mb-4 flex-1">
+                  A 90-minute session with our automation team. We&apos;ll set up your tools and build your first workflow together.
+                </p>
+                <ul className="text-body-sm text-muted mb-4 space-y-1">
+                  <li className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    90-minute live session
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Custom workflow setup
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Recording included
+                  </li>
+                </ul>
+                <div className="flex items-center text-purple-600 font-medium text-body-sm">
+                  Book Session
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
             </Link>
-            <Link
-              href="/pricing"
-              className="inline-block px-8 py-4 bg-card text-foreground border border-border rounded-button font-semibold text-lg hover:border-accent hover:text-accent transition"
-            >
-              See All Options
+
+            {/* Weekly 1:1 Walkthrough - Subscription */}
+            <Link href="/pricing#one-on-one">
+              <div className="h-full p-6 bg-white rounded-card border-2 border-purple-200 hover:border-purple-500 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 flex flex-col relative">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  BEST VALUE
+                </span>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded">MONTHLY</span>
+                  <span className="text-lg font-bold text-foreground">$1,200<span className="text-sm font-normal text-muted">/mo</span></span>
+                </div>
+                <h3 className="text-lg font-bold text-foreground mb-2">Weekly 1:1 Walkthrough</h3>
+                <p className="text-body-sm text-muted mb-4 flex-1">
+                  Four 60-minute sessions per month. Ongoing support as you scale your AI workflows.
+                </p>
+                <ul className="text-body-sm text-muted mb-4 space-y-1">
+                  <li className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    4 sessions per month
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Priority scheduling
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <svg className="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Slack support between calls
+                  </li>
+                </ul>
+                <div className="flex items-center text-purple-600 font-medium text-body-sm">
+                  Start Subscription
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
             </Link>
           </div>
         </div>

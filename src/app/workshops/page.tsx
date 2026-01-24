@@ -188,12 +188,12 @@ export default function WorkshopsPage() {
           <p className="text-muted mb-4">
             Not sure which package is right for your team?
           </p>
-          <a
-            href="mailto:workshops@practicallibrary.com?subject=Workshop Consultation"
+          <Link
+            href="/contact"
             className="text-accent hover:underline font-medium"
           >
             Schedule a free 15-minute consultation →
-          </a>
+          </Link>
         </div>
       </div>
     </div>
