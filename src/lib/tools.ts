@@ -135,6 +135,13 @@ export const tools: Tool[] = [
         ],
       },
     ],
+    proTips: [
+      "Context is key: Paste code, documents, or previous conversation. Claude works better with more context.",
+      "Iterate: If the first answer isn't perfect, say 'better' or 'make it more concise' to refine.",
+      "Use formatting: Ask Claude to output in specific formats (Markdown, JSON, tables) for easier parsing.",
+      "Custom Instructions: Set up custom instructions in your account for consistent style on all conversations.",
+      "Switching plans: Free users get slower access. Pro ($20/mo) gets faster responses and more usage.",
+    ],
     privacyFlags: {
       dataRetention: "30 days (opt-out) / 5 years (opt-in for training)",
       trainingOnData: "Opt-in by default since Sept 2024 — you CAN opt out",
@@ -284,7 +291,7 @@ export const tools: Tool[] = [
     timeSaved: "5-15 hrs/week",
     difficulty: "intermediate",
     readTime: 7,
-    fullGuideSlug: "claude-skills-ecosystem",
+    fullGuideSlug: "claude-skills-mastery",
     whatIsIt: "A Skill is a small instruction file that teaches Claude Code how to be an expert at a specific task. Think of skills like hiring a specialist: instead of explaining CRO best practices every time, a /page-cro skill already knows the frameworks, metrics, and techniques. Skills are free, open-source, and run 100% locally on your computer. Install once, use forever.",
     useCases: [
       {
@@ -665,6 +672,13 @@ export const tools: Tool[] = [
         ],
       },
     ],
+    proTips: [
+      "Privacy First: Turn OFF 'Improve the model for everyone' if you don't want your conversations used for training. Check Settings > Data Controls.",
+      "GPT-4o is best: Free users get GPT-4o Mini. Plus users ($20/mo) get full GPT-4o with better reasoning.",
+      "File Uploads: Upload documents, images, and PDFs for analysis. ChatGPT can read and extract data from files.",
+      "Web Browsing: Plus/Pro users can enable web browsing to get real-time information beyond the training cutoff.",
+      "Custom GPTs: Create custom ChatGPT instances for specific tasks. Browse GPT Store or build your own.",
+    ],
     privacyFlags: {
       dataRetention: "Indefinite by default — admin-configurable on Enterprise (min 90 days)",
       trainingOnData: "YES by default (Free/Plus/Pro) — can opt out in settings",
@@ -758,6 +772,13 @@ export const tools: Tool[] = [
         ],
       },
     ],
+    proTips: [
+      "Be specific: The more detail in your task description, the better the result. Include examples and formatting.",
+      "Check task history: All your tasks are saved. Click 'History' to see previous results and refine.",
+      "Use templates: Manus has task templates for common projects (presentations, reports, analyses).",
+      "Export immediately: Save completed work right away. Long-term task storage is unclear.",
+      "Start with free tier: Test simple tasks first before upgrading to paid plans.",
+    ],
     privacyFlags: {
       dataRetention: "Task history retained — unclear deletion policy",
       trainingOnData: "May be used — check Terms of Service",
@@ -792,7 +813,7 @@ export const tools: Tool[] = [
     tier: 2,
     difficulty: "intermediate",
     readTime: 8,
-    fullGuideSlug: "zapier-complex-workflows",
+    fullGuideSlug: "zapier-automation-101",
     useCases: [
       {
         role: "Sales Team",
@@ -859,6 +880,13 @@ export const tools: Tool[] = [
           "Your automation is now live!",
         ],
       },
+    ],
+    proTips: [
+      "Test before publishing: Always test your trigger and action separately before publishing the Zap.",
+      "Use Filters: Add conditions (Filters) to only run Zaps when certain criteria are met.",
+      "Multi-step Zaps: Add multiple actions in sequence. Example: When new email arrives → Slack notification → Spreadsheet entry.",
+      "Browse templates: Zapier has 1000s of pre-built templates. Start there instead of building from scratch.",
+      "Monitor usage: Free tier gives 100 tasks/month. Track your automation usage to avoid hitting limits.",
     ],
     privacyFlags: {
       dataRetention: "Configurable on Enterprise — task logs retained on lower tiers",
@@ -951,6 +979,13 @@ export const tools: Tool[] = [
           "Pro plan ($20/mo) gives unlimited Pro searches with GPT-4 and Claude",
         ],
       },
+    ],
+    proTips: [
+      "Use filters: Filter by Academic, News, or Recent to refine source types.",
+      "Follow-up questions: Ask clarifying questions naturally. Perplexity maintains context within a conversation.",
+      "Collections: Save important research into Collections (free, requires account) for later access.",
+      "Focus mode (Pro): Pro users can focus searches on specific types: Academic, Writing, Wolfram, YouTube.",
+      "Always verify: Check original sources for critical information. AI summaries are helpful but sometimes miss nuances.",
     ],
     privacyFlags: {
       dataRetention: "Minimal — search history optional",
