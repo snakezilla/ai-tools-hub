@@ -3,8 +3,26 @@ import Link from 'next/link'
 import { PricingCard } from '@/components/PricingCard'
 
 export const metadata: Metadata = {
-  title: 'Pricing',
-  description: 'Choose the learning path that fits your needs. From free guides to professional workshops.',
+  title: 'Pricing - Free to Premium AI Learning',
+  description: 'Choose your learning path: Free guides (always free), Mini-courses ($47-97), or Live workshops ($295-495). All include lifetime access and support.',
+  keywords: [
+    'pricing',
+    'courses',
+    'workshops',
+    'affordable learning',
+    'lifetime access',
+  ],
+  openGraph: {
+    title: 'Pricing | Practical Library',
+    description: 'Flexible learning plans from free to professional. Free guides, affordable courses ($47-97), and premium workshops ($295-495).',
+    url: 'https://practicallibrary.com/pricing',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Pricing | Practical Library',
+    description: 'Free guides, courses from $47, and professional workshops. Choose what fits your needs.',
+  },
 }
 
 export default function PricingPage() {

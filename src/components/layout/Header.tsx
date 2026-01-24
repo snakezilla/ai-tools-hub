@@ -22,6 +22,12 @@ export function Header() {
           <Link href="/#tools" className="text-body-sm text-muted hover:text-foreground transition-colors">
             Tools
           </Link>
+          <Link href="/guides" className="text-body-sm text-muted hover:text-foreground transition-colors">
+            Guides
+          </Link>
+          <Link href="/skills" className="text-body-sm text-muted hover:text-foreground transition-colors">
+            Skills
+          </Link>
           <Link href="/workflows" className="text-body-sm text-muted hover:text-foreground transition-colors">
             Workflows
           </Link>
@@ -94,6 +100,20 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Tools
+            </Link>
+            <Link
+              href="/guides"
+              className="text-body text-muted hover:text-foreground transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Guides
+            </Link>
+            <Link
+              href="/skills"
+              className="text-body text-muted hover:text-foreground transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Skills
             </Link>
             <Link
               href="/workflows"

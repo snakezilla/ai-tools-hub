@@ -2,8 +2,27 @@ import { Metadata } from 'next'
 import { ContactForm } from '@/components/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
-  description: 'Get in touch with the AI Tools Education Hub team. Questions, feedback, or partnership opportunities.',
+  title: 'Contact - Practical Library',
+  description: 'Get in touch with Practical Library. Questions about guides, courses, or workshops? We respond within 24 hours.',
+  keywords: [
+    'contact us',
+    'support',
+    'feedback',
+    'partnership',
+    'workshop inquiry',
+    'course questions',
+  ],
+  openGraph: {
+    title: 'Contact Us | Practical Library',
+    description: 'Reach out with questions, feedback, or partnership opportunities. We respond within 24 hours.',
+    url: 'https://practicallibrary.com/contact',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Contact Us | Practical Library',
+    description: 'Questions about AI tools or courses? Get in touch.',
+  },
 }
 
 export default function ContactPage() {

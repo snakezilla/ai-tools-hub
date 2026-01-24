@@ -4,8 +4,29 @@ import { DifficultyBadge } from '@/components/ui/DifficultyBadge'
 import { SkillCopyButton } from '@/components/SkillCopyButton'
 
 export const metadata: Metadata = {
-  title: 'Claude Skills Library',
-  description: 'Curated collection of Claude Skills to extend functionality. One-click install and immediate productivity gains.',
+  title: 'Claude Skills Library - 31+ Verified Skills',
+  description: '31+ verified Claude Code skills organized by category: coding, writing, analysis, integration, productivity, and AI. One-click install and instant expertise.',
+  keywords: [
+    'Claude skills',
+    'Claude Code extensions',
+    'coding skills',
+    'writing skills',
+    'SEO audit',
+    'code review',
+    'api design',
+    'prompt engineering',
+  ],
+  openGraph: {
+    title: 'Claude Skills Library | Practical Library',
+    description: 'Discover 31+ verified Claude Code skills. Extend Claude with specialized expertise in coding, writing, analysis, and more.',
+    url: 'https://practicallibrary.com/skills',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Claude Skills Library | Practical Library',
+    description: 'Install 31+ verified Claude Code skills instantly. Code review, copywriting, SEO audits, and more.',
+  },
 }
 
 const categories = [

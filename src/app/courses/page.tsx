@@ -3,8 +3,28 @@ import Link from 'next/link'
 import { CourseCard } from '@/components/CourseCard'
 
 export const metadata: Metadata = {
-  title: 'Mini-Courses',
-  description: 'Self-paced video courses on AI tools. Learn at your own pace with lifetime access.',
+  title: 'AI Tools Courses - Self-Paced Learning',
+  description: 'Self-paced video courses on Claude Code, AI workflow automation, and Claude Skills. Learn from $47-97 with lifetime access and email support.',
+  keywords: [
+    'online courses',
+    'Claude Code course',
+    'AI automation course',
+    'workflow builder',
+    'self-paced learning',
+    'video course',
+    'lifetime access',
+  ],
+  openGraph: {
+    title: 'AI Tools Courses | Practical Library',
+    description: 'Affordable self-paced courses on Claude Code, workflow automation, and skills. Start from $47 with lifetime access.',
+    url: 'https://practicallibrary.com/courses',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Tools Courses | Practical Library',
+    description: 'Learn Claude Code, automation, and more. Affordable self-paced courses with lifetime access.',
+  },
 }
 
 const courses = [

@@ -339,99 +339,40 @@ export function ToolCard({ tool, variant = "grid" }: ToolCardProps) {
         </div>
       )}
 
-      {/* Quickstart */}
+      {/* Quick 3-Step Quickstart - with link to full guide */}
       <div className="p-4 md:p-8 border-b border-border">
-        <h2 className="text-heading-sm text-card-foreground mb-4 md:mb-6">Quickstart Guide</h2>
-        <ol className="space-y-6">
-          {tool.quickstart.map((step, index) => {
-            const isOption = typeof step !== "string" && step.isOption
-            const nextStep = tool.quickstart[index + 1]
-            const nextIsOption = nextStep && typeof nextStep !== "string" && nextStep.isOption
-            const prevStep = tool.quickstart[index - 1]
-            const prevIsOption = prevStep && typeof prevStep !== "string" && prevStep.isOption
-
-            // Get step number accounting for option groupings
-            let stepNumber = index + 1
-            for (let i = 0; i < index; i++) {
-              const s = tool.quickstart[i]
-              if (typeof s !== "string" && s.isOption) {
-                const nextS = tool.quickstart[i + 1]
-                if (nextS && typeof nextS !== "string" && nextS.isOption) {
-                  stepNumber--
-                }
-              }
-            }
-
-            return (
-              <li key={index} className="relative">
-                {/* Show OR divider between consecutive options */}
-                {isOption && prevIsOption && (
-                  <div className="flex items-center gap-3 mb-6 -mt-3">
-                    <div className="flex-1 h-px bg-border"></div>
-                    <span className="px-3 py-1 bg-warning/10 text-warning font-bold text-sm rounded-full">OR</span>
-                    <div className="flex-1 h-px bg-border"></div>
-                  </div>
-                )}
-
-                <div className={`flex items-start gap-3 ${isOption ? "p-4 rounded-lg border-2 border-dashed border-accent/30 bg-accent/5" : ""}`}>
-                  <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5 ${
-                    isOption ? "bg-warning/20 text-warning" : "bg-accent text-accent-foreground"
-                  }`}>
-                    {isOption ? (prevIsOption ? "B" : "A") : stepNumber}
-                  </span>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className={`font-medium text-sm md:text-base ${isOption ? "text-warning" : "text-card-foreground"}`}>
-                        {typeof step === "string" ? step : step.text}
-                      </span>
-                      {typeof step !== "string" && step.link && (
-                        <a
-                          href={step.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-accent hover:text-accent-dark underline text-sm"
-                        >
-                          ↗
-                        </a>
-                      )}
-                    </div>
-                    {typeof step !== "string" && step.substeps && step.substeps.length > 0 && (
-                      <ul className="mt-2 ml-0 space-y-1.5">
-                        {step.substeps.map((substep, subIndex) => (
-                          <li key={subIndex} className="flex items-start gap-2 text-sm text-muted">
-                            <span className="text-accent/60 mt-1">›</span>
-                            <span className="text-card-foreground/80">{substep}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </div>
-              </li>
-            )
-          })}
-        </ol>
-      </div>
-
-      {/* Pro Tips */}
-      {tool.proTips && tool.proTips.length > 0 && (
-        <div className="p-4 md:p-8 border-b border-border bg-accent/5">
-          <h2 className="text-heading-sm text-card-foreground mb-4 md:mb-6 flex items-center gap-2">
-            <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            Pro Tips
-          </h2>
-          <ul className="space-y-3">
-            {tool.proTips.map((tip, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <span className="text-accent font-bold text-lg leading-none mt-0.5">•</span>
-                <span className="text-card-foreground text-sm md:text-base">{tip}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="flex items-center justify-between mb-4 md:mb-6">
+          <h2 className="text-heading-sm text-card-foreground">Quick Start (3 Steps)</h2>
+          {tool.fullGuideSlug && (
+            <Link
+              href={`/guides/${tool.fullGuideSlug}`}
+              className="text-xs font-medium text-accent hover:text-accent-dark transition-colors"
+            >
+              View complete guide →
+            </Link>
+          )}
         </div>
-      )}
+        <ol className="space-y-4">
+          {/* Show first 3 steps only, simplified */}
+          {tool.quickstart.slice(0, 3).map((step, index) => (
+            <li key={index} className="flex items-start gap-3">
+              <span className="w-7 h-7 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">
+                {index + 1}
+              </span>
+              <div className="flex-1">
+                <span className="font-medium text-sm md:text-base text-card-foreground">
+                  {typeof step === "string" ? step : step.text}
+                </span>
+              </div>
+            </li>
+          ))}
+        </ol>
+        {tool.fullGuideSlug && (
+          <p className="mt-6 pt-4 border-t border-border text-sm text-muted">
+            For detailed steps and pro tips, visit the <Link href={`/guides/${tool.fullGuideSlug}`} className="font-medium text-accent hover:text-accent-dark">complete guide</Link>.
+          </p>
+        )}
+      </div>
 
       {/* Privacy Flags */}
       <div className="p-4 md:p-8 border-b border-border bg-background">
