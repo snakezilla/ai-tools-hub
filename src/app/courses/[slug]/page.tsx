@@ -205,6 +205,40 @@ export default async function CourseDetailPage({ params }: Props) {
                 ))}
               </div>
             </div>
+
+            {/* Why Learners Choose Us */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Why Learners Choose Our Courses</h2>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <svg className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Practical, Real-World Examples</h3>
+                    <p className="text-gray-700 text-sm">Every lesson comes with actual workflows and code you can use immediately.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Expert Instruction</h3>
+                    <p className="text-gray-700 text-sm">Taught by people who use these tools daily in production environments.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">No Fluff, No Filler</h3>
+                    <p className="text-gray-700 text-sm">Concise lessons that respect your time. Learn what you need, skip the rest.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Right Column - Sidebar */}
