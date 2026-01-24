@@ -49,7 +49,7 @@ export interface Tool {
     task: string
     outcome: string
   }[]
-  quickstart: QuickstartStep[]
+  quickstart: string[] | QuickstartStep[]  // Simplified 5-step strings OR complex steps with substeps
   proTips?: string[]
   skillCollections?: SkillCollection[]  // For tools that have skill repos
   privacyFlags: PrivacyFlags
@@ -97,43 +97,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "Open your web browser",
-        substeps: [
-          "Mac: Press Cmd+Space, type 'Safari' or 'Chrome', press Enter",
-          "Windows: Click the browser icon on your taskbar, or press Windows key, type browser name",
-        ],
-      },
-      {
-        text: "Go to claude.ai",
-        link: "https://claude.ai",
-        substeps: [
-          "Click the address bar at the top of your browser",
-          "Type 'claude.ai' and press Enter",
-        ],
-      },
-      {
-        text: "Create your account",
-        substeps: [
-          "Click the 'Sign Up' button (top right)",
-          "Choose: 'Continue with Google' (fastest) or enter your email",
-          "If using email: Check inbox for verification code and enter it",
-        ],
-      },
-      {
-        text: "Start chatting",
-        substeps: [
-          "You'll see a text box at the bottom that says 'Message Claude'",
-          "Click it and type your question or request",
-          "Press Enter or click the arrow button to send",
-        ],
-      },
-      {
-        text: "Try this starter prompt:",
-        substeps: [
-          "\"Help me draft a professional email to reschedule a client meeting for next Tuesday\"",
-        ],
-      },
+      "Open your web browser (Safari, Chrome, Edge, etc.)",
+      "Go to claude.ai and sign up (use Google for fastest setup)",
+      "Create your account with email or Google login",
+      "Click the 'Message Claude' box at the bottom and start typing",
+      "Try: 'Help me draft a professional email to reschedule a client meeting'",
     ],
     proTips: [
       "Context is key: Paste code, documents, or previous conversation. Claude works better with more context.",
@@ -196,55 +164,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "Check prerequisites",
-        substeps: [
-          "You need a Claude Pro ($20/mo) or Max ($100/mo) subscription, OR API billing enabled",
-          "Your computer needs at least 4GB RAM",
-          "Works on Mac, Windows, and Linux",
-        ],
-      },
-      {
-        text: "Install Claude Code (Mac/Linux)",
-        substeps: [
-          "Open Terminal: Mac: Press Cmd+Space, type 'Terminal', press Enter",
-          "Copy and paste this command, then press Enter:",
-          "curl -fsSL https://claude.ai/install.sh | sh",
-          "Wait for installation to complete (about 30 seconds)",
-        ],
-      },
-      {
-        text: "Install Claude Code (Windows)",
-        substeps: [
-          "Open PowerShell: Press Windows key, type 'PowerShell', press Enter",
-          "Run: winget install Anthropic.ClaudeCode",
-          "Or download installer from claude.ai/code",
-        ],
-      },
-      {
-        text: "Verify installation",
-        substeps: [
-          "In Terminal/PowerShell, type: claude doctor",
-          "This checks that everything is set up correctly",
-        ],
-      },
-      {
-        text: "Log in and start using",
-        substeps: [
-          "Type: claude",
-          "Then type: /login",
-          "Follow the browser prompts to sign in with your Claude account",
-          "Once logged in, you're ready to code!",
-        ],
-      },
-      {
-        text: "Try your first command",
-        substeps: [
-          "Navigate to a project: cd ~/your-project",
-          "Start Claude Code: claude",
-          "Ask in plain English: \"Explain what this codebase does\"",
-        ],
-      },
+      "Get Claude Pro ($20/mo) or Max ($100/mo) subscription (includes Claude Code)",
+      "Mac/Linux: Run curl -fsSL https://claude.ai/install.sh | sh",
+      "Windows: Run winget install Anthropic.ClaudeCode or download from claude.ai/code",
+      "Run 'claude /login' in your terminal and follow the browser prompts",
+      "Navigate to your project folder and run 'claude' to start working",
     ],
     proTips: [
       "Dangerous Mode: Run 'claude --dangerously-skip-permissions' to avoid repeated permission prompts. Use with caution!",
@@ -365,49 +289,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "Prerequisites",
-        substeps: [
-          "Claude Code must be installed first (see Claude Code setup)",
-          "Basic familiarity with Terminal/Command Prompt",
-        ],
-      },
-      {
-        text: "Option A — Let Claude Code install for you (easiest)",
-        isOption: true,
-        substeps: [
-          "Open Terminal and start Claude Code: claude",
-          "Just ask: \"Install the marketing skills from github.com/coreyhaines31/marketingskills\"",
-          "Claude Code will clone the repo and install automatically",
-          "Done! Skills are ready to use — skip to Using Skills",
-        ],
-      },
-      {
-        text: "Option B — Manual installation",
-        isOption: true,
-        substeps: [
-          "Open Terminal",
-          "Clone the skills repo: git clone https://github.com/travisvn/awesome-claude-skills",
-          "Create skills folder if it doesn't exist: mkdir -p ~/.claude/skills",
-          "Copy the skill folders you want: cp -r awesome-claude-skills/skills/* ~/.claude/skills/",
-        ],
-      },
-      {
-        text: "Using skills",
-        substeps: [
-          "Skills activate automatically when Claude detects a relevant task",
-          "Or invoke directly by typing /skill-name (e.g., /page-cro, /seo-audit)",
-          "After invoking, just describe what you need in plain English",
-          "Example: Type /page-cro then say 'Analyze my homepage at example.com'",
-        ],
-      },
-      {
-        text: "Verify installation",
-        substeps: [
-          "In Claude Code, type: /help",
-          "You should see your installed skills listed under 'Available Skills'",
-        ],
-      },
+      "Install Claude Code first (see Claude Code setup above)",
+      "Easy way: Run 'claude' and ask 'Install the marketing skills from github.com/coreyhaines31/marketingskills'",
+      "Manual way: git clone https://github.com/travisvn/awesome-claude-skills && cp -r skills/* ~/.claude/skills/",
+      "Type /skill-name to invoke any skill (e.g., /page-cro for conversion optimization)",
+      "Skills auto-activate when Claude detects you need them — just describe what you need",
     ],
     proTips: [
       "Auto-Install: Just tell Claude Code 'Install [skill-name] skill' and it handles everything.",
@@ -501,68 +387,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "Check your Mac version",
-        substeps: [
-          "Click the Apple menu () → About This Mac",
-          "You need macOS 13 (Ventura) or later",
-          "If you're on an older version, update first: System Settings → General → Software Update",
-        ],
-      },
-      {
-        text: "Download Claude Desktop",
-        link: "https://claude.ai/download",
-        substeps: [
-          "Go to claude.ai/download",
-          "Click 'Download for Mac'",
-          "Open the downloaded .dmg file",
-          "Drag Claude to your Applications folder",
-        ],
-      },
-      {
-        text: "Sign in with Pro or Max subscription",
-        substeps: [
-          "Open Claude from Applications",
-          "Sign in with your Claude account",
-          "Cowork requires Pro ($20/mo) or Max ($100-200/mo)",
-          "If on Free tier, upgrade at claude.ai/settings/billing",
-        ],
-      },
-      {
-        text: "Start Cowork mode",
-        substeps: [
-          "In Claude Desktop, look for the 'Cowork' button or tab",
-          "Click to enter Cowork mode",
-          "You'll see a different interface designed for file tasks",
-        ],
-      },
-      {
-        text: "Grant folder access",
-        substeps: [
-          "Cowork will ask permission to access folders",
-          "Start with ONE folder (like Downloads) — don't give access to everything",
-          "Click 'Allow' when macOS asks for permission",
-          "You can add more folders later as needed",
-        ],
-      },
-      {
-        text: "Try your first task",
-        substeps: [
-          "Type a clear task description. Example:",
-          "   'Organize my Downloads folder: create subfolders for PDFs, Images, Documents, and Other. Move files into the right folders based on their type.'",
-          "Press Enter and watch Cowork plan and execute",
-          "It will show you what it's doing and ask permission before deleting anything",
-        ],
-      },
-      {
-        text: "Let it work (you can do other things)",
-        substeps: [
-          "Unlike regular Claude chat, Cowork runs autonomously",
-          "You can minimize the window and work on other tasks",
-          "Cowork will notify you when done or if it needs input",
-          "Review the results and provide feedback",
-        ],
-      },
+      "Check you're on macOS 13+ (System Settings → General → Software Update if needed)",
+      "Download Claude Desktop from claude.ai/download and drag to Applications folder",
+      "Sign in with Claude Pro ($20/mo) or Max ($100-200/mo) account",
+      "Click 'Cowork' button in the app and grant access to a single folder (e.g., Downloads)",
+      "Describe your task in plain English and watch Cowork organize/process files autonomously",
     ],
     proTips: [
       "Start Small: Give Cowork access to one folder first. Add more as you build trust.",
@@ -631,46 +460,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "Open your web browser",
-        substeps: [
-          "Mac: Press Cmd+Space, type 'Safari' or 'Chrome', press Enter",
-          "Windows: Click the browser icon or press Windows key, type browser name",
-        ],
-      },
-      {
-        text: "Go to chatgpt.com",
-        link: "https://chatgpt.com",
-        substeps: [
-          "Click the address bar at the top",
-          "Type 'chatgpt.com' and press Enter",
-        ],
-      },
-      {
-        text: "Create your account",
-        substeps: [
-          "Click 'Sign up' (top right)",
-          "Choose: Continue with Google/Apple/Microsoft (fastest) or use email",
-          "If using email: Enter your email, create a password, verify via inbox",
-        ],
-      },
-      {
-        text: "Important: Adjust your privacy settings",
-        substeps: [
-          "Click your profile icon (bottom left)",
-          "Go to Settings > Data Controls",
-          "Toggle OFF 'Improve the model for everyone' if you don't want your chats used for training",
-          "This setting is ON by default for Free/Plus users",
-        ],
-      },
-      {
-        text: "Start chatting",
-        substeps: [
-          "Type in the 'Message ChatGPT' box at the bottom",
-          "Press Enter or click the send arrow",
-          "Try: \"Explain the key points I should make in my quarterly review\"",
-        ],
-      },
+      "Open your web browser and go to chatgpt.com",
+      "Click 'Sign up' and choose Google, Apple, or email login",
+      "IMPORTANT: Go to Settings > Data Controls and toggle OFF 'Improve the model for everyone' (ON by default)",
+      "Start typing in the message box at the bottom — no special formatting needed",
+      "Try: 'Explain the key points I should make in my quarterly review'",
     ],
     proTips: [
       "Privacy First: Turn OFF 'Improve the model for everyone' if you don't want your conversations used for training. Check Settings > Data Controls.",
@@ -733,44 +527,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "Open your web browser",
-        substeps: [
-          "Mac: Press Cmd+Space, type browser name, press Enter",
-          "Windows: Click browser icon on taskbar or search",
-        ],
-      },
-      {
-        text: "Go to manus.ai",
-        link: "https://manus.ai",
-        substeps: [
-          "Click the address bar",
-          "Type 'manus.ai' and press Enter",
-        ],
-      },
-      {
-        text: "Create your account",
-        substeps: [
-          "Click 'Sign Up'",
-          "Enter your email and create a password",
-          "Verify your email if prompted",
-        ],
-      },
-      {
-        text: "Create your first task",
-        substeps: [
-          "Click the 'New Task' button",
-          "Describe what you want in plain English in the text box",
-          "Be specific about format, length, and requirements",
-        ],
-      },
-      {
-        text: "Try this starter task:",
-        substeps: [
-          "\"Create a 10-slide pitch deck for a SaaS startup that helps small businesses manage inventory\"",
-          "Manus works autonomously—check back in a few minutes for results",
-        ],
-      },
+      "Go to manus.ai and click 'Sign Up' (email or social login)",
+      "Click 'New Task' button on your dashboard",
+      "Describe what you want in plain English — be specific about format and length",
+      "Example: 'Create a 10-slide pitch deck for a SaaS startup that manages inventory'",
+      "Manus works autonomously — check back in a few minutes for your results",
     ],
     proTips: [
       "Be specific: The more detail in your task description, the better the result. Include examples and formatting.",
@@ -832,54 +593,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "Go to zapier.com",
-        link: "https://zapier.com",
-        substeps: [
-          "Open your browser and navigate to zapier.com",
-        ],
-      },
-      {
-        text: "Create your account",
-        substeps: [
-          "Click 'Sign up' (top right)",
-          "Choose Google sign-in (fastest) or enter email/password",
-          "Free tier gives you 100 tasks/month — enough to start",
-        ],
-      },
-      {
-        text: "Create your first 'Zap' (automation)",
-        substeps: [
-          "Click the orange 'Create' button in the top left",
-          "Select 'Zaps' from the dropdown",
-        ],
-      },
-      {
-        text: "Set up your Trigger (what starts the automation)",
-        substeps: [
-          "Search for an app (e.g., 'Google Sheets', 'Gmail', 'Typeform')",
-          "Select a trigger event (e.g., 'New Row in Spreadsheet')",
-          "Connect your account when prompted (one-time setup)",
-          "Test the trigger to make sure it works",
-        ],
-      },
-      {
-        text: "Set up your Action (what happens next)",
-        substeps: [
-          "Click the '+' to add an action step",
-          "Search for the destination app (e.g., 'Slack', 'HubSpot')",
-          "Select an action (e.g., 'Send Channel Message')",
-          "Map the data from your trigger to the action fields",
-          "Test the action",
-        ],
-      },
-      {
-        text: "Turn on your Zap",
-        substeps: [
-          "Click 'Publish' in the top right",
-          "Your automation is now live!",
-        ],
-      },
+      "Go to zapier.com and sign up (Google login is fastest, free tier: 100 tasks/month)",
+      "Click 'Create' button and select 'Zaps' from dropdown",
+      "Choose your Trigger app (e.g., Google Sheets, Gmail, Typeform) and trigger event (e.g., 'New Row')",
+      "Connect your account and test the trigger to verify it works",
+      "Add Action step, select destination app (e.g., Slack, HubSpot), map fields, test, and publish",
     ],
     proTips: [
       "Test before publishing: Always test your trigger and action separately before publishing the Zap.",
@@ -941,44 +659,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "Go to perplexity.ai",
-        link: "https://perplexity.ai",
-        substeps: [
-          "Open your browser",
-          "Type 'perplexity.ai' in the address bar and press Enter",
-        ],
-      },
-      {
-        text: "Start searching immediately (no account needed!)",
-        substeps: [
-          "You'll see a search box in the center of the page",
-          "Type your question in plain English",
-          "Press Enter",
-        ],
-      },
-      {
-        text: "Read the AI-generated answer with sources",
-        substeps: [
-          "Perplexity will show a summarized answer at the top",
-          "Below the answer, you'll see numbered citations [1], [2], etc.",
-          "Click any citation to open the original source",
-        ],
-      },
-      {
-        text: "Try this starter search:",
-        substeps: [
-          "\"What are the latest AI developments this week?\"",
-          "Notice how each fact links back to a real source",
-        ],
-      },
-      {
-        text: "Optional: Create an account for extra features",
-        substeps: [
-          "Click 'Sign up' for search history and collections",
-          "Pro plan ($20/mo) gives unlimited Pro searches with GPT-4 and Claude",
-        ],
-      },
+      "Go to perplexity.ai in your browser — no account needed to start!",
+      "Type your question in the search box in plain English and press Enter",
+      "Read the AI-generated answer with numbered sources below — click any [1], [2], etc. to see the original",
+      "Try: 'What are the latest AI developments this week?'",
+      "Optional: Create account for search history, or upgrade to Pro ($20/mo) for Claude and GPT-4",
     ],
     proTips: [
       "Use filters: Filter by Academic, News, or Recent to refine source types.",
@@ -1038,49 +723,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "Prerequisites",
-        substeps: [
-          "Claude Code must be installed (see Claude Code setup first)",
-          "Basic familiarity with Terminal",
-        ],
-      },
-      {
-        text: "Option A: Auto-install via Claude Code (easiest)",
-        substeps: [
-          "Open Terminal and type: claude",
-          "Ask Claude: \"Install the marketing skills from github.com/coreyhaines31/marketingskills\"",
-          "Claude Code handles the rest automatically",
-        ],
-      },
-      {
-        text: "Option B: Manual installation",
-        substeps: [
-          "Open Terminal",
-          "Clone the repo: git clone https://github.com/coreyhaines31/marketingskills",
-          "Create skills folder: mkdir -p ~/.claude/skills",
-          "Copy skills: cp -r marketingskills/skills/* ~/.claude/skills/",
-        ],
-      },
-      {
-        text: "Available marketing skills",
-        substeps: [
-          "/page-cro — Landing page conversion optimization",
-          "/seo-audit — Technical SEO analysis",
-          "/copywriting — High-converting copy frameworks",
-          "/email-sequence — Email campaign creation",
-          "/programmatic-seo — Scalable SEO content",
-          "And 18 more specialized marketing skills",
-        ],
-      },
-      {
-        text: "Using a skill",
-        substeps: [
-          "In Claude Code, type /page-cro (or any skill name)",
-          "Describe what you need: \"Analyze my homepage at example.com\"",
-          "Get detailed, actionable recommendations",
-        ],
-      },
+      "Install Claude Code first (see Claude Code setup above)",
+      "Easy way: Run 'claude' in Terminal and ask 'Install marketing skills from github.com/coreyhaines31/marketingskills'",
+      "Manual way: git clone https://github.com/coreyhaines31/marketingskills && cp -r skills/* ~/.claude/skills/",
+      "Available skills: /page-cro (conversion), /seo-audit (SEO), /copywriting (copy), /email-sequence (campaigns), and 18+ more",
+      "Use any skill: type /page-cro and ask 'Analyze my homepage at example.com' for recommendations",
     ],
     proTips: [
       "Auto-Install: Tell Claude Code 'Install the marketing skills' and it handles the entire setup.",
@@ -1138,90 +785,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "IMPORTANT: Check all prerequisites first",
-        substeps: [
-          "Claude Code MUST be installed and working (test by running 'claude' in Terminal)",
-          "You must be logged into Claude Code (run 'claude' then '/login' if needed)",
-          "Node.js version 18 or higher required (check with: node --version)",
-          "tmux must be installed (Mac: brew install tmux | Linux: apt install tmux)",
-          "Git must be installed (check with: git --version)",
-        ],
-      },
-      {
-        text: "Clone the Ralph Loop repository",
-        link: "https://github.com/frankbria/ralph-claude-code",
-        substeps: [
-          "Open Terminal (Mac: Cmd+Space → type 'Terminal' → Enter)",
-          "Navigate to where you want Ralph installed: cd ~/Documents",
-          "Clone the repo: git clone https://github.com/frankbria/ralph-claude-code.git",
-          "Enter the folder: cd ralph-claude-code",
-        ],
-      },
-      {
-        text: "Install Ralph Loop dependencies",
-        substeps: [
-          "While inside the ralph-claude-code folder, run: npm install",
-          "Wait for all packages to download (may take 1-2 minutes)",
-          "You should see 'added X packages' when complete",
-        ],
-      },
-      {
-        text: "Make the Ralph script executable",
-        substeps: [
-          "Run: chmod +x ralph.sh",
-          "This allows you to run the Ralph Loop script",
-        ],
-      },
-      {
-        text: "Create your project requirements file",
-        substeps: [
-          "Navigate to YOUR project folder (not Ralph's folder): cd ~/your-actual-project",
-          "Create a requirements.md file in your project root",
-          "Write what you want built in plain English — be specific!",
-          "Example content for requirements.md:",
-          "  # Project: User Authentication System",
-          "  ## Features to Build:",
-          "  1. Email/password registration with validation",
-          "  2. Login with session management",
-          "  3. Password reset via email link",
-          "  4. 'Remember me' checkbox functionality",
-          "  ## Acceptance Criteria:",
-          "  - All forms must have client-side validation",
-          "  - Passwords must be hashed with bcrypt",
-          "  - Sessions expire after 24 hours",
-        ],
-      },
-      {
-        text: "Start the Ralph Loop",
-        substeps: [
-          "Make sure you're in YOUR project folder (not Ralph's folder)",
-          "Run the Ralph script: ~/Documents/ralph-claude-code/ralph.sh",
-          "Or if you added it to PATH: ralph start",
-          "A tmux window will open showing Claude Code working autonomously",
-          "Ralph reads your requirements.md and starts building!",
-        ],
-      },
-      {
-        text: "Monitor progress (optional)",
-        substeps: [
-          "The tmux dashboard shows real-time progress",
-          "You can safely close the terminal — Ralph continues in background",
-          "To reattach to the session later: tmux attach -t ralph",
-          "To check status: tmux ls (shows if ralph session is running)",
-          "To stop Ralph: press Ctrl+C in the tmux window, or: tmux kill-session -t ralph",
-        ],
-      },
-      {
-        text: "Check results",
-        substeps: [
-          "Come back in a few hours (or overnight)",
-          "Review the code changes Ralph made",
-          "Test the implemented features",
-          "Use git diff to see all changes",
-          "Commit the good changes: git add . && git commit -m 'Features built by Ralph'",
-        ],
-      },
+      "Verify prerequisites: Claude Code installed, Node.js 18+, tmux, Git (check each with their --version commands)",
+      "Clone Ralph: git clone https://github.com/frankbria/ralph-claude-code.git && cd ralph-claude-code && npm install",
+      "Run: chmod +x ralph.sh to make script executable",
+      "In your project: Create requirements.md describing features you want built in plain English",
+      "Run Ralph: ~/path-to-ralph/ralph.sh (tmux opens, Ralph works autonomously while you sleep)",
     ],
     proTips: [
       "Ralph is ADVANCED: Make sure you're comfortable with Claude Code first before using Ralph.",
@@ -1288,60 +856,11 @@ export const tools: Tool[] = [
       },
     ],
     quickstart: [
-      {
-        text: "Prerequisites",
-        substeps: [
-          "Node.js 18+ installed (check with: node --version)",
-          "Basic React knowledge helpful but not required",
-          "Mac, Windows, or Linux computer",
-        ],
-      },
-      {
-        text: "Create a new Remotion project",
-        substeps: [
-          "Open Terminal (Mac: Cmd+Space → 'Terminal'. Windows: search 'PowerShell')",
-          "Run: npx create-video@latest",
-          "When prompted, enter a project name (e.g., 'my-video')",
-          "Choose the blank template for simplicity",
-        ],
-      },
-      {
-        text: "Navigate into your project",
-        substeps: [
-          "cd my-video (replace with your project name)",
-        ],
-      },
-      {
-        text: "Start the preview server",
-        substeps: [
-          "Run: npm start",
-          "Your browser will automatically open to localhost:3000",
-          "You'll see a live preview of your video",
-        ],
-      },
-      {
-        text: "Edit your video",
-        substeps: [
-          "Open src/Composition.tsx in your code editor",
-          "This is a React component — edit it like any React code",
-          "Changes appear instantly in the browser preview",
-        ],
-      },
-      {
-        text: "Render your final video",
-        substeps: [
-          "In Terminal, press Ctrl+C to stop the preview server",
-          "Run: npx remotion render src/index.tsx MyComp out/video.mp4",
-          "Your video will be saved to the out/ folder",
-        ],
-      },
-      {
-        text: "Pro tip: Use Claude Code to generate videos",
-        substeps: [
-          "In Claude Code, ask: 'Create a Remotion video showing a product walkthrough'",
-          "Claude will write the React code for you",
-        ],
-      },
+      "Check Node.js version: node --version (need 18+)",
+      "Create project: npx create-video@latest my-video && cd my-video",
+      "Start preview: npm start (browser opens to localhost:3000)",
+      "Edit video: Open src/Composition.tsx and edit like regular React code — changes appear instantly",
+      "Render final video: npm start stops it, then npx remotion render src/index.tsx MyComp out/video.mp4",
     ],
     proTips: [
       "Videos are React components—if you know React, you know Remotion.",
