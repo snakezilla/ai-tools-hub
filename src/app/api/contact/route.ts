@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { z } from 'zod'
 import { contactSchema } from '@/lib/validators'
+import { checkContactRateLimit, RATE_LIMITS } from '@/lib/rate-limit'
 
 interface ContactResponse {
   success?: boolean
@@ -16,10 +17,35 @@ if (!resendApiKey) {
 
 export async function POST(request: NextRequest): Promise<NextResponse<ContactResponse>> {
   try {
+    // Extract client IP for rate limiting
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown'
+
     const body = await request.json()
 
     // Validate all fields using Zod schema
     const validated = contactSchema.parse(body)
+
+    // Check rate limits (by IP and email)
+    const rateLimitResult = checkContactRateLimit(ip, validated.email)
+    if (!rateLimitResult.allowed) {
+      const retryAfter = rateLimitResult.retryAfter || 60
+      return NextResponse.json(
+        {
+          error: `Too many requests. Please try again in ${retryAfter} seconds.`,
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(retryAfter),
+            'X-RateLimit-Limit': String(RATE_LIMITS.contact.perIP.maxRequests),
+            'X-RateLimit-Window': `${RATE_LIMITS.contact.perIP.windowMs / 1000}s`,
+          },
+        }
+      )
+    }
 
     // Early return if Resend is not configured
     if (!resendApiKey) {
@@ -72,7 +98,13 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
 
     return NextResponse.json(
       { success: true },
-      { status: 200 }
+      {
+        status: 200,
+        headers: {
+          'X-RateLimit-Limit': String(RATE_LIMITS.contact.perIP.maxRequests),
+          'X-RateLimit-Window': `${RATE_LIMITS.contact.perIP.windowMs / 1000}s`,
+        },
+      }
     )
   } catch (error) {
     if (error instanceof z.ZodError) {
