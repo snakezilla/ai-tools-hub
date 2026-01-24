@@ -16,60 +16,95 @@ export default function PricingPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Learning Paths for Every Need
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 mb-4">
             Start free, go deep with courses, or get personalized with workshops.
+          </p>
+          <p className="text-sm text-gray-500">
+            Join 5,000+ AI tools users. 30-day money-back guarantee on all courses.
           </p>
         </div>
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
           <PricingCard
-            title="Free"
+            title="Free Guides"
             price="$0"
-            description="Start your AI journey"
+            description="Perfect for exploring and learning"
             features={[
               'All tool guides and tutorials',
               'Demo videos for every tool',
-              'Community access',
-              'Skills library',
+              'Skills library (30+ skills)',
               'Email support (48h response)',
+              'Forever free access',
+              'No credit card required',
             ]}
-            cta="Get Started"
+            cta="Explore Guides"
             ctaHref="/guides"
           />
 
           <PricingCard
             title="Mini-Courses"
             price={47}
-            description="Deep dive into specific topics"
+            description="Go deep with video courses"
             features={[
               'Claude Code Essentials ($67)',
               'AI Workflow Builder ($97)',
               'Claude Skills Mastery ($47)',
-              'Lifetime access',
-              'Downloadable resources',
-              'Priority email support',
+              'Lifetime access to videos',
+              'Downloadable cheat sheets',
+              'Priority support (24h response)',
             ]}
-            cta="Browse Courses"
+            cta="View Courses"
             ctaHref="/courses"
             highlighted
           />
 
           <PricingCard
-            title="Workshops"
-            price={295}
-            description="Live, hands-on training"
+            title="Live Workshops"
+            price="$295"
+            description="For teams and individuals"
             features={[
               'Half or full-day sessions',
-              'Custom curriculum',
+              'Custom curriculum designed for you',
               'Max 15 people per group',
-              'Q&A and troubleshooting',
-              '30-day support period',
+              'Real-time Q&A and hands-on practice',
+              '30-day post-workshop support',
               'Certificate of completion',
             ]}
-            cta="Schedule Workshop"
+            cta="Book a Workshop"
             ctaHref="https://calendly.com/placeholder"
           />
+        </div>
+
+        {/* How to Choose */}
+        <div className="max-w-4xl mx-auto mb-20 p-8 bg-blue-50 rounded-lg border border-blue-200">
+          <h3 className="text-xl font-bold text-gray-900 mb-6">Not sure which path is right for you?</h3>
+          <div className="grid md:grid-cols-3 gap-6 text-sm">
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">✓ Choose Free Guides if:</h4>
+              <ul className="text-gray-700 space-y-1">
+                <li>• You&apos;re new to AI tools</li>
+                <li>• You want to explore first</li>
+                <li>• You prefer self-paced learning</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">✓ Choose Mini-Courses if:</h4>
+              <ul className="text-gray-700 space-y-1">
+                <li>• You want structured content</li>
+                <li>• You like video-based learning</li>
+                <li>• You want lifetime access</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">✓ Choose Workshops if:</h4>
+              <ul className="text-gray-700 space-y-1">
+                <li>• You want live, hands-on help</li>
+                <li>• You&apos;re implementing for a team</li>
+                <li>• You need personalized guidance</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         {/* Comparison Table */}
