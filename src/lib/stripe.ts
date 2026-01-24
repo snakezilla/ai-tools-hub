@@ -7,7 +7,7 @@ const getStripe = () => {
     throw new Error('STRIPE_SECRET_KEY environment variable is not set')
   }
   return new Stripe(secretKey, {
-    apiVersion: '2025-01-27.acacia',
+    apiVersion: '2023-10-16',
   })
 }
 

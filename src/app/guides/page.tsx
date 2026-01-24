@@ -130,8 +130,8 @@ function GuideCard({ guide }: { guide: typeof guides[0] }) {
         <p className="text-gray-600 text-sm mb-4 flex-1">{guide.description}</p>
 
         <div className="flex items-center gap-3 mb-4">
-          <DifficultyBadge difficulty={guide.difficulty} />
-          <ReadTimeBadge readTime={guide.readTime} />
+          <DifficultyBadge level={guide.difficulty} />
+          <ReadTimeBadge minutes={guide.readTime} />
         </div>
 
         {guide.tags && guide.tags.length > 0 && (

@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 interface ContactRequest {
   name: string
   email: string
@@ -18,6 +16,7 @@ interface ContactResponse {
 // Mock implementation - will be replaced with actual Resend email service
 export async function POST(request: NextRequest): Promise<NextResponse<ContactResponse>> {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY || '')
     const body: ContactRequest = await request.json()
 
     // Validate required fields

@@ -63,8 +63,8 @@ export default async function GuidePage({ params }: GuidePageProps) {
           <p className="text-lg text-gray-600 mb-6">{guide.description}</p>
 
           <div className="flex items-center gap-4 flex-wrap">
-            <DifficultyBadge difficulty={guide.difficulty} />
-            <ReadTimeBadge readTime={guide.readTime} />
+            <DifficultyBadge level={guide.difficulty} />
+            <ReadTimeBadge minutes={guide.readTime} />
 
             {guide.tags && guide.tags.length > 0 && (
               <div className="flex gap-2">

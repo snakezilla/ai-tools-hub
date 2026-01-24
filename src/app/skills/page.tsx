@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { skills } from '@/lib/skills'
 import { DifficultyBadge } from '@/components/ui/DifficultyBadge'
+import { SkillCopyButton } from '@/components/SkillCopyButton'
 
 export const metadata: Metadata = {
   title: 'Claude Skills Library',
@@ -57,7 +58,7 @@ export default function SkillsPage() {
                   >
                     <div className="mb-3 flex items-start justify-between gap-2">
                       <h3 className="text-lg font-bold text-gray-900">{skill.name}</h3>
-                      <DifficultyBadge difficulty={skill.difficulty} />
+                      <DifficultyBadge level={skill.difficulty} />
                     </div>
 
                     <p className="text-gray-600 text-sm mb-4 flex-1">{skill.description}</p>
@@ -68,14 +69,7 @@ export default function SkillsPage() {
                       </div>
                     )}
 
-                    <button
-                      onClick={() => {
-                        navigator.clipboard.writeText(skill.installCommand || '')
-                      }}
-                      className="self-start px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded transition"
-                    >
-                      Copy Command
-                    </button>
+                    <SkillCopyButton command={skill.installCommand || ''} />
                   </div>
                 ))}
               </div>
