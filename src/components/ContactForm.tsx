@@ -130,7 +130,7 @@ export function ContactForm() {
       {success && (
         <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
           <p className="text-green-800 font-medium">
-            ✓ Message sent! We'll get back to you within 24 hours.
+            ✓ Message sent! We&apos;ll get back to you within 24 hours.
           </p>
         </div>
       )}

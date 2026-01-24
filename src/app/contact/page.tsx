@@ -16,7 +16,7 @@ export default function ContactPage() {
             Get in Touch
           </h1>
           <p className="text-lg text-gray-600">
-            Have a question? Want to share feedback? Or interested in a partnership? We'd love to hear from you.
+            Have a question? Want to share feedback? Or interested in a partnership? We&apos;d love to hear from you.
           </p>
         </div>
 

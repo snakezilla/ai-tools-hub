@@ -191,7 +191,7 @@ export default function PricingPage() {
               Still have questions?
             </h3>
             <p className="text-gray-600 mb-4">
-              Reach out to our team—we're here to help!
+              Reach out to our team&mdash;we&apos;re here to help!
             </p>
             <Link
               href="/contact"
