@@ -39,7 +39,7 @@ export const courses: Course[] = [
     duration: '2 hours',
     level: 'Beginner',
     image: '🚀',
-    priceId: process.env.STRIPE_PRICE_CLAUDE_CODE_COURSE || 'price_claude_code_essentials',
+    priceId: 'price_1St9N9BFWwFtzH8DF9bmFRBo',
     features: [
       'Installation setup',
       '5 real-world workflows',
@@ -142,7 +142,7 @@ export const courses: Course[] = [
     duration: '3 hours',
     level: 'Intermediate',
     image: '⚙️',
-    priceId: process.env.STRIPE_PRICE_WORKFLOW_COURSE || 'price_workflow_builder',
+    priceId: 'price_1St9NSBFWwFtzH8DKGqctZZq',
     features: [
       '5 complete projects',
       'Step-by-step video guides',
@@ -255,7 +255,7 @@ export const courses: Course[] = [
     duration: '1.5 hours',
     level: 'Intermediate',
     image: '✨',
-    priceId: process.env.STRIPE_PRICE_SKILLS_COURSE || 'price_skills_mastery',
+    priceId: 'price_1St9NjBFWwFtzH8DjtuVVerP',
     features: [
       '20+ skills library',
       'Installation guide',

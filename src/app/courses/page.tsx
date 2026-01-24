@@ -37,7 +37,7 @@ const courses = [
     level: 'Beginner',
     includes: ['Installation setup', '5 real-world workflows', 'Pro tips & tricks', 'Lifetime access', 'Email support'],
     image: '🚀',
-    priceId: process.env.STRIPE_PRICE_CLAUDE_CODE_COURSE || 'price_claude_code_essentials',
+    priceId: 'price_1St9N9BFWwFtzH8DF9bmFRBo',
   },
   {
     slug: 'ai-workflow-builder',
@@ -48,7 +48,7 @@ const courses = [
     level: 'Intermediate',
     includes: ['5 complete projects', 'Step-by-step video guides', 'Source code included', 'Lifetime access', 'Priority support'],
     image: '⚙️',
-    priceId: process.env.STRIPE_PRICE_WORKFLOW_COURSE || 'price_workflow_builder',
+    priceId: 'price_1St9NSBFWwFtzH8DKGqctZZq',
   },
   {
     slug: 'claude-skills-mastery',
@@ -59,7 +59,7 @@ const courses = [
     level: 'Intermediate',
     includes: ['20+ skills library', 'Installation guide', 'Customization tutorial', 'Lifetime access', 'Email support'],
     image: '✨',
-    priceId: process.env.STRIPE_PRICE_SKILLS_COURSE || 'price_skills_mastery',
+    priceId: 'price_1St9NjBFWwFtzH8DjtuVVerP',
   },
 ]
 
