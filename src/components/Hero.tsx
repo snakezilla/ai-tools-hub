@@ -5,15 +5,13 @@ export function Hero() {
     <section className="py-20 md:py-32 px-4">
       <div className="max-w-content mx-auto text-center">
         <h1 className="text-heading-lg md:text-heading-xl text-foreground mb-6 text-balance">
-          AI tools that save{" "}
-          <span className="text-accent">10+ hours/week</span>.
-          <br />
-          Learn them in <span className="text-accent">5 minutes</span>.
+          The simplest AI walkthrough to become{" "}
+          <span className="text-accent">your own CTO</span>.
         </h1>
 
         <p className="text-body-lg text-muted max-w-2xl mx-auto mb-10">
-          No essays. No hype. Just actionable steps to master the most impactful
-          AI tools that didn&apos;t exist a year ago.
+          No technical background needed. Step-by-step guides that take you from
+          zero to automating your work in minutes.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
