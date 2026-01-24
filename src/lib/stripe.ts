@@ -1,5 +1,13 @@
 import Stripe from 'stripe'
 
+/**
+ * Timeout configuration for Stripe API calls (milliseconds)
+ */
+export const STRIPE_TIMEOUTS = {
+  checkoutSession: 30000, // 30 seconds
+  webhook: 10000, // 10 seconds
+} as const
+
 // Initialize Stripe client
 const getStripe = () => {
   const secretKey = process.env.STRIPE_SECRET_KEY
@@ -9,6 +17,23 @@ const getStripe = () => {
   return new Stripe(secretKey, {
     apiVersion: '2023-10-16',
   })
+}
+
+/**
+ * Wrap a promise with a timeout
+ * Rejects with a descriptive error if the promise takes too long
+ */
+export async function withTimeout<T>(
+  promise: Promise<T>,
+  timeoutMs: number,
+  errorMessage: string
+): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error(errorMessage)), timeoutMs)
+    ),
+  ])
 }
 
 // Course data for Stripe integration
@@ -33,28 +58,35 @@ export const courseData = {
   },
 } as const
 
-// Create a Stripe checkout session
+/**
+ * Create a Stripe checkout session with timeout protection
+ * Times out after 30 seconds to prevent hanging requests
+ */
 export async function createCheckoutSession(
   priceId: string,
   successUrl: string,
-  cancelUrl: string
+  cancelUrl: string,
+  metadata?: Record<string, string>
 ): Promise<Stripe.Checkout.Session> {
   const stripe = getStripe()
 
-  const session = await stripe.checkout.sessions.create({
-    mode: 'payment',
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price: priceId,
-        quantity: 1,
-      },
-    ],
-    success_url: successUrl,
-    cancel_url: cancelUrl,
-  })
-
-  return session
+  return withTimeout(
+    stripe.checkout.sessions.create({
+      mode: 'payment',
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
+        },
+      ],
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+      metadata: metadata || {},
+    }),
+    STRIPE_TIMEOUTS.checkoutSession,
+    'Stripe checkout session creation timed out after 30 seconds'
+  )
 }
 
 // Construct and verify a webhook event from Stripe

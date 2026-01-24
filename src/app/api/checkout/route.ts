@@ -10,7 +10,7 @@ const checkoutSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { priceId } = checkoutSchema.parse(body)
+    const { priceId, courseSlug } = checkoutSchema.parse(body)
 
     if (!process.env.STRIPE_SECRET_KEY) {
       throw new Error('STRIPE_SECRET_KEY not configured')
@@ -23,7 +23,8 @@ export async function POST(request: NextRequest) {
     const session = await createCheckoutSession(
       priceId,
       `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-      `${baseUrl}/cancel`
+      `${baseUrl}/cancel`,
+      courseSlug ? { courseSlug, timestamp: new Date().toISOString() } : undefined
     )
 
     if (!session.url) {
