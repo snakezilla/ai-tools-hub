@@ -1,8 +1,13 @@
 /**
- * Simplified Tool Data Structure
+ * DEPRECATED: Simplified Tool Data Structure (Reference Only)
  *
- * This file shows the new, cleaner format for tool pages.
- * Move detailed content (substeps, privacy flags, etc.) to guides.ts
+ * This file was created during v2.0 specification planning as a proposal for
+ * simplified tool data. The actual implementation uses an enhanced Tool interface
+ * in src/lib/tools.ts that is a superset of SimpleTool, providing better UX while
+ * maintaining full specification compliance.
+ *
+ * See docs/SPEC_COMPLIANCE.md for rationale on the design decision.
+ * Reference only - do not use for new tool definitions.
  */
 
 export type Difficulty = "beginner" | "intermediate" | "advanced"
