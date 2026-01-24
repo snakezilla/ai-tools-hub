@@ -57,7 +57,7 @@ export default function ContactPage() {
               Book a free 15-minute call to discuss workshops, courses, or partnerships.
             </p>
             <a
-              href="https://cal.com/practicallibrary/15min"
+              href="https://cal.com/a-e-joiqod/15min"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
