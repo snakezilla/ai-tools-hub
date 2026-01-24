@@ -43,3 +43,7 @@ next-env.d.ts
 progress.json
 status.json
 logs/
+
+# Remotion build artifacts
+remotion/node_modules/
+.remotion/
