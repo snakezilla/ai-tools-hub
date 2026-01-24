@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Hero } from "@/components/Hero"
+import { LearningPaths } from "@/components/LearningPaths"
 import { ToolsGrid } from "@/components/ToolsGrid"
 import { ROICalculator } from "@/components/ROICalculator"
 
@@ -46,6 +47,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <LearningPaths />
       <ToolsGrid />
       <ROICalculator />
     </>
