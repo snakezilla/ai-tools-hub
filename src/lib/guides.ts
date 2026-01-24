@@ -39,7 +39,7 @@ export const guides: Guide[] = [
     description: 'Install and customize Claude Skills to transform Claude into a domain expert. Build your own skills.',
     readTime: 20,
     difficulty: 'advanced',
-    fullContent: '', // To be filled with detailed content
+    fullContent: `<h2>What Are Claude Skills?</h2><p>Skills are custom extensions that give Claude new capabilities. They can integrate with APIs, run code, or add expertise.</p><h2>Installing Skills</h2><ol><li>Go to Claude Skills Library</li><li>Find a skill you want</li><li>Click "Install"</li><li>Grant permissions</li><li>Use immediately</li></ol><h2>Popular Skills</h2><ul><li>Web Scraper: Extract data from websites</li><li>API Connector: Call external APIs</li><li>Code Analyzer: Deep code analysis</li><li>Email Integration: Send/receive emails</li></ul><h2>Building Your Own</h2><p>Skills are JavaScript functions. Define what you need, write the code, upload and test.</p>`,
     toolSlugs: ['claude-skills'],
     tags: ['skills', 'customization', 'extensions'],
   },
@@ -49,7 +49,7 @@ export const guides: Guide[] = [
     description: 'Set up your first automation with Zapier. Connect apps without code and save hours per week.',
     readTime: 18,
     difficulty: 'beginner',
-    fullContent: '', // To be filled with detailed content
+    fullContent: `<h2>What is Zapier?</h2><p>Zapier connects apps and automates workflows. If app A does something, Zapier makes app B react automatically.</p><h2>Your First Zap</h2><h3>Example: Save Gmail Attachments to Google Drive</h3><ol><li>Go to zapier.com and create account</li><li>Click "Create a Zap"</li><li>Trigger: Select Gmail → "New Attachment"</li><li>Action: Select Google Drive → "Create Row"</li><li>Test and enable</li></ol><h2>Popular Automations</h2><ul><li>Save Slack messages to Notion</li><li>Create calendar events from emails</li><li>Log form submissions to spreadsheet</li><li>Send Slack alerts for new leads</li></ul><h2>Pro Tips</h2><ul><li>Use Filters for certain conditions</li><li>Add Delays between actions</li><li>Use Multi-step Zaps to chain actions</li><li>Always test before enabling</li></ul>`,
     toolSlugs: ['zapier'],
     tags: ['automation', 'integration', 'no-code'],
   },

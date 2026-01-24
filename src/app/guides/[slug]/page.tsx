@@ -5,13 +5,14 @@ import { DifficultyBadge } from '@/components/ui/DifficultyBadge'
 import { ReadTimeBadge } from '@/components/ui/ReadTimeBadge'
 
 interface GuidePageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
-  const guide = getGuideBySlug(params.slug)
+  const { slug } = await params
+  const guide = getGuideBySlug(slug)
 
   if (!guide) {
     return {
@@ -31,8 +32,9 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   }
 }
 
-export default function GuidePage({ params }: GuidePageProps) {
-  const guide = getGuideBySlug(params.slug)
+export default async function GuidePage({ params }: GuidePageProps) {
+  const { slug } = await params
+  const guide = getGuideBySlug(slug)
 
   if (!guide) {
     return (

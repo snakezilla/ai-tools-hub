@@ -1,192 +1,111 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
-import { skills, getTopSkills } from '@/lib/skills'
+import { skills } from '@/lib/skills'
+import { DifficultyBadge } from '@/components/ui/DifficultyBadge'
 
 export const metadata: Metadata = {
   title: 'Claude Skills Library',
-  description: '20+ community-built skills to extend Claude&apos;s capabilities. Browse, install, and customize.',
+  description: 'Curated collection of Claude Skills to extend functionality. One-click install and immediate productivity gains.',
 }
 
-const categories = ['productivity', 'development', 'marketing', 'business', 'research', 'writing']
+const categories = [
+  { id: 'coding', name: 'Coding', icon: '💻' },
+  { id: 'writing', name: 'Writing', icon: '✍️' },
+  { id: 'analysis', name: 'Analysis', icon: '📊' },
+  { id: 'integration', name: 'Integration', icon: '🔗' },
+  { id: 'productivity', name: 'Productivity', icon: '⚡' },
+]
 
 export default function SkillsPage() {
-  const topSkills = getTopSkills(8)
-
   return (
     <main className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="px-4 py-16 md:py-24">
-        <div className="max-w-4xl mx-auto text-center mb-16">
+      <section className="px-4 py-16 md:py-24 border-b border-gray-200">
+        <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Claude Skills Library
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            20+ skills to transform Claude into a domain expert. Install in seconds, customize to your needs.
+            Extend Claude&apos;s capabilities with curated skills. One-click install.
           </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-blue-600">{skills.length}</span>
-              <span className="text-gray-600">Skills Available</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-green-600">4.7★</span>
-              <span className="text-gray-600">Average Rating</span>
-            </div>
-          </div>
+          <p className="text-gray-600">
+            {skills.length} skills available • All open-source • Works with Claude Code
+          </p>
         </div>
+      </section>
 
-        {/* Top Skills */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            Top Rated Skills
-          </h2>
+      {/* Skills by Category */}
+      {categories.map((category) => {
+        const categorySkills = skills.filter((s) => s.category === category.id)
+        if (categorySkills.length === 0) return null
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {topSkills.map((skill) => (
-              <Link
-                key={skill.id}
-                href={skill.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group"
-              >
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 h-full hover:shadow-lg transition flex flex-col">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="font-bold text-gray-900 group-hover:text-blue-600 transition flex-1">
-                      {skill.name}
-                    </h3>
-                  </div>
+        return (
+          <section key={category.id} className="px-4 py-16 border-b border-gray-200">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="text-3xl">{category.icon}</span>
+                <h2 className="text-2xl font-bold text-gray-900">{category.name}</h2>
+                <span className="ml-auto text-sm bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
+                  {categorySkills.length}
+                </span>
+              </div>
 
-                  <p className="text-gray-600 text-sm mb-4 flex-1">{skill.description}</p>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                    <div className="flex items-center gap-1">
-                      <span className="text-yellow-500 font-bold">{skill.rating}</span>
-                      <span className="text-yellow-500">★</span>
-                    </div>
-                    <span className="text-blue-600 text-sm font-medium group-hover:underline">
-                      Install →
-                    </span>
-                  </div>
-
-                  {/* Category Badge */}
-                  <div className="mt-3">
-                    <span className="inline-block px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded capitalize">
-                      {skill.category}
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Browse by Category */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            Browse by Category
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {categories.map((category) => {
-              const categorySkills = skills.filter((s) => s.category === category)
-              const topOfCategory = categorySkills.sort((a, b) => (b.rating || 0) - (a.rating || 0))[0]
-
-              return (
-                <div
-                  key={category}
-                  className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 rounded-lg p-6 hover:shadow-md transition"
-                >
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 capitalize">
-                    {category}
-                  </h3>
-                  <p className="text-gray-600 text-sm mb-4">
-                    {categorySkills.length} skill{categorySkills.length !== 1 ? 's' : ''}
-                  </p>
-
-                  {topOfCategory && (
-                    <div className="mb-4 p-3 bg-white rounded border border-gray-200">
-                      <p className="text-sm font-medium text-gray-900 mb-1">
-                        Top Rated:
-                      </p>
-                      <Link
-                        href={topOfCategory.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-700 text-sm font-medium"
-                      >
-                        {topOfCategory.name}
-                      </Link>
-                    </div>
-                  )}
-
-                  <Link
-                    href={`/skills?category=${category}`}
-                    className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm font-medium"
+              <div className="grid md:grid-cols-2 gap-6">
+                {categorySkills.map((skill) => (
+                  <div
+                    key={skill.id}
+                    className="p-6 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-lg transition flex flex-col"
                   >
-                    View All →
-                  </Link>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-
-        {/* All Skills */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            All {skills.length} Skills
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {skills.map((skill) => (
-              <Link
-                key={skill.id}
-                href={skill.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group"
-              >
-                <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
-                  <div className="flex items-start justify-between mb-2">
-                    <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition flex-1">
-                      {skill.name}
-                    </h4>
-                    <span className="text-yellow-500 font-bold text-sm">{skill.rating}★</span>
-                  </div>
-
-                  <p className="text-gray-600 text-sm mb-3 line-clamp-2">{skill.description}</p>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-1 flex-wrap">
-                      <span className="inline-block px-2 py-0.5 bg-gray-100 text-gray-700 text-xs rounded capitalize">
-                        {skill.category}
-                      </span>
-                      <span className="inline-block px-2 py-0.5 bg-blue-50 text-blue-700 text-xs rounded capitalize">
-                        {skill.difficulty}
-                      </span>
+                    <div className="mb-3 flex items-start justify-between gap-2">
+                      <h3 className="text-lg font-bold text-gray-900">{skill.name}</h3>
+                      <DifficultyBadge difficulty={skill.difficulty} />
                     </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
 
-        {/* CTA */}
-        <div className="mt-20 max-w-2xl mx-auto p-8 bg-blue-50 rounded-lg border border-blue-200 text-center">
+                    <p className="text-gray-600 text-sm mb-4 flex-1">{skill.description}</p>
+
+                    {skill.installCommand && (
+                      <div className="mb-4 p-3 bg-gray-100 rounded font-mono text-xs text-gray-700 overflow-x-auto">
+                        {skill.installCommand}
+                      </div>
+                    )}
+
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(skill.installCommand || '')
+                      }}
+                      className="self-start px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded transition"
+                    >
+                      Copy Command
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      })}
+
+      {/* CTA */}
+      <section className="px-4 py-16">
+        <div className="max-w-3xl mx-auto p-8 bg-blue-50 rounded-lg border border-blue-200 text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-3">
-            Want to build your own skill?
+            Can&apos;t find what you need?
           </h2>
           <p className="text-gray-600 mb-6">
-            Learn how to create custom skills in our courses and guides. Share with the community and help others solve problems.
+            Build your own skill or request one from the community.
           </p>
-          <Link
-            href="/guides/claude-skills-mastery"
-            className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
-          >
-            Learn Skill Building
-          </Link>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <a
+              href="https://github.com/anthropics/claude-skills"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              View on GitHub
+            </a>
+            <a href="/contact" className="px-6 py-3 bg-white text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50">
+              Request a Skill
+            </a>
+          </div>
         </div>
       </section>
     </main>

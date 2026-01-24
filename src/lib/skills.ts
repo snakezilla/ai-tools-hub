@@ -1,171 +1,175 @@
-// Claude Skills library - curated collection of top skills
-// Each skill includes metadata for searching and filtering
-
 export interface Skill {
   id: string
   name: string
   description: string
-  category: 'productivity' | 'development' | 'marketing' | 'business' | 'research' | 'writing'
+  category: 'coding' | 'writing' | 'analysis' | 'integration' | 'productivity'
   difficulty: 'beginner' | 'intermediate' | 'advanced'
-  rating: number // 1-5
-  installs?: number
-  tags: string[]
-  url: string // Link to skill or installation instructions
+  installCommand?: string
+  link?: string
 }
 
 export const skills: Skill[] = [
+  // Coding Skills
   {
-    id: 'prompt-optimizer',
-    name: 'Prompt Optimizer',
-    description: 'Refine and improve your prompts for better Claude responses. Uses best practices to enhance clarity and effectiveness.',
-    category: 'productivity',
+    id: 'code-analyzer',
+    name: 'Code Analyzer',
+    description: 'Deep dive into code quality, performance, and security issues.',
+    category: 'coding',
     difficulty: 'beginner',
-    rating: 4.8,
-    installs: 15000,
-    tags: ['prompting', 'optimization', 'AI'],
-    url: 'https://claude.ai/skills/prompt-optimizer',
+    installCommand: 'claude skill install code-analyzer',
   },
   {
-    id: 'code-reviewer',
-    name: 'Code Reviewer',
-    description: 'Automated code review skill that checks for bugs, security issues, and best practices. Perfect for catching issues before production.',
-    category: 'development',
+    id: 'test-generator',
+    name: 'Test Generator',
+    description: 'Automatically generate unit tests, integration tests, and E2E tests.',
+    category: 'coding',
     difficulty: 'intermediate',
-    rating: 4.7,
-    installs: 12000,
-    tags: ['code', 'review', 'quality'],
-    url: 'https://claude.ai/skills/code-reviewer',
+    installCommand: 'claude skill install test-generator',
+  },
+  {
+    id: 'refactor-assistant',
+    name: 'Refactor Assistant',
+    description: 'Intelligently refactor code for readability and performance.',
+    category: 'coding',
+    difficulty: 'intermediate',
+    installCommand: 'claude skill install refactor-assistant',
   },
   {
     id: 'api-designer',
     name: 'API Designer',
-    description: 'Design RESTful APIs with best practices. Get OpenAPI specs, endpoint documentation, and error handling patterns.',
-    category: 'development',
-    difficulty: 'intermediate',
-    rating: 4.6,
-    installs: 8000,
-    tags: ['API', 'design', 'backend'],
-    url: 'https://claude.ai/skills/api-designer',
-  },
-  {
-    id: 'content-strategist',
-    name: 'Content Strategist',
-    description: 'Plan content calendars, outline blog posts, and develop SEO strategies. Includes keyword research and competitor analysis.',
-    category: 'marketing',
-    difficulty: 'intermediate',
-    rating: 4.7,
-    installs: 10000,
-    tags: ['content', 'marketing', 'SEO'],
-    url: 'https://claude.ai/skills/content-strategist',
-  },
-  {
-    id: 'executive-summarizer',
-    name: 'Executive Summarizer',
-    description: 'Automatically create concise executive summaries of long documents. Perfect for reports, emails, and meeting notes.',
-    category: 'business',
-    difficulty: 'beginner',
-    rating: 4.9,
-    installs: 18000,
-    tags: ['summarization', 'business', 'efficiency'],
-    url: 'https://claude.ai/skills/executive-summarizer',
-  },
-  {
-    id: 'research-analyst',
-    name: 'Research Analyst',
-    description: 'Analyze research papers, identify key findings, and synthesize multiple sources. Great for literature reviews.',
-    category: 'research',
+    description: 'Design REST and GraphQL APIs with best practices.',
+    category: 'coding',
     difficulty: 'advanced',
-    rating: 4.5,
-    installs: 5000,
-    tags: ['research', 'analysis', 'academic'],
-    url: 'https://claude.ai/skills/research-analyst',
+    installCommand: 'claude skill install api-designer',
   },
+
+  // Writing Skills
   {
-    id: 'data-visualizer',
-    name: 'Data Visualizer',
-    description: 'Generate data visualization code and recommendations. Creates charts, dashboards, and visual explanations of data.',
-    category: 'development',
-    difficulty: 'intermediate',
-    rating: 4.6,
-    installs: 9000,
-    tags: ['data', 'visualization', 'charts'],
-    url: 'https://claude.ai/skills/data-visualizer',
-  },
-  {
-    id: 'copywriter-assistant',
-    name: 'Copywriter Assistant',
-    description: 'Write compelling marketing copy, sales pages, and email sequences. A/B testing recommendations included.',
+    id: 'email-writer',
+    name: 'Email Writer',
+    description: 'Write clear, professional emails with perfect tone.',
     category: 'writing',
     difficulty: 'beginner',
-    rating: 4.7,
-    installs: 14000,
-    tags: ['writing', 'marketing', 'sales'],
-    url: 'https://claude.ai/skills/copywriter-assistant',
+    installCommand: 'claude skill install email-writer',
+  },
+  {
+    id: 'content-editor',
+    name: 'Content Editor',
+    description: 'Edit and improve content for clarity and engagement.',
+    category: 'writing',
+    difficulty: 'beginner',
+    installCommand: 'claude skill install content-editor',
+  },
+  {
+    id: 'blog-writer',
+    name: 'Blog Writer',
+    description: 'Generate SEO-optimized blog posts with great structure.',
+    category: 'writing',
+    difficulty: 'intermediate',
+    installCommand: 'claude skill install blog-writer',
+  },
+  {
+    id: 'copywriter',
+    name: 'Copywriter',
+    description: 'Create persuasive marketing copy that drives conversions.',
+    category: 'writing',
+    difficulty: 'intermediate',
+    installCommand: 'claude skill install copywriter',
+  },
+
+  // Analysis Skills
+  {
+    id: 'data-analyzer',
+    name: 'Data Analyzer',
+    description: 'Analyze datasets, create visualizations, and generate insights.',
+    category: 'analysis',
+    difficulty: 'intermediate',
+    installCommand: 'claude skill install data-analyzer',
+  },
+  {
+    id: 'market-researcher',
+    name: 'Market Researcher',
+    description: 'Research market trends, competitors, and opportunities.',
+    category: 'analysis',
+    difficulty: 'advanced',
+    installCommand: 'claude skill install market-researcher',
+  },
+
+  // Integration Skills
+  {
+    id: 'slack-connector',
+    name: 'Slack Connector',
+    description: 'Send messages and interact with Slack from Claude.',
+    category: 'integration',
+    difficulty: 'beginner',
+    installCommand: 'claude skill install slack-connector',
+  },
+  {
+    id: 'notion-connector',
+    name: 'Notion Connector',
+    description: 'Create, read, and update Notion databases.',
+    category: 'integration',
+    difficulty: 'intermediate',
+    installCommand: 'claude skill install notion-connector',
+  },
+  {
+    id: 'api-caller',
+    name: 'API Caller',
+    description: 'Call any REST API and process results seamlessly.',
+    category: 'integration',
+    difficulty: 'intermediate',
+    installCommand: 'claude skill install api-caller',
+  },
+
+  // Productivity Skills
+  {
+    id: 'project-planner',
+    name: 'Project Planner',
+    description: 'Break down projects into tasks and timelines.',
+    category: 'productivity',
+    difficulty: 'beginner',
+    installCommand: 'claude skill install project-planner',
+  },
+  {
+    id: 'meeting-summarizer',
+    name: 'Meeting Summarizer',
+    description: 'Summarize meetings and extract action items.',
+    category: 'productivity',
+    difficulty: 'beginner',
+    installCommand: 'claude skill install meeting-summarizer',
   },
   {
     id: 'documentation-generator',
     name: 'Documentation Generator',
-    description: 'Automatically generate comprehensive documentation from code. Saves hours on API docs and README files.',
-    category: 'development',
+    description: 'Automatically generate technical documentation from code.',
+    category: 'productivity',
     difficulty: 'intermediate',
-    rating: 4.8,
-    installs: 11000,
-    tags: ['documentation', 'code', 'technical'],
-    url: 'https://claude.ai/skills/documentation-generator',
+    installCommand: 'claude skill install documentation-generator',
   },
   {
-    id: 'business-analyst',
-    name: 'Business Analyst',
-    description: 'Analyze business problems, identify opportunities, and create strategic recommendations. Includes financial modeling.',
-    category: 'business',
+    id: 'workflow-builder',
+    name: 'Workflow Builder',
+    description: 'Design and automate complex multi-step workflows.',
+    category: 'productivity',
     difficulty: 'advanced',
-    rating: 4.6,
-    installs: 6000,
-    tags: ['business', 'analysis', 'strategy'],
-    url: 'https://claude.ai/skills/business-analyst',
-  },
-  {
-    id: 'qa-tester',
-    name: 'QA Tester',
-    description: 'Generate comprehensive test cases, edge cases, and QA documentation. Helps catch bugs before users do.',
-    category: 'development',
-    difficulty: 'intermediate',
-    rating: 4.7,
-    installs: 9500,
-    tags: ['testing', 'QA', 'quality'],
-    url: 'https://claude.ai/skills/qa-tester',
-  },
-  {
-    id: 'mentor-coach',
-    name: 'Mentor Coach',
-    description: 'Get personalized mentoring and coaching. Provides feedback, suggests resources, and tracks progress.',
-    category: 'business',
-    difficulty: 'beginner',
-    rating: 4.8,
-    installs: 13000,
-    tags: ['mentoring', 'coaching', 'development'],
-    url: 'https://claude.ai/skills/mentor-coach',
+    installCommand: 'claude skill install workflow-builder',
   },
 ]
 
-export function getSkillsByCategory(category: string): Skill[] {
+export function getSkillsByCategory(category: Skill['category']): Skill[] {
   return skills.filter((s) => s.category === category)
 }
 
-export function getSkillsByDifficulty(difficulty: string): Skill[] {
+export function getSkillsByDifficulty(difficulty: Skill['difficulty']): Skill[] {
   return skills.filter((s) => s.difficulty === difficulty)
 }
 
-export function getTopSkills(limit: number = 5): Skill[] {
-  return [...skills].sort((a, b) => (b.rating || 0) - (a.rating || 0)).slice(0, limit)
-}
-
 export function searchSkills(query: string): Skill[] {
-  const lower = query.toLowerCase()
+  const q = query.toLowerCase()
   return skills.filter(
     (s) =>
-      s.name.toLowerCase().includes(lower) ||
-      s.description.toLowerCase().includes(lower) ||
-      s.tags.some((t) => t.toLowerCase().includes(lower))
+      s.name.toLowerCase().includes(q) ||
+      s.description.toLowerCase().includes(q) ||
+      s.category.toLowerCase().includes(q)
   )
 }
