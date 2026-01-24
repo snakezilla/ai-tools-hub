@@ -34,7 +34,7 @@ describe('/api/webhook', () => {
     const data = await response.json()
 
     expect(response.status).toBe(400)
-    expect(data.error).toBe('Missing signature header')
+    expect(data.error).toBe('Missing stripe-signature header')
   })
 
   it('should process checkout.session.completed event', async () => {
@@ -83,8 +83,8 @@ describe('/api/webhook', () => {
     const response = await POST(request)
     const data = await response.json()
 
-    expect(response.status).toBe(400)
-    expect(data.error).toBe('Invalid signature')
+    expect(response.status).toBe(403)
+    expect(data.error).toBe('Invalid webhook signature')
   })
 
   it('should handle unhandled event types', async () => {

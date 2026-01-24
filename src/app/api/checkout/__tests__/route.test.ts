@@ -70,6 +70,6 @@ describe('/api/checkout', () => {
     const data = await response.json()
 
     expect(response.status).toBe(500)
-    expect(data.error).toContain('error')
+    expect(data.error).toBe('Failed to create checkout session')
   })
 })

@@ -28,6 +28,7 @@ describe('/api/contact', () => {
 
   it('should accept valid contact form data', async () => {
     const request = {
+      headers: new Map(),
       json: async () => ({
         name: 'John Doe',
         email: 'john@example.com',
@@ -45,6 +46,7 @@ describe('/api/contact', () => {
 
   it('should return 400 if name is missing', async () => {
     const request = {
+      headers: new Map(),
       json: async () => ({
         email: 'john@example.com',
         message: 'Hello',
@@ -55,11 +57,12 @@ describe('/api/contact', () => {
     const data = await response.json()
 
     expect(response.status).toBe(400)
-    expect(data.error).toContain('required')
+    expect(data.error).toBe('Invalid request data')
   })
 
   it('should return 400 for invalid email', async () => {
     const request = {
+      headers: new Map(),
       json: async () => ({
         name: 'John Doe',
         email: 'invalid-email',
@@ -71,11 +74,12 @@ describe('/api/contact', () => {
     const data = await response.json()
 
     expect(response.status).toBe(400)
-    expect(data.error).toContain('Invalid email')
+    expect(data.error).toBe('Invalid request data')
   })
 
   it('should return 400 if message is missing', async () => {
     const request = {
+      headers: new Map(),
       json: async () => ({
         name: 'John Doe',
         email: 'john@example.com',
@@ -87,11 +91,12 @@ describe('/api/contact', () => {
     const data = await response.json()
 
     expect(response.status).toBe(400)
-    expect(data.error).toContain('required')
+    expect(data.error).toBe('Invalid request data')
   })
 
   it('should handle JSON parse errors', async () => {
     const request = {
+      headers: new Map(),
       json: async () => {
         throw new Error('Invalid JSON')
       },

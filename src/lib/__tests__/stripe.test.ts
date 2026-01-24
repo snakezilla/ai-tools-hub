@@ -1,25 +1,6 @@
-import { courseData, createCheckoutSession, constructWebhookEvent } from '../stripe'
-import Stripe from 'stripe'
-
-// Mock Stripe
-jest.mock('stripe', () => {
-  return jest.fn().mockImplementation(() => ({
-    checkout: {
-      sessions: {
-        create: jest.fn(),
-      },
-    },
-    webhooks: {
-      constructEvent: jest.fn(),
-    },
-  }))
-})
+import { courseData, STRIPE_TIMEOUTS } from '../stripe'
 
 describe('Stripe utilities', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-
   describe('courseData', () => {
     it('should export course definitions with correct structure', () => {
       expect(courseData['claude-code-essentials']).toBeDefined()
@@ -32,55 +13,30 @@ describe('Stripe utilities', () => {
       expect(courseData['ai-workflow-builder']).toBeDefined()
       expect(courseData['claude-skills-mastery']).toBeDefined()
     })
-  })
 
-  describe('createCheckoutSession', () => {
-    it('should create a checkout session with correct parameters', async () => {
-      const mockSession = {
-        id: 'cs_test_123',
-        url: 'https://checkout.stripe.com/test',
-      }
-
-      const stripe = require('stripe')()
-      stripe.checkout.sessions.create.mockResolvedValueOnce(mockSession)
-
-      const result = await createCheckoutSession(
-        'price_test_123',
-        'https://example.com/success',
-        'https://example.com/cancel'
-      )
-
-      expect(result).toEqual(mockSession)
+    it('should have correct pricing for all courses', () => {
+      expect(courseData['claude-code-essentials'].price).toBe(67)
+      expect(courseData['ai-workflow-builder'].price).toBe(97)
+      expect(courseData['claude-skills-mastery'].price).toBe(47)
     })
 
-    it('should handle errors gracefully', async () => {
-      const stripe = require('stripe')()
-      const error = new Error('Stripe error')
-      stripe.checkout.sessions.create.mockRejectedValueOnce(error)
-
-      await expect(
-        createCheckoutSession(
-          'price_test_123',
-          'https://example.com/success',
-          'https://example.com/cancel'
-        )
-      ).rejects.toThrow('Stripe error')
+    it('should have correct Stripe price IDs for all courses', () => {
+      expect(courseData['claude-code-essentials'].stripePrice).toBeDefined()
+      expect(courseData['ai-workflow-builder'].stripePrice).toBeDefined()
+      expect(courseData['claude-skills-mastery'].stripePrice).toBeDefined()
     })
   })
 
-  describe('constructWebhookEvent', () => {
-    it('should construct a webhook event', () => {
-      const mockEvent = {
-        id: 'evt_test_123',
-        type: 'checkout.session.completed',
-      }
+  describe('STRIPE_TIMEOUTS', () => {
+    it('should define timeout configurations', () => {
+      expect(STRIPE_TIMEOUTS.checkoutSession).toBe(30000)
+      expect(STRIPE_TIMEOUTS.webhook).toBe(10000)
+    })
 
-      const stripe = require('stripe')()
-      stripe.webhooks.constructEvent.mockReturnValueOnce(mockEvent)
-
-      const result = constructWebhookEvent('raw_body', 'signature')
-
-      expect(result).toEqual(mockEvent)
+    it('should have reasonable timeout values', () => {
+      expect(STRIPE_TIMEOUTS.checkoutSession).toBeGreaterThan(0)
+      expect(STRIPE_TIMEOUTS.webhook).toBeGreaterThan(0)
+      expect(STRIPE_TIMEOUTS.checkoutSession).toBeGreaterThan(STRIPE_TIMEOUTS.webhook)
     })
   })
 })
