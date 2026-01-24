@@ -16,9 +16,10 @@ export async function POST(request: NextRequest) {
       throw new Error('STRIPE_SECRET_KEY not configured')
     }
 
-    const baseUrl = process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : 'http://localhost:3000'
+    // Use production URL, fallback to Vercel URL, then localhost
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+      || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null)
+      || 'http://localhost:3000'
 
     const session = await createCheckoutSession(
       priceId,
