@@ -143,7 +143,7 @@ export default function WorkshopsPage() {
                 ))}
               </ul>
               <a
-                href="mailto:workshops@aitools.hub?subject=Workshop Inquiry"
+                href="mailto:workshops@practicallibrary.com?subject=Workshop Inquiry"
                 className={`block text-center py-3 rounded-button font-semibold transition-colors ${
                   pkg.popular
                     ? "bg-accent text-accent-foreground hover:bg-accent-dark"
@@ -189,7 +189,7 @@ export default function WorkshopsPage() {
             Not sure which package is right for your team?
           </p>
           <a
-            href="mailto:workshops@aitools.hub?subject=Workshop Consultation"
+            href="mailto:workshops@practicallibrary.com?subject=Workshop Consultation"
             className="text-accent hover:underline font-medium"
           >
             Schedule a free 15-minute consultation →
