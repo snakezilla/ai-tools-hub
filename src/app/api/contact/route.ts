@@ -58,11 +58,15 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
 
     const resend = new Resend(resendApiKey)
 
-    // Send admin notification
+    // Use Resend's test address if no verified domain is configured
+    const fromEmail = process.env.FROM_EMAIL || 'Practical Library <onboarding@resend.dev>'
     const adminEmail = process.env.ADMIN_EMAIL || 'eslamiahsan@gmail.com'
+
+    // Send admin notification
     await resend.emails.send({
-      from: process.env.FROM_EMAIL || 'noreply@practicallibrary.com',
+      from: fromEmail,
       to: adminEmail,
+      replyTo: validated.email,
       subject: 'PracticalLibrary Reach Out',
       html: `
         <h2>New Contact Form Submission</h2>
@@ -76,15 +80,15 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
 
     // Send auto-reply to user
     await resend.emails.send({
-      from: process.env.FROM_EMAIL || 'noreply@practicallibrary.com',
+      from: fromEmail,
       to: validated.email,
-      subject: 'We received your message - AI Tools Hub',
+      subject: 'We received your message - Practical Library',
       html: `
         <h2>Thank you for reaching out!</h2>
         <p>Hi ${escapeHtml(validated.name)},</p>
-        <p>We received your message and will get back to you within 24 hours.</p>
+        <p>We received your message and will get back to you within 2-4 hours.</p>
         <p>If you have any questions in the meantime, feel free to reply to this email.</p>
-        <p>Best regards,<br>The AI Tools Hub Team</p>
+        <p>Best regards,<br>The Practical Library Team</p>
       `,
     })
 

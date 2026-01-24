@@ -21,7 +21,7 @@ export function ContactForm() {
     defaultValues: {
       name: '',
       email: '',
-      type: 'question',
+      type: 'workshop',
       message: '',
     },
   })
@@ -101,10 +101,10 @@ export function ContactForm() {
           }`}
           {...register('type')}
         >
-          <option value="question">Question about a tool</option>
-          <option value="feedback">Feedback or suggestion</option>
           <option value="workshop">Workshop inquiry</option>
+          <option value="question">Question about a tool</option>
           <option value="partnership">Partnership opportunity</option>
+          <option value="feedback">Feedback or suggestion</option>
         </select>
         {errors.type && <p className="text-red-600 text-sm mt-1">{errors.type.message}</p>}
       </div>
@@ -130,7 +130,7 @@ export function ContactForm() {
       {success && (
         <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
           <p className="text-green-800 font-medium">
-            ✓ Message sent! We&apos;ll get back to you within 24 hours.
+            ✓ Message sent! We&apos;ll get back to you within 2-4 hours.
           </p>
         </div>
       )}
@@ -151,7 +151,7 @@ export function ContactForm() {
       </button>
 
       <p className="text-sm text-gray-600 text-center">
-        Expected response time: 24-48 hours
+        Expected response time: 2-4 hours
       </p>
     </form>
   )
