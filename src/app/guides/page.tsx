@@ -128,19 +128,97 @@ export default function GuidesPage() {
         </section>
       )}
 
-      {/* CTA */}
+      {/* Premium Guides Section */}
+      <section id="premium" className="px-4 py-16 border-t border-border bg-gradient-to-b from-blue-50/50 to-white">
+        <div className="max-w-content mx-auto">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-3 h-3 rounded-full bg-accent"></div>
+            <h2 className="text-heading-sm text-foreground">Go Deeper</h2>
+            <span className="px-2 py-0.5 bg-accent/10 text-accent text-xs font-semibold rounded">PAID</span>
+          </div>
+          <p className="text-body text-muted mb-8 max-w-2xl">
+            Video courses with step-by-step walkthroughs, downloadable resources, and lifetime access.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Claude Code Essentials */}
+            <Link href="/courses/claude-code-essentials">
+              <div className="h-full p-6 bg-white rounded-card border-2 border-accent/20 hover:border-accent hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded">BEGINNER</span>
+                  <span className="text-lg font-bold text-foreground">$67</span>
+                </div>
+                <h3 className="text-lg font-bold text-foreground mb-2">Claude Code Essentials</h3>
+                <p className="text-body-sm text-muted mb-4 flex-1">Master Claude Code from installation to shipping your first feature. 2 hours of video.</p>
+                <div className="flex items-center text-accent font-medium text-body-sm">
+                  View Course
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+
+            {/* AI Workflow Builder */}
+            <Link href="/courses/ai-workflow-builder">
+              <div className="h-full p-6 bg-white rounded-card border-2 border-accent/20 hover:border-accent hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded">INTERMEDIATE</span>
+                  <span className="text-lg font-bold text-foreground">$97</span>
+                </div>
+                <h3 className="text-lg font-bold text-foreground mb-2">AI Workflow Builder</h3>
+                <p className="text-body-sm text-muted mb-4 flex-1">Build 5 complete automation workflows using Claude + other tools. 3 hours of video.</p>
+                <div className="flex items-center text-accent font-medium text-body-sm">
+                  View Course
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+
+            {/* Claude Skills Mastery */}
+            <Link href="/courses/claude-skills-mastery">
+              <div className="h-full p-6 bg-white rounded-card border-2 border-accent/20 hover:border-accent hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded">INTERMEDIATE</span>
+                  <span className="text-lg font-bold text-foreground">$47</span>
+                </div>
+                <h3 className="text-lg font-bold text-foreground mb-2">Claude Skills Mastery</h3>
+                <p className="text-body-sm text-muted mb-4 flex-1">Unlock superpowers: install, customize, and build your own skills. 1.5 hours of video.</p>
+                <div className="flex items-center text-accent font-medium text-body-sm">
+                  View Course
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 1:1 Walkthrough CTA */}
       <section className="px-4 py-16 bg-gray-50 border-t border-border">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-heading-sm text-foreground mb-4">Want hands-on practice?</h2>
+          <h2 className="text-heading-sm text-foreground mb-4">Want someone to set it up for you?</h2>
           <p className="text-body text-muted mb-6">
-            Our courses give you real projects, expert feedback, and a community to learn with.
+            Book a 1:1 walkthrough with our automation team. We&apos;ll get your workflows running in one session.
           </p>
-          <Link
-            href="/courses"
-            className="inline-block px-8 py-4 bg-accent text-accent-foreground rounded-button font-semibold text-lg hover:bg-accent-dark transition"
-          >
-            Browse Courses
-          </Link>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Link
+              href="/contact"
+              className="inline-block px-8 py-4 bg-accent text-accent-foreground rounded-button font-semibold text-lg hover:bg-accent-dark transition"
+            >
+              Book 1:1 Session ($650)
+            </Link>
+            <Link
+              href="/pricing"
+              className="inline-block px-8 py-4 bg-card text-foreground border border-border rounded-button font-semibold text-lg hover:border-accent hover:text-accent transition"
+            >
+              See All Options
+            </Link>
+          </div>
         </div>
       </section>
     </main>

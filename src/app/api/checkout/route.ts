@@ -41,10 +41,11 @@ export async function POST(request: NextRequest) {
     }
 
     if (error instanceof Error) {
-      console.error('Checkout error:', error.message)
-      // Return generic error message to client (don't leak internal details)
+      console.error('Checkout error:', error.message, error.stack)
+      // In development, show more details
+      const isDev = process.env.NODE_ENV === 'development'
       return NextResponse.json(
-        { error: 'Failed to create checkout session' },
+        { error: isDev ? error.message : 'Failed to create checkout session' },
         { status: 500 }
       )
     }

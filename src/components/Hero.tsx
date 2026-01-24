@@ -10,8 +10,8 @@ export function Hero() {
         </h1>
 
         <p className="text-body-lg text-muted max-w-2xl mx-auto mb-10">
-          No technical background needed. Step-by-step guides that take you from
-          zero to automating your work in minutes.
+          If you can use Microsoft Word, you can do this. Idiot-proof guides that
+          take complete beginners from zero to automating their work in minutes.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

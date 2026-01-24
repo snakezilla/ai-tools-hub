@@ -43,7 +43,7 @@ export default function PricingPage() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16">
           <PricingCard
             title="Free Guides"
             price="$0"
@@ -54,7 +54,6 @@ export default function PricingPage() {
               'Skills library (30+ skills)',
               'Email support (48h response)',
               'Forever free access',
-              'No credit card required',
             ]}
             cta="Explore Guides"
             ctaHref="/guides"
@@ -69,8 +68,7 @@ export default function PricingPage() {
               'AI Workflow Builder ($97)',
               'Claude Skills Mastery ($47)',
               'Lifetime access to videos',
-              'Downloadable cheat sheets',
-              'Priority support (24h response)',
+              'Priority support (24h)',
             ]}
             cta="View Courses"
             ctaHref="/courses"
@@ -78,19 +76,33 @@ export default function PricingPage() {
           />
 
           <PricingCard
-            title="Live Workshops"
-            price="$295"
-            description="For teams and individuals"
+            title="1:1 Walkthrough"
+            price="$650"
+            description="Personal setup with our team"
             features={[
-              'Half or full-day sessions',
-              'Custom curriculum designed for you',
-              'Max 15 people per group',
-              'Real-time Q&A and hands-on practice',
-              '30-day post-workshop support',
-              'Certificate of completion',
+              'One-time session with expert',
+              'Screen-share walkthrough',
+              'Get your workflows running',
+              'Custom to your use case',
+              '7-day follow-up support',
             ]}
-            cta="Book a Workshop"
-            ctaHref="https://calendly.com/placeholder"
+            cta="Book Session"
+            ctaHref="/contact"
+          />
+
+          <PricingCard
+            title="Weekly 1:1"
+            price="$1,200/mo"
+            description="Ongoing automation partner"
+            features={[
+              'Weekly 1:1 sessions',
+              'Continuous workflow building',
+              'Priority Slack access',
+              'Custom automations built',
+              'Cancel anytime',
+            ]}
+            cta="Get Started"
+            ctaHref="/contact"
           />
         </div>
 

@@ -87,7 +87,7 @@ export const workflows: Workflow[] = [
   {
     slug: "free-opus-antigravity",
     name: "Free Opus 4.5 via Antigravity",
-    tagline: "Access Claude's most powerful model at no cost through Google AI Studio",
+    tagline: "Access the most powerful AI model in the world—completely free",
     tools: [
       {
         name: "Google AI Studio",
@@ -96,18 +96,18 @@ export const workflows: Workflow[] = [
       },
       {
         name: "Claude Opus 4.5",
-        role: "Most powerful reasoning model",
+        role: "The most powerful AI model available today (made by Anthropic)",
         url: "https://claude.ai",
       },
     ],
     setupTime: "5 min",
-    benefit: "Use Claude Opus 4.5 without paying for Claude Pro",
+    benefit: "Use Claude Opus 4.5—the most powerful AI on the planet—without paying a cent",
     steps: [
       "Open your browser and go to aistudio.google.com/app/",
       "Sign in with your Google account (free)",
       "Look for 'Antigravity' in the agent/chat options",
-      "Select Antigravity—this gives you access to Claude Opus 4.5",
-      "Start chatting! You now have Opus-level reasoning for free",
+      "Select Antigravity—this gives you access to Claude Opus 4.5, the most powerful AI model available",
+      "Start chatting! Opus is made by Anthropic (the company behind Claude) and outperforms every other AI",
       "Use for complex tasks: architecture decisions, deep analysis, nuanced writing",
     ],
     proTips: [
