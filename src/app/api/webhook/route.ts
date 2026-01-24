@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { constructWebhookEvent } from '@/lib/stripe'
 import { Resend } from 'resend'
+import Stripe from 'stripe'
+
+// Validate Resend API key is configured
+const resendApiKey = process.env.RESEND_API_KEY
+if (!resendApiKey) {
+  console.error('CRITICAL: RESEND_API_KEY is not configured. Email notifications will fail.')
+}
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY || '')
     const signature = request.headers.get('stripe-signature')
     if (!signature) {
       return NextResponse.json(
@@ -21,9 +27,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Handle different event types
     switch (event.type) {
       case 'checkout.session.completed': {
-        const session = event.data.object as any
+        const session = event.data.object as Stripe.Checkout.Session
 
-        if (session.customer_email) {
+        if (session.customer_email && resendApiKey) {
+          const resend = new Resend(resendApiKey)
+
+          // Format amount safely without exposing raw data
+          const amountFormatted = session.amount_total
+            ? `$${(session.amount_total / 100).toFixed(2)}`
+            : 'amount pending'
+
           await resend.emails.send({
             from: process.env.FROM_EMAIL || 'noreply@practicallibrary.com',
             to: session.customer_email,
@@ -31,24 +44,26 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
             html: `
               <h2>Thank you for your purchase!</h2>
               <p>Your order has been confirmed.</p>
-              <p><strong>Order ID:</strong> ${session.id}</p>
-              <p><strong>Amount:</strong> $${(session.amount_total / 100).toFixed(2)}</p>
+              <p><strong>Order ID:</strong> ${escapeHtml(session.id)}</p>
+              <p><strong>Amount:</strong> ${escapeHtml(amountFormatted)}</p>
               <p>You'll receive course access details shortly.</p>
             `,
           })
         }
 
+        // Log only safe, non-PII data
         console.log('Payment confirmed:', {
           sessionId: session.id,
-          email: session.customer_email,
+          emailDomain: session.customer_email?.split('@')[1],
           amount: session.amount_total,
+          timestamp: new Date().toISOString(),
         })
 
         return NextResponse.json({ received: true }, { status: 200 })
       }
 
       case 'charge.refunded': {
-        const charge = event.data.object as any
+        const charge = event.data.object as Stripe.Charge
 
         console.log('Charge refunded:', {
           chargeId: charge.id,
@@ -65,11 +80,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       }
 
       case 'payment_intent.payment_failed': {
-        const paymentIntent = event.data.object as any
+        const paymentIntent = event.data.object as Stripe.PaymentIntent
 
         console.log('Payment failed:', {
           paymentIntentId: paymentIntent.id,
-          lastPaymentError: paymentIntent.last_payment_error,
           timestamp: new Date().toISOString(),
         })
 
@@ -96,4 +110,18 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       { status: 500 }
     )
   }
+}
+
+/**
+ * Escape HTML entities to prevent XSS attacks in email templates
+ */
+function escapeHtml(text: string): string {
+  const map: { [key: string]: string } = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }
+  return text.replace(/[&<>"']/g, (char) => map[char])
 }

@@ -41,8 +41,9 @@ export async function POST(request: NextRequest) {
 
     if (error instanceof Error) {
       console.error('Checkout error:', error.message)
+      // Return generic error message to client (don't leak internal details)
       return NextResponse.json(
-        { error: error.message || 'Failed to create checkout session' },
+        { error: 'Failed to create checkout session' },
         { status: 500 }
       )
     }
