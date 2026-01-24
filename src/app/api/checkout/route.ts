@@ -1,36 +1,55 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createCheckoutSession } from '@/lib/stripe'
+import { z } from 'zod'
 
-interface CheckoutRequest {
-  priceId: string
-  quantity?: number
-}
+const checkoutSchema = z.object({
+  priceId: z.string().min(1, 'Price ID is required'),
+  courseSlug: z.string().optional(),
+})
 
-interface CheckoutResponse {
-  url?: string
-  error?: string
-}
-
-// Mock implementation - will be replaced with actual Stripe integration
-export async function POST(request: NextRequest): Promise<NextResponse<CheckoutResponse>> {
+export async function POST(request: NextRequest) {
   try {
-    const body: CheckoutRequest = await request.json()
+    const body = await request.json()
+    const { priceId } = checkoutSchema.parse(body)
 
-    if (!body.priceId) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error('STRIPE_SECRET_KEY not configured')
+    }
+
+    const baseUrl = process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : 'http://localhost:3000'
+
+    const session = await createCheckoutSession(
+      priceId,
+      `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      `${baseUrl}/cancel`
+    )
+
+    if (!session.url) {
+      throw new Error('Failed to create checkout session')
+    }
+
+    return NextResponse.json({ url: session.url })
+  } catch (error) {
+    if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: 'priceId is required' },
+        { error: 'Invalid request data', details: error.errors },
         { status: 400 }
       )
     }
 
-    // TODO: Integrate with actual Stripe
-    // For now, return a mock response
-    const checkoutUrl = `https://checkout.stripe.com/pay/mock-session-${body.priceId}`
+    if (error instanceof Error) {
+      console.error('Checkout error:', error.message)
+      return NextResponse.json(
+        { error: error.message || 'Failed to create checkout session' },
+        { status: 500 }
+      )
+    }
 
-    return NextResponse.json({ url: checkoutUrl }, { status: 200 })
-  } catch (error) {
     console.error('Checkout error:', error)
     return NextResponse.json(
-      { error: 'Failed to create checkout session' },
+      { error: 'An unexpected error occurred' },
       { status: 500 }
     )
   }

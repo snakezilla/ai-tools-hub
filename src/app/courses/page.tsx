@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { CourseCard } from '@/components/CourseCard'
 
 export const metadata: Metadata = {
   title: 'Mini-Courses',
@@ -16,6 +17,7 @@ const courses = [
     level: 'Beginner',
     includes: ['Installation setup', '5 real-world workflows', 'Pro tips & tricks', 'Lifetime access', 'Email support'],
     image: '🚀',
+    priceId: process.env.STRIPE_PRICE_CLAUDE_CODE_COURSE || 'price_claude_code_essentials',
   },
   {
     slug: 'ai-workflow-builder',
@@ -26,6 +28,7 @@ const courses = [
     level: 'Intermediate',
     includes: ['5 complete projects', 'Step-by-step video guides', 'Source code included', 'Lifetime access', 'Priority support'],
     image: '⚙️',
+    priceId: process.env.STRIPE_PRICE_WORKFLOW_COURSE || 'price_workflow_builder',
   },
   {
     slug: 'claude-skills-mastery',
@@ -36,6 +39,7 @@ const courses = [
     level: 'Intermediate',
     includes: ['20+ skills library', 'Installation guide', 'Customization tutorial', 'Lifetime access', 'Email support'],
     image: '✨',
+    priceId: process.env.STRIPE_PRICE_SKILLS_COURSE || 'price_skills_mastery',
   },
 ]
 
@@ -56,53 +60,10 @@ export default function CoursesPage() {
         {/* Courses Grid */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {courses.map((course) => (
-            <div key={course.slug} className="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition">
-              {/* Image Placeholder */}
-              <div className="h-32 bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center text-6xl">
-                {course.image}
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-lg font-bold text-gray-900">{course.title}</h3>
-                </div>
-
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="inline-block px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded">
-                    {course.level}
-                  </span>
-                  <span className="text-sm text-gray-600">{course.duration}</span>
-                </div>
-
-                <p className="text-gray-600 text-sm mb-6">{course.description}</p>
-
-                {/* Features */}
-                <ul className="space-y-2 mb-6">
-                  {course.includes.map((item, index) => (
-                    <li key={index} className="flex items-center gap-2 text-sm text-gray-700">
-                      <svg className="w-4 h-4 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Price & CTA */}
-                <div className="flex items-end justify-between">
-                  <div className="text-2xl font-bold text-gray-900">
-                    ${course.price}
-                  </div>
-                  <Link
-                    href={`/courses/${course.slug}`}
-                    className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 transition"
-                  >
-                    Learn More
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <CourseCard
+              key={course.slug}
+              course={course}
+            />
           ))}
         </div>
 

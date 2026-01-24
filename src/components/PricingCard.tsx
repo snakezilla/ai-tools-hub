@@ -8,6 +8,7 @@ interface PricingCardProps {
   cta: string
   ctaHref: string
   highlighted?: boolean
+  priceId?: string
 }
 
 export function PricingCard({

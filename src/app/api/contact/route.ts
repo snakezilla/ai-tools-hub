@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 interface ContactRequest {
   name: string
@@ -34,17 +37,41 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
       )
     }
 
-    // TODO: Implement actual Resend email integration
-    // Steps:
-    // 1. Send email notification to admin
-    // 2. Send auto-reply to user
-    // 3. Log to Airtable (optional)
+    // Send admin notification
+    if (process.env.ADMIN_EMAIL) {
+      await resend.emails.send({
+        from: process.env.FROM_EMAIL || 'noreply@practicallibrary.com',
+        to: process.env.ADMIN_EMAIL,
+        subject: `New Contact Form: ${body.type}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${body.name}</p>
+          <p><strong>Email:</strong> ${body.email}</p>
+          <p><strong>Type:</strong> ${body.type}</p>
+          <p><strong>Message:</strong></p>
+          <p>${body.message.replace(/\n/g, '<br>')}</p>
+        `,
+      })
+    }
+
+    // Send auto-reply to user
+    await resend.emails.send({
+      from: process.env.FROM_EMAIL || 'noreply@practicallibrary.com',
+      to: body.email,
+      subject: 'We received your message - AI Tools Hub',
+      html: `
+        <h2>Thank you for reaching out!</h2>
+        <p>Hi ${body.name},</p>
+        <p>We received your message and will get back to you within 24 hours.</p>
+        <p>If you have any questions in the meantime, feel free to reply to this email.</p>
+        <p>Best regards,<br>The AI Tools Hub Team</p>
+      `,
+    })
 
     console.log('Contact form submission:', {
       name: body.name,
       email: body.email,
       type: body.type,
-      message: body.message,
       timestamp: new Date().toISOString(),
     })
 
