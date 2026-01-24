@@ -5,9 +5,9 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-card-DEFAULT">
       <div className="container-content py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div className="sm:col-span-2">
             <Link href="/" className="flex items-center gap-2">
               <Logo size="sm" />
             </Link>
@@ -17,9 +17,9 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Tools */}
+          {/* Free Tools */}
           <div>
-            <h4 className="text-body font-semibold text-foreground mb-4">Foundation Tools</h4>
+            <h4 className="text-body font-semibold text-foreground mb-4">Free Guides</h4>
             <ul className="space-y-3">
               <li>
                 <Link href="/tools/claude" className="text-body-sm text-muted hover:text-foreground transition-colors">
@@ -32,13 +32,40 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/tools/chatgpt" className="text-body-sm text-muted hover:text-foreground transition-colors">
-                  ChatGPT
+                <Link href="/tools/manus-ai" className="text-body-sm text-muted hover:text-foreground transition-colors">
+                  Manus AI
                 </Link>
               </li>
               <li>
-                <Link href="/tools/manus" className="text-body-sm text-muted hover:text-foreground transition-colors">
-                  Manus AI
+                <Link href="/guides" className="text-body-sm text-muted hover:text-foreground transition-colors">
+                  All Guides →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Paid */}
+          <div>
+            <h4 className="text-body font-semibold text-foreground mb-4">Paid Products</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/courses/claude-code-essentials" className="text-body-sm text-muted hover:text-foreground transition-colors">
+                  Claude Code Essentials
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses/ai-workflow-builder" className="text-body-sm text-muted hover:text-foreground transition-colors">
+                  AI Workflow Builder
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing#one-on-one" className="text-body-sm text-muted hover:text-foreground transition-colors">
+                  1:1 Walkthroughs
+                </Link>
+              </li>
+              <li>
+                <Link href="/workshops" className="text-body-sm text-muted hover:text-foreground transition-colors">
+                  Team Workshops
                 </Link>
               </li>
             </ul>
@@ -49,18 +76,18 @@ export function Footer() {
             <h4 className="text-body font-semibold text-foreground mb-4">Company</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/workshops" className="text-body-sm text-muted hover:text-foreground transition-colors">
-                  Workshops
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculator" className="text-body-sm text-muted hover:text-foreground transition-colors">
-                  ROI Calculator
-                </Link>
-              </li>
-              <li>
                 <Link href="/about" className="text-body-sm text-muted hover:text-foreground transition-colors">
                   About
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-body-sm text-muted hover:text-foreground transition-colors">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="text-body-sm text-muted hover:text-foreground transition-colors">
+                  Pricing
                 </Link>
               </li>
             </ul>
