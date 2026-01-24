@@ -47,8 +47,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <LearningPaths />
       <ToolsGrid />
+      <LearningPaths />
       <ROICalculator />
     </>
   )

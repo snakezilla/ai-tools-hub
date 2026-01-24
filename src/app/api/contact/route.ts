@@ -59,21 +59,20 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
     const resend = new Resend(resendApiKey)
 
     // Send admin notification
-    if (process.env.ADMIN_EMAIL) {
-      await resend.emails.send({
-        from: process.env.FROM_EMAIL || 'noreply@practicallibrary.com',
-        to: process.env.ADMIN_EMAIL,
-        subject: `New Contact Form: ${validated.type}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${escapeHtml(validated.name)}</p>
-          <p><strong>Email:</strong> ${escapeHtml(validated.email)}</p>
-          <p><strong>Type:</strong> ${escapeHtml(validated.type)}</p>
-          <p><strong>Message:</strong></p>
-          <p>${escapeHtml(validated.message).replace(/\n/g, '<br>')}</p>
-        `,
-      })
-    }
+    const adminEmail = process.env.ADMIN_EMAIL || 'eslamiahsan@gmail.com'
+    await resend.emails.send({
+      from: process.env.FROM_EMAIL || 'noreply@practicallibrary.com',
+      to: adminEmail,
+      subject: 'PracticalLibrary Reach Out',
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${escapeHtml(validated.name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(validated.email)}</p>
+        <p><strong>Type:</strong> ${escapeHtml(validated.type)}</p>
+        <p><strong>Message:</strong></p>
+        <p>${escapeHtml(validated.message).replace(/\n/g, '<br>')}</p>
+      `,
+    })
 
     // Send auto-reply to user
     await resend.emails.send({

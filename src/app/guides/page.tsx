@@ -1,170 +1,170 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { guides } from '@/lib/guides'
+import { getAllStructuredGuides } from '@/lib/structured-guides'
+import type { StructuredGuide } from '@/components/GuideContent'
 import { DifficultyBadge } from '@/components/ui/DifficultyBadge'
 import { ReadTimeBadge } from '@/components/ui/ReadTimeBadge'
 
 export const metadata: Metadata = {
-  title: 'Master AI Tools - Step-by-Step Guides | Practical Library',
-  description: 'Deep-dive guides to master AI tools and workflows. From Claude Code to workflow automation. Learn from practitioners, by practitioners. No fluff.',
+  title: 'AI Tool Guides - Learn in Minutes | Practical Library',
+  description: 'Quick, practical guides to master AI tools. No fluff. Just the steps you need to get value fast.',
   keywords: [
     'AI guides',
     'Claude Code guide',
     'Claude tutorial',
     'AI tools tutorial',
-    'workflow automation',
-    'step by step guide',
-    'beginner to advanced',
-    'AI learning',
-    'tool mastery',
+    'quick start guides',
   ],
   openGraph: {
-    title: 'Master AI Tools - Step-by-Step Guides | Practical Library',
-    description: 'Learn to master AI tools with our comprehensive guides. From setup to advanced workflows. No fluff, just practical knowledge.',
+    title: 'AI Tool Guides | Practical Library',
+    description: 'Learn AI tools in 2-5 minutes. Practical steps, no fluff.',
     url: 'https://practicallibrary.com/guides',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Master AI Tools - Guides | Practical Library',
-    description: 'Step-by-step guides to master Claude Code, workflow automation, and 15+ AI tools.',
   },
 }
 
 export default function GuidesPage() {
+  const guides = getAllStructuredGuides()
   const beginnerGuides = guides.filter((g) => g.difficulty === 'beginner')
   const intermediateGuides = guides.filter((g) => g.difficulty === 'intermediate')
   const advancedGuides = guides.filter((g) => g.difficulty === 'advanced')
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       {/* Hero */}
-      <section className="px-4 py-16 md:py-24 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Deep-Dive Guides
+      <section className="px-4 py-16 md:py-20 border-b border-border">
+        <div className="max-w-content mx-auto text-center">
+          <h1 className="text-heading-lg md:text-heading-xl text-foreground mb-4">
+            Learn in <span className="text-accent">Minutes</span>, Not Hours
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Master every tool with step-by-step guides. Written by practitioners. No fluff.
+          <p className="text-body-lg text-muted max-w-2xl mx-auto mb-8">
+            Quick, practical guides. Each one shows you exactly what to do—no essays, no fluff.
           </p>
 
           {/* Quick Filter */}
-          <div className="flex gap-2 justify-center flex-wrap">
+          <div className="flex gap-3 justify-center flex-wrap">
             <a
               href="#beginner"
-              className="px-4 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 transition"
+              className="px-5 py-2.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-button font-medium hover:bg-emerald-100 transition"
             >
-              Beginner
+              Start Here ({beginnerGuides.length})
             </a>
             <a
               href="#intermediate"
-              className="px-4 py-2 bg-amber-50 text-amber-700 border border-amber-200 rounded-lg hover:bg-amber-100 transition"
+              className="px-5 py-2.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-button font-medium hover:bg-amber-100 transition"
             >
-              Intermediate
+              Level Up ({intermediateGuides.length})
             </a>
-            <a
-              href="#advanced"
-              className="px-4 py-2 bg-red-50 text-red-700 border border-red-200 rounded-lg hover:bg-red-100 transition"
-            >
-              Advanced
-            </a>
+            {advancedGuides.length > 0 && (
+              <a
+                href="#advanced"
+                className="px-5 py-2.5 bg-red-50 text-red-700 border border-red-200 rounded-button font-medium hover:bg-red-100 transition"
+              >
+                Advanced ({advancedGuides.length})
+              </a>
+            )}
           </div>
         </div>
       </section>
 
       {/* Beginner Section */}
-      <section id="beginner" className="px-4 py-16 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto">
+      <section id="beginner" className="px-4 py-16 border-b border-border">
+        <div className="max-w-content mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900">Beginner Guides</h2>
-            <span className="text-sm bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full border border-emerald-200">
-              {beginnerGuides.length}
-            </span>
+            <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+            <h2 className="text-heading-sm text-foreground">Start Here</h2>
+            <span className="text-body-sm text-muted">New to AI tools? Begin with these.</span>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {beginnerGuides.map((guide) => (
               <GuideCard key={guide.slug} guide={guide} />
             ))}
           </div>
 
           {beginnerGuides.length === 0 && (
-            <p className="text-gray-500 text-center py-12">No beginner guides yet. Check back soon!</p>
+            <p className="text-muted text-center py-12">Coming soon!</p>
           )}
         </div>
       </section>
 
       {/* Intermediate Section */}
-      <section id="intermediate" className="px-4 py-16 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto">
+      <section id="intermediate" className="px-4 py-16 border-b border-border">
+        <div className="max-w-content mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900">Intermediate Guides</h2>
-            <span className="text-sm bg-amber-50 text-amber-700 px-3 py-1 rounded-full border border-amber-200">
-              {intermediateGuides.length}
-            </span>
+            <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+            <h2 className="text-heading-sm text-foreground">Level Up</h2>
+            <span className="text-body-sm text-muted">Ready for more? Go deeper.</span>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {intermediateGuides.map((guide) => (
               <GuideCard key={guide.slug} guide={guide} />
             ))}
           </div>
 
           {intermediateGuides.length === 0 && (
-            <p className="text-gray-500 text-center py-12">No intermediate guides yet. Check back soon!</p>
+            <p className="text-muted text-center py-12">Coming soon!</p>
           )}
         </div>
       </section>
 
       {/* Advanced Section */}
-      <section id="advanced" className="px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900">Advanced Guides</h2>
-            <span className="text-sm bg-red-50 text-red-700 px-3 py-1 rounded-full border border-red-200">
-              {advancedGuides.length}
-            </span>
-          </div>
+      {advancedGuides.length > 0 && (
+        <section id="advanced" className="px-4 py-16">
+          <div className="max-w-content mx-auto">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <h2 className="text-heading-sm text-foreground">Advanced</h2>
+              <span className="text-body-sm text-muted">Power user territory.</span>
+            </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {advancedGuides.map((guide) => (
-              <GuideCard key={guide.slug} guide={guide} />
-            ))}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {advancedGuides.map((guide) => (
+                <GuideCard key={guide.slug} guide={guide} />
+              ))}
+            </div>
           </div>
+        </section>
+      )}
 
-          {advancedGuides.length === 0 && (
-            <p className="text-gray-500 text-center py-12">No advanced guides yet. Check back soon!</p>
-          )}
+      {/* CTA */}
+      <section className="px-4 py-16 bg-gray-50 border-t border-border">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-heading-sm text-foreground mb-4">Want hands-on practice?</h2>
+          <p className="text-body text-muted mb-6">
+            Our courses give you real projects, expert feedback, and a community to learn with.
+          </p>
+          <Link
+            href="/courses"
+            className="inline-block px-8 py-4 bg-accent text-accent-foreground rounded-button font-semibold text-lg hover:bg-accent-dark transition"
+          >
+            Browse Courses
+          </Link>
         </div>
       </section>
     </main>
   )
 }
 
-function GuideCard({ guide }: { guide: typeof guides[0] }) {
+function GuideCard({ guide }: { guide: StructuredGuide }) {
   return (
     <Link href={`/guides/${guide.slug}`}>
-      <div className="p-6 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-lg transition h-full flex flex-col">
-        <div className="mb-4 flex items-start justify-between gap-2">
-          <h3 className="text-lg font-bold text-gray-900 flex-1">{guide.title}</h3>
-        </div>
-
-        <p className="text-gray-600 text-sm mb-4 flex-1">{guide.description}</p>
-
-        <div className="flex items-center gap-3 mb-4">
+      <div className="h-full p-6 bg-card rounded-card border border-border hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 flex flex-col">
+        <div className="flex items-center gap-3 mb-3">
           <DifficultyBadge level={guide.difficulty} />
           <ReadTimeBadge minutes={guide.readTime} />
         </div>
 
-        {guide.tags && guide.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {guide.tags.slice(0, 2).map((tag) => (
-              <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        <h3 className="text-lg font-bold text-foreground mb-2">{guide.title}</h3>
+        <p className="text-body-sm text-muted mb-4 flex-1">{guide.description}</p>
+
+        <div className="flex items-center text-accent font-medium text-body-sm">
+          Read Guide
+          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
       </div>
     </Link>
   )
