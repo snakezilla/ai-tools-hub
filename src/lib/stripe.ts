@@ -41,19 +41,19 @@ export const courseData = {
   'claude-code-essentials': {
     name: 'Claude Code Essentials',
     price: 67,
-    stripePrice: process.env.NEXT_PUBLIC_STRIPE_PRICE_CLAUDE_CODE || 'price_placeholder_1',
+    stripePrice: process.env.NEXT_PUBLIC_STRIPE_PRICE_CLAUDE_CODE || 'price_1St9N9BFWwFtzH8DF9bmFRBo',
     description: 'Master Claude Code from installation to shipping your first feature.',
   },
   'ai-workflow-builder': {
     name: 'AI Workflow Builder',
     price: 97,
-    stripePrice: process.env.NEXT_PUBLIC_STRIPE_PRICE_WORKFLOW || 'price_placeholder_2',
+    stripePrice: process.env.NEXT_PUBLIC_STRIPE_PRICE_WORKFLOW || 'price_1St9NSBFWwFtzH8DKGqctZZq',
     description: 'Build 5 complete automation workflows using Claude + other tools.',
   },
   'claude-skills-mastery': {
     name: 'Claude Skills Mastery',
     price: 47,
-    stripePrice: process.env.NEXT_PUBLIC_STRIPE_PRICE_SKILLS || 'price_placeholder_3',
+    stripePrice: process.env.NEXT_PUBLIC_STRIPE_PRICE_SKILLS || 'price_1St9NjBFWwFtzH8DjtuVVerP',
     description: 'Unlock superpowers: install, customize, and build your own skills.',
   },
 } as const
