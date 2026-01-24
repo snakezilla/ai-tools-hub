@@ -40,6 +40,27 @@ export default function WorkflowsPage() {
           ))}
         </div>
 
+        {/* Skills Callout for Claude Code Users */}
+        <div className="mt-12 max-w-2xl mx-auto p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-card border border-blue-200">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-1">Using Claude Code?</h3>
+              <p className="text-body-sm text-muted mb-3">
+                Supercharge it with Skills—pre-built commands for code review, testing, copywriting, and more.
+                Check out the Skills section on the{" "}
+                <Link href="/tools/claude-code" className="text-accent hover:underline">
+                  Claude Code page
+                </Link>.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* CTA */}
         <div className="mt-16 text-center">
           <div className="inline-block p-8 bg-card rounded-card border border-border">
