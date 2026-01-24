@@ -66,7 +66,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ContactRe
     await resend.emails.send({
       from: fromEmail,
       to: adminEmail,
-      replyTo: validated.email,
+      reply_to: validated.email,
       subject: 'PracticalLibrary Reach Out',
       html: `
         <h2>New Contact Form Submission</h2>
