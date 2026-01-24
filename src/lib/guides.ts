@@ -53,6 +53,36 @@ export const guides: Guide[] = [
     toolSlugs: ['zapier'],
     tags: ['automation', 'integration', 'no-code'],
   },
+  {
+    slug: 'claude-cowork-automation-guide',
+    title: 'Claude Cowork: Your Desktop AI Agent',
+    description: 'Learn how to use Claude Cowork to organize files, batch rename documents, and automate repetitive file tasks.',
+    readTime: 12,
+    difficulty: 'beginner',
+    fullContent: `<h2>What is Claude Cowork?</h2><p>Claude Cowork is an AI agent that runs on your Mac desktop. It can autonomously organize files, process documents, and handle batch operations safely and securely.</p><h2>Getting Started</h2><ol><li>Install Claude Desktop app</li><li>Subscribe to Claude Pro ($20/mo) or Max</li><li>Open Claude Cowork from the menu</li><li>Grant folder access (start with Downloads)</li></ol><h2>Common Workflows</h2><h3>Organize Downloads Folder</h3><p>Task: "Create subfolders for PDFs, Images, Documents. Move all files into the correct folders."</p><h3>Batch Rename Files</h3><p>Task: "Rename all photos to YYYY-MM-DD_sequence format"</p><h3>Process Receipts</h3><p>Task: "Extract amounts from all receipt PDFs and create a summary spreadsheet"</p><h2>Pro Tips</h2><ul><li><strong>Start Small:</strong> Give Cowork access to one folder first</li><li><strong>Be Specific:</strong> Detailed instructions get better results</li><li><strong>Review First:</strong> Cowork asks before deleting files</li><li><strong>Think Big:</strong> Cowork excels at batch operations on hundreds of files</li></ul>`,
+    toolSlugs: ['claude-cowork'],
+    tags: ['automation', 'file-management', 'desktop'],
+  },
+  {
+    slug: 'chatgpt-power-user-guide',
+    title: 'ChatGPT Power User Guide',
+    description: 'Master ChatGPT to write better, research faster, and get smarter answers. Learn proven techniques.',
+    readTime: 10,
+    difficulty: 'beginner',
+    fullContent: `<h2>ChatGPT Fundamentals</h2><p>ChatGPT is versatile. It excels at writing, research, problem-solving, and learning. Quality of output depends on quality of input.</p><h2>The Prompt Framework</h2><p><strong>Structure matters:</strong> Role + Task + Context + Format</p><h3>Example: Research Request</h3><p>"You are a market analyst. Research the latest trends in [industry]. Provide findings in: 1) Key trends 2) Market size 3) Key players"</p><h2>Advanced Techniques</h2><h3>Few-Shot Learning</h3><p>Show ChatGPT examples of what you want. Then ask for the same format with new data.</p><h3>Chain of Thought</h3><p>Ask ChatGPT to think step-by-step. Say: "Let's think through this step-by-step"</p><h3>Iteration</h3><p>Refine outputs. Say: "Better. Now make it more concise." or "Add examples."</p><h2>Common Use Cases</h2><ul><li>Email drafts (saves 10+ min per email)</li><li>Meeting preparation (research competitors, talking points)</li><li>Code explanation (paste code, ask to explain)</li><li>Learning (ask to explain concepts like you're 5)</li></ul>`,
+    toolSlugs: ['chatgpt'],
+    tags: ['writing', 'research', 'learning'],
+  },
+  {
+    slug: 'ralph-loop-autonomous-development',
+    title: 'Ralph Loop: Autonomous Development Overnight',
+    description: 'Set up Ralph Loop to build features while you sleep. Complete guide to autonomous coding workflows.',
+    readTime: 16,
+    difficulty: 'advanced',
+    fullContent: `<h2>What is Ralph Loop?</h2><p>Ralph Loop is an autonomous development loop that pairs with Claude Code. Give it a project requirements file, and it builds features, tests them, and iterates—all while you sleep.</p><h2>Prerequisites</h2><ul><li>Claude Code installed and working</li><li>Node.js project with git repo</li><li>Project README with clear instructions</li><li>Claude API access with sufficient credits</li></ul><h2>Setting Up Ralph</h2><ol><li>Clone Ralph repository</li><li>Create requirements.md with your feature specs</li><li>Configure your project path</li><li>Start Ralph with: <code>./ralph.sh</code></li><li>Monitor progress in the log file</li></ol><h2>Best Practices</h2><h3>Write Clear Requirements</h3><p>Ralph works best with specific, well-structured requirements. Include:</p><ul><li>Feature description</li><li>User stories or examples</li><li>Acceptance criteria</li><li>API specs if applicable</li></ul><h3>Manage Costs</h3><p>Ralph makes many API calls. Set spending limits and monitor usage.</p><h3>Review Results</h3><p>Always review generated code before merging. Ralph is powerful but not perfect.</p><h2>Real Example</h2><p>"Build a REST API for a to-do app with Create, Read, Update, Delete operations. Include error handling and input validation."</p><p>Ralph will: Create database schema, write API routes, add tests, and commit to git.</p>`,
+    toolSlugs: ['ralph'],
+    tags: ['development', 'automation', 'autonomous'],
+  },
 ]
 
 export function getGuideBySlug(slug: string): Guide | undefined {
