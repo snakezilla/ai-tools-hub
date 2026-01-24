@@ -5,8 +5,30 @@ import { DifficultyBadge } from '@/components/ui/DifficultyBadge'
 import { ReadTimeBadge } from '@/components/ui/ReadTimeBadge'
 
 export const metadata: Metadata = {
-  title: 'Guides',
-  description: 'In-depth guides to master AI tools and workflows. Written by practitioners, for practitioners.',
+  title: 'Master AI Tools - Step-by-Step Guides | Practical Library',
+  description: 'Deep-dive guides to master AI tools and workflows. From Claude Code to workflow automation. Learn from practitioners, by practitioners. No fluff.',
+  keywords: [
+    'AI guides',
+    'Claude Code guide',
+    'Claude tutorial',
+    'AI tools tutorial',
+    'workflow automation',
+    'step by step guide',
+    'beginner to advanced',
+    'AI learning',
+    'tool mastery',
+  ],
+  openGraph: {
+    title: 'Master AI Tools - Step-by-Step Guides | Practical Library',
+    description: 'Learn to master AI tools with our comprehensive guides. From setup to advanced workflows. No fluff, just practical knowledge.',
+    url: 'https://practicallibrary.com/guides',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Master AI Tools - Guides | Practical Library',
+    description: 'Step-by-step guides to master Claude Code, workflow automation, and 15+ AI tools.',
+  },
 }
 
 export default function GuidesPage() {
