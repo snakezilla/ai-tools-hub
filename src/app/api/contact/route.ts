@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { z } from 'zod'
+import { contactSchema } from '@/lib/validators'
 
 interface ContactResponse {
   success?: boolean
@@ -12,14 +13,6 @@ const resendApiKey = process.env.RESEND_API_KEY
 if (!resendApiKey) {
   console.error('CRITICAL: RESEND_API_KEY is not configured. Contact form emails will fail.')
 }
-
-// Zod schema for contact form validation
-const contactSchema = z.object({
-  name: z.string().min(1).max(100).trim(),
-  email: z.string().email().max(255),
-  type: z.enum(['question', 'feedback', 'workshop', 'partnership']),
-  message: z.string().min(10).max(5000).trim(),
-})
 
 export async function POST(request: NextRequest): Promise<NextResponse<ContactResponse>> {
   try {

@@ -13,6 +13,7 @@
     "remotion:render": "remotion render remotion/index.tsx ClaudeCodeDemo public/demos/claude-code-demo.mp4"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@remotion/bundler": "^4.0.407",
     "@remotion/cli": "^4.0.407",
     "@remotion/renderer": "^4.0.407",
@@ -20,7 +21,7 @@
     "next": "15.5.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.50.0",
+    "react-hook-form": "^7.71.1",
     "remotion": "^4.0.407",
     "resend": "^3.0.0",
     "stripe": "^14.25.0",
