@@ -38,36 +38,36 @@ export async function withTimeout<T>(
   ])
 }
 
-// Course data for Stripe integration
+// Course data for Stripe integration (LIVE MODE)
 export const courseData = {
   'claude-code-essentials': {
     name: 'Claude Code Essentials',
     price: 67,
-    stripePrice: 'price_1St9N9BFWwFtzH8DF9bmFRBo',
+    stripePrice: 'price_1StAZzBuLuSjMI0ou7qqDkDo',
     description: 'Master Claude Code from installation to shipping your first feature.',
   },
   'ai-workflow-builder': {
     name: 'AI Workflow Builder',
     price: 97,
-    stripePrice: 'price_1St9NSBFWwFtzH8DKGqctZZq',
+    stripePrice: 'price_1StAZUBuLuSjMI0oHWDIc6CK',
     description: 'Build 5 complete automation workflows using Claude + other tools.',
   },
   'claude-skills-mastery': {
     name: 'Claude Skills Mastery',
     price: 47,
-    stripePrice: 'price_1St9NjBFWwFtzH8DjtuVVerP',
+    stripePrice: 'price_1StAYeBuLuSjMI0o20LXdgW2',
     description: 'Unlock superpowers: install, customize, and build your own skills.',
   },
   '1-1-walkthrough': {
     name: '1:1 Walkthrough',
     price: 650,
-    stripePrice: 'price_1St9UBBFWwFtzH8D01R339XL',
+    stripePrice: 'price_1StAXgBuLuSjMI0oZcXjVlEO',
     description: '90-minute session with our automation team.',
   },
   'weekly-1-1-walkthrough': {
     name: 'Weekly 1:1 Walkthrough',
     price: 1200,
-    stripePrice: 'price_1St9T1BFWwFtzH8DK8Sii5FF',
+    stripePrice: 'price_1StAY5BuLuSjMI0oypjCpzkv',
     description: 'Four 60-minute sessions per month.',
   },
 } as const

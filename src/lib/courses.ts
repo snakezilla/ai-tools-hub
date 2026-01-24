@@ -39,7 +39,7 @@ export const courses: Course[] = [
     duration: '2 hours',
     level: 'Beginner',
     image: '🚀',
-    priceId: 'price_1St9N9BFWwFtzH8DF9bmFRBo',
+    priceId: 'price_1StAZzBuLuSjMI0ou7qqDkDo',
     features: [
       'Installation setup',
       '5 real-world workflows',
@@ -142,7 +142,7 @@ export const courses: Course[] = [
     duration: '3 hours',
     level: 'Intermediate',
     image: '⚙️',
-    priceId: 'price_1St9NSBFWwFtzH8DKGqctZZq',
+    priceId: 'price_1StAZUBuLuSjMI0oHWDIc6CK',
     features: [
       '5 complete projects',
       'Step-by-step video guides',
@@ -255,7 +255,7 @@ export const courses: Course[] = [
     duration: '1.5 hours',
     level: 'Intermediate',
     image: '✨',
-    priceId: 'price_1St9NjBFWwFtzH8DjtuVVerP',
+    priceId: 'price_1StAYeBuLuSjMI0o20LXdgW2',
     features: [
       '20+ skills library',
       'Installation guide',
