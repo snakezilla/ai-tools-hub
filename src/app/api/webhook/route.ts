@@ -97,15 +97,19 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           try {
             // Send confirmation email with retry logic
             await sendEmailWithRetry(resend, {
-              from: process.env.FROM_EMAIL || 'noreply@practicallibrary.com',
+              from: process.env.FROM_EMAIL || 'Practical Library <onboarding@resend.dev>',
               to: session.customer_email,
-              subject: 'Order Confirmation - AI Tools Hub',
+              subject: 'Order Confirmation - Practical Library',
               html: `
                 <h2>Thank you for your purchase!</h2>
-                <p>Your order has been confirmed.</p>
+                <p>Your order has been confirmed and is being prepared.</p>
                 <p><strong>Order ID:</strong> ${escapeHtml(session.id)}</p>
                 <p><strong>Amount:</strong> ${escapeHtml(amountFormatted)}</p>
-                <p>You'll receive course access details shortly.</p>
+                <h3>What happens next?</h3>
+                <p>Your course access will be delivered to this email within <strong>24 hours</strong>.</p>
+                <p>We personally review each order to ensure you get the best onboarding experience.</p>
+                <p>If you have any questions, reply to this email or contact us at eslamiahsan@gmail.com</p>
+                <p>Best regards,<br>The Practical Library Team</p>
               `,
             })
           } catch (emailError) {
@@ -146,7 +150,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
           try {
             await sendEmailWithRetry(resend, {
-              from: process.env.FROM_EMAIL || 'noreply@practicallibrary.com',
+              from: process.env.FROM_EMAIL || 'Practical Library <onboarding@resend.dev>',
               to: charge.receipt_email,
               subject: 'Refund Processed - AI Tools Hub',
               html: `
@@ -186,7 +190,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
           try {
             await sendEmailWithRetry(resend, {
-              from: process.env.FROM_EMAIL || 'noreply@practicallibrary.com',
+              from: process.env.FROM_EMAIL || 'Practical Library <onboarding@resend.dev>',
               to: paymentIntent.receipt_email,
               subject: 'Payment Failed - AI Tools Hub',
               html: `
