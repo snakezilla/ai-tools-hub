@@ -1,131 +1,125 @@
+"use client"
+
 import Link from "next/link"
+import { useScrollAnimation, useStaggerAnimation } from "@/hooks/useScrollAnimation"
 
 export function LearningPaths() {
+  const [headerRef, headerVisible] = useScrollAnimation()
+  const { containerRef, visibleItems } = useStaggerAnimation(2)
+  
   return (
-    <section className="py-16 md:py-24 px-4 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+    <section className="section">
+      <div className="container-content">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-12 md:mb-16 ${headerVisible ? 'scroll-visible' : 'scroll-hidden'}`}
+        >
+          <span className="badge-primary mb-4">Choose Your Path</span>
           <h2 className="text-heading-md md:text-heading-lg text-foreground mb-4">
-            Choose Your Learning Path
+            Start with the essentials, then level up
           </h2>
           <p className="text-body-lg text-muted max-w-2xl mx-auto">
-            From free guides to live workshops—pick the level that matches your pace and budget.
+            Whether you have 5 minutes or an afternoon, there&apos;s a path that fits your schedule.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* Free Guides */}
-          <Link
-            href="/guides"
-            className="group relative bg-white rounded-lg border border-gray-200 p-8 hover:border-blue-500 hover:shadow-lg transition-all h-full flex flex-col"
+        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+          {/* Essential Tools */}
+          <Link 
+            href="/guides?filter=essential" 
+            className={`path-card-featured group ${visibleItems[0] ? 'scroll-visible-scale' : 'scroll-hidden-scale'} stagger-delay-0`}
           >
-            <div className="text-4xl mb-4">📚</div>
-            <h3 className="text-heading-sm text-foreground font-bold mb-3 group-hover:text-blue-600 transition">
-              Free Guides
-            </h3>
-            <p className="text-body text-muted mb-6 flex-grow">
-              Master AI tools with step-by-step guides. No credit card required.
-            </p>
-            <div className="space-y-3 text-sm text-gray-700 mb-6">
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>Beginner to Advanced</span>
+            <div className="flex items-start justify-between mb-6">
+              <div>
+                <span className="badge-success mb-3">Recommended Start</span>
+                <h3 className="text-heading-sm md:text-heading-md text-foreground group-hover:text-accent transition-colors">
+                  Essential Tools
+                </h3>
               </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center shrink-0">
+                <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-                <span>20+ Guides</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>100% Free</span>
               </div>
             </div>
-            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded font-semibold group-hover:bg-blue-600 group-hover:text-white transition text-center">
-              Explore Guides →
-            </span>
+            
+            <p className="text-body text-muted mb-6">
+              The foundation for everything. Master these three tools first—they&apos;ll cover 80% of what most people need.
+            </p>
+
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center gap-3 text-body-sm">
+                <span className="w-8 h-8 rounded-lg bg-white border border-border flex items-center justify-center text-lg">💬</span>
+                <span className="text-foreground font-medium">Claude</span>
+                <span className="text-muted">— Your AI thinking partner</span>
+              </div>
+              <div className="flex items-center gap-3 text-body-sm">
+                <span className="w-8 h-8 rounded-lg bg-white border border-border flex items-center justify-center text-lg">⌨️</span>
+                <span className="text-foreground font-medium">Claude Code</span>
+                <span className="text-muted">— Build software with English</span>
+              </div>
+              <div className="flex items-center gap-3 text-body-sm">
+                <span className="w-8 h-8 rounded-lg bg-white border border-border flex items-center justify-center text-lg">🤖</span>
+                <span className="text-foreground font-medium">Manus AI</span>
+                <span className="text-muted">— Your autonomous assistant</span>
+              </div>
+            </div>
+
+            <div className="flex items-center text-accent font-semibold gap-2 transition-all">
+              Start with Essentials
+              <svg className="w-5 h-5 arrow-slide" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
           </Link>
 
-          {/* Mini-Courses */}
-          <Link
-            href="/courses"
-            className="group relative bg-white rounded-lg border border-blue-200 p-8 hover:border-blue-500 hover:shadow-lg transition-all h-full flex flex-col ring-1 ring-blue-100"
+          {/* Power Tools */}
+          <Link 
+            href="/guides?filter=power" 
+            className={`path-card group ${visibleItems[1] ? 'scroll-visible-scale' : 'scroll-hidden-scale'} stagger-delay-1`}
           >
-            <div className="absolute top-4 right-4 px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">
-              POPULAR
+            <div className="flex items-start justify-between mb-6">
+              <div>
+                <span className="badge-muted mb-3">Level Up</span>
+                <h3 className="text-heading-sm md:text-heading-md text-foreground group-hover:text-accent transition-colors">
+                  Power Tools
+                </h3>
+              </div>
+              <div className="w-12 h-12 rounded-2xl bg-border-light flex items-center justify-center shrink-0">
+                <svg className="w-6 h-6 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </div>
             </div>
-            <div className="text-4xl mb-4">🎓</div>
-            <h3 className="text-heading-sm text-foreground font-bold mb-3 group-hover:text-blue-600 transition">
-              Mini-Courses
-            </h3>
-            <p className="text-body text-muted mb-6 flex-grow">
-              2-hour self-paced courses with video, cheat sheets, and lifetime access.
+            
+            <p className="text-body text-muted mb-6">
+              Once you&apos;ve got the basics, these tools will supercharge your workflow and unlock new possibilities.
             </p>
-            <div className="space-y-3 text-sm text-gray-700 mb-6">
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>$47-$97</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>Lifetime Access</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>Email Support</span>
-              </div>
-            </div>
-            <span className="inline-block px-4 py-2 bg-blue-600 text-white rounded font-semibold group-hover:bg-blue-700 transition text-center">
-              View Courses →
-            </span>
-          </Link>
 
-          {/* Live Workshops */}
-          <Link
-            href="/workshops"
-            className="group relative bg-white rounded-lg border border-gray-200 p-8 hover:border-blue-500 hover:shadow-lg transition-all h-full flex flex-col"
-          >
-            <div className="text-4xl mb-4">🎥</div>
-            <h3 className="text-heading-sm text-foreground font-bold mb-3 group-hover:text-blue-600 transition">
-              Live Workshops
-            </h3>
-            <p className="text-body text-muted mb-6 flex-grow">
-              Interactive 4-hour live sessions with Q&A and 30-day follow-up support.
-            </p>
-            <div className="space-y-3 text-sm text-gray-700 mb-6">
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>$295-$495</span>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center gap-3 text-body-sm">
+                <span className="w-8 h-8 rounded-lg bg-white border border-border flex items-center justify-center text-lg">⚡</span>
+                <span className="text-foreground font-medium">Zapier</span>
+                <span className="text-muted">— Connect your apps</span>
               </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>Live + Recording</span>
+              <div className="flex items-center gap-3 text-body-sm">
+                <span className="w-8 h-8 rounded-lg bg-white border border-border flex items-center justify-center text-lg">🔍</span>
+                <span className="text-foreground font-medium">Perplexity</span>
+                <span className="text-muted">— AI-powered research</span>
               </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span>30-Day Support</span>
+              <div className="flex items-center gap-3 text-body-sm">
+                <span className="w-8 h-8 rounded-lg bg-white border border-border flex items-center justify-center text-lg">📊</span>
+                <span className="text-foreground font-medium">Notion AI</span>
+                <span className="text-muted">— Smart documentation</span>
               </div>
             </div>
-            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded font-semibold group-hover:bg-blue-600 group-hover:text-white transition text-center">
-              Book a Workshop →
-            </span>
+
+            <div className="flex items-center text-accent font-semibold gap-2 transition-all">
+              Explore Power Tools
+              <svg className="w-5 h-5 arrow-slide" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
           </Link>
         </div>
       </div>

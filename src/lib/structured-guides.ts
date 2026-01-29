@@ -491,6 +491,88 @@ export const structuredGuides: StructuredGuide[] = [
     toolSlugs: ['claude-code'],
     tags: ['reference', 'complete-guide'],
   },
+  {
+    slug: 'clawd-bot-setup',
+    title: 'Set Up Clawd.bot (Your Personal AI Assistant)',
+    subtitle: 'Complete setup guide for beginners. Mac, Windows, Telegram, WhatsApp.',
+    description: 'Install and configure Clawd.bot, your own personal AI assistant that runs on your computer. Covers Mac and Windows setup, plus Telegram and WhatsApp integration.',
+    readTime: 20,
+    difficulty: 'beginner',
+    whyThisMatters: 'Clawd.bot gives you a personal AI assistant that stays private—everything runs on your computer, not in the cloud. Control who talks to it, what it can do, and where your data goes.',
+    whatYoullGet: [
+      'Clawd.bot installed and running on your computer',
+      'Connected to Telegram or WhatsApp so you can chat with AI from your phone',
+      'Full control over your AI assistant',
+      'Complete privacy—no cloud required',
+    ],
+    timeToValue: '30 min complete setup',
+    sections: [
+      {
+        title: 'What You\'ll Need Before Starting',
+        bullets: [
+          'A Mac or Windows computer',
+          'An API key from Anthropic, OpenAI, or MiniMax',
+          'A phone (for Telegram or WhatsApp)',
+          '30 minutes of uninterrupted time',
+        ],
+        warning: 'WhatsApp works best with a dedicated phone number (old phone or eSIM recommended)',
+      },
+      {
+        title: 'Mac Setup (Easiest)',
+        bullets: [
+          'Install Homebrew (package manager)',
+          'Install NVM (Node Version Manager)',
+          'Install Node.js 22+',
+          'Install pnpm and Clawd.bot',
+          'Run the setup wizard',
+        ],
+        proTip: 'If you already have Homebrew and Node.js, you\'re done in 5 minutes.',
+      },
+      {
+        title: 'Windows Setup (Via WSL2)',
+        bullets: [
+          'Install WSL2 (Windows Subsystem for Linux)',
+          'Install Ubuntu inside WSL2',
+          'Install Node.js, pnpm, and Clawd.bot',
+          'Run the setup wizard',
+          'Enable systemd for background service',
+        ],
+        warning: 'Windows native install isn\'t supported. WSL2 is the way to go.',
+      },
+      {
+        title: 'Connect Telegram',
+        bullets: [
+          'Create a bot with @BotFather on Telegram',
+          'Copy your bot token',
+          'Configure it in Clawd.bot',
+          'Start chatting',
+        ],
+        proTip: 'Telegram setup takes 5 minutes total.',
+      },
+      {
+        title: 'Connect WhatsApp',
+        bullets: [
+          'Get a QR code from Clawd.bot',
+          'Scan it with WhatsApp → Settings → Linked Devices',
+          'Start chatting',
+        ],
+        warning: 'Requires a real phone number (not virtual numbers). WhatsApp blocks Google Voice, TextNow, etc.',
+      },
+      {
+        title: 'Troubleshooting',
+        bullets: [
+          'Use `clawdbot doctor` to diagnose most issues',
+          'Check `clawdbot status` to see if everything is running',
+          'View live logs with `clawdbot logs --follow`',
+          'See full guide for common errors and fixes',
+        ],
+        proTip: '90% of setup issues are fixed by running `clawdbot doctor`',
+      },
+    ],
+    toolSlugs: ['clawd-bot'],
+    tags: ['setup', 'beginner', 'complete-guide', 'telegram', 'whatsapp'],
+    nextGuide: undefined,
+  },
 ]
 
 export function getStructuredGuideBySlug(slug: string): StructuredGuide | undefined {

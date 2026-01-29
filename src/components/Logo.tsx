@@ -3,25 +3,25 @@ interface LogoProps {
   size?: "sm" | "md" | "lg"
 }
 
-export function Logo({ showText = false, size = "md" }: LogoProps) {
+export function Logo({ showText = true, size = "md" }: LogoProps) {
   const sizes = {
-    sm: "w-8 h-8",
-    md: "w-10 h-10",
-    lg: "w-14 h-14",
+    sm: { icon: "w-7 h-7", text: "text-lg" },
+    md: { icon: "w-8 h-8", text: "text-xl" },
+    lg: { icon: "w-10 h-10", text: "text-2xl" },
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2.5">
       {/* The SVG Icon: Three blue books with constellation patterns */}
       <svg
         viewBox="0 0 100 100"
-        className={`${sizes[size]} overflow-visible`}
+        className={`${sizes[size].icon} overflow-visible`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         {/* Book 1 - Vertical (Darkest Blue) */}
-        <rect x="25" y="20" width="12" height="60" rx="2" fill="#2563eb" />
-        <rect x="25" y="20" width="4" height="60" rx="0" fill="#1d4ed8" />
+        <rect x="25" y="20" width="12" height="60" rx="2" fill="#0071E3" />
+        <rect x="25" y="20" width="4" height="60" rx="0" fill="#0062CC" />
         {/* Constellation on Book 1 */}
         <circle cx="33" cy="35" r="1.2" fill="#93c5fd" />
         <circle cx="30" cy="45" r="1.2" fill="#93c5fd" />
@@ -33,8 +33,8 @@ export function Logo({ showText = false, size = "md" }: LogoProps) {
 
         {/* Book 2 - Leaning 15 deg (Medium Blue) */}
         <g transform="rotate(-15, 45, 80)">
-          <rect x="45" y="25" width="12" height="55" rx="2" fill="#3b82f6" />
-          <rect x="45" y="25" width="4" height="55" rx="0" fill="#2563eb" />
+          <rect x="45" y="25" width="12" height="55" rx="2" fill="#147CE5" />
+          <rect x="45" y="25" width="4" height="55" rx="0" fill="#0071E3" />
           {/* Constellation on Book 2 */}
           <circle cx="53" cy="38" r="1.2" fill="#bfdbfe" />
           <circle cx="50" cy="48" r="1.2" fill="#bfdbfe" />
@@ -47,8 +47,8 @@ export function Logo({ showText = false, size = "md" }: LogoProps) {
 
         {/* Book 3 - Leaning 30 deg (Lightest Blue) */}
         <g transform="rotate(-30, 65, 80)">
-          <rect x="65" y="30" width="12" height="50" rx="2" fill="#60a5fa" />
-          <rect x="65" y="30" width="4" height="50" rx="0" fill="#3b82f6" />
+          <rect x="65" y="30" width="12" height="50" rx="2" fill="#3F96E8" />
+          <rect x="65" y="30" width="4" height="50" rx="0" fill="#147CE5" />
           {/* Constellation on Book 3 */}
           <circle cx="73" cy="42" r="1.2" fill="#dbeafe" />
           <circle cx="70" cy="52" r="1.2" fill="#dbeafe" />
@@ -58,13 +58,13 @@ export function Logo({ showText = false, size = "md" }: LogoProps) {
         </g>
 
         {/* Ground/Shelf Line */}
-        <line x1="20" y1="80" x2="90" y2="80" stroke="#e2e8f0" strokeWidth="2" strokeLinecap="round" />
+        <line x1="20" y1="80" x2="90" y2="80" stroke="#E8E8ED" strokeWidth="2" strokeLinecap="round" />
       </svg>
 
-      {/* The Branding Text (optional) */}
+      {/* The Branding Text */}
       {showText && (
-        <span className="text-2xl font-bold tracking-tight text-slate-900">
-          Practical<span className="text-blue-600">Library</span>
+        <span className={`${sizes[size].text} font-semibold tracking-tight text-foreground`}>
+          Practical<span className="text-accent">Library</span>
         </span>
       )}
     </div>

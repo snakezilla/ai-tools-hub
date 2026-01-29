@@ -1,25 +1,28 @@
 import { Metadata } from 'next'
 import { Hero } from "@/components/Hero"
+import { ValueProps } from "@/components/ValueProps"
 import { LearningPaths } from "@/components/LearningPaths"
-import { ToolsGrid } from "@/components/ToolsGrid"
-import { ROICalculator } from "@/components/ROICalculator"
+import { Testimonials } from "@/components/Testimonials"
+import { ServicesUpsell } from "@/components/ServicesUpsell"
 
 export const metadata: Metadata = {
-  title: 'AI Tools Hub - Master Claude Code & AI Automation',
-  description: 'Learn Claude Code, AI automation, and productivity tools through interactive guides, courses, and skill training. Master AI tools from beginner to advanced levels.',
+  title: 'Practical Library — Learn AI Tools Without the Tech Jargon',
+  description: 'If you can send an email, you can use AI. Learn Claude Code, Manus AI, and automation tools through free, step-by-step guides designed for non-technical business owners.',
   keywords: [
     'Claude Code',
-    'AI tools',
-    'automation',
-    'productivity',
+    'AI tools for business',
+    'learn AI',
+    'no code AI',
+    'AI automation',
+    'Manus AI',
     'Claude AI',
-    'AI learning',
-    'technical guides',
-    'programming skills',
+    'AI for non-technical',
+    'business automation',
+    'AI guides',
   ],
   openGraph: {
-    title: 'AI Tools Hub - Master Claude Code & AI Automation',
-    description: 'Learn Claude Code, AI automation, and productivity tools through interactive guides, courses, and skill training.',
+    title: 'Practical Library — Learn AI Tools Without the Tech Jargon',
+    description: 'If you can send an email, you can use AI. Free guides for non-technical business owners.',
     url: 'https://practicallibrary.com',
     type: 'website',
     images: [
@@ -27,14 +30,14 @@ export const metadata: Metadata = {
         url: 'https://practicallibrary.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'AI Tools Hub - Master Claude Code',
+        alt: 'Practical Library - AI Tools for Everyone',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Tools Hub - Master Claude Code & AI Automation',
-    description: 'Learn Claude Code, AI automation, and productivity tools through interactive guides, courses, and skill training.',
+    title: 'Practical Library — Learn AI Tools Without the Tech Jargon',
+    description: 'If you can send an email, you can use AI. Free guides for non-technical business owners.',
     images: ['https://practicallibrary.com/og-image.png'],
   },
   robots: {
@@ -47,9 +50,10 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ToolsGrid />
+      <ValueProps />
       <LearningPaths />
-      <ROICalculator />
+      <Testimonials />
+      <ServicesUpsell />
     </>
   )
 }

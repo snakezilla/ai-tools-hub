@@ -1,0 +1,690 @@
+# Complete Clawd.bot Setup Guide for Beginners
+
+**Welcome!** This guide will walk you through setting up Clawd.bot from scratch, even if you've never used Terminal before. We'll cover Mac and Windows, and set you up with Telegram or WhatsApp.
+
+> **What is Clawd.bot?** It's your own personal AI assistant that runs on your computer (not in the cloud). You control it completely, and it connects to messaging apps like Telegram or WhatsApp so you can chat with AI from your phone.
+
+---
+
+## Before You Start: What You'll Need
+
+- **A computer** (Mac or Windows)
+- **An API key** from one of these:
+  - [Anthropic Claude](https://console.anthropic.com) (recommended)
+  - [OpenAI](https://platform.openai.com)
+  - MiniMax
+- **A phone number** (for WhatsApp setup)
+- **30 minutes** of uninterrupted time
+
+> **⚠️ Important:** WhatsApp works best with a dedicated phone number (an old phone or eSIM). If using your personal number, you'll receive all messages in your Clawd.bot account.
+
+---
+
+## Part 1: Mac Setup (macOS)
+
+### Step 1: Open Terminal
+
+Terminal is where you type commands to control your Mac.
+
+1. Press **Command (⌘) + Spacebar** to open Spotlight Search
+2. Type `terminal` and press Enter
+3. A black window will open—this is Terminal
+
+> **What you should see:** A window with text and a cursor blinking at the end
+
+### Step 2: Install Homebrew (If Needed)
+
+Homebrew is a "package manager"—it helps you install software on Mac easily.
+
+**Check if you already have Homebrew:**
+```bash
+brew --version
+```
+
+If you see a version number, skip to Step 3.
+
+**If you don't have Homebrew, install it:**
+
+Copy this entire command and paste it into Terminal:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Press Enter and wait. It will ask for your Mac password—type it (you won't see the letters, that's normal). This takes 5-10 minutes.
+
+> **What you should see:** Messages about installation progress, then "Installation successful!"
+
+### Step 3: Install NVM (Node Version Manager)
+
+NVM lets you install and manage different versions of Node.js (software needed to run Clawd.bot).
+
+```bash
+brew install nvm
+```
+
+Press Enter. Wait for it to complete.
+
+> **What you should see:** Messages ending with "Installation successful"
+
+### Step 4: Configure Your Shell
+
+After installing nvm, you need to tell your computer where to find it. Copy and paste this:
+
+```bash
+mkdir -p ~/.nvm
+```
+
+Then add nvm to your shell configuration. Copy and paste this command:
+
+```bash
+cat >> ~/.zshrc << 'EOF'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+EOF
+```
+
+Press Enter.
+
+Now reload your Terminal configuration:
+```bash
+source ~/.zshrc
+```
+
+Press Enter.
+
+**Verify nvm is installed:**
+```bash
+nvm --version
+```
+
+> **What you should see:** A version number (example: `0.39.0`)
+
+### Step 5: Install Node.js
+
+Now install Node.js version 22 (required for Clawd.bot):
+
+```bash
+nvm install 22
+nvm use 22
+```
+
+Wait for both commands to complete.
+
+**Verify Node.js is installed:**
+```bash
+node --version
+```
+
+> **What you should see:** Something like `v22.x.x` (x's are numbers)
+
+### Step 6: Install pnpm (Package Manager)
+
+pnpm helps manage software packages for Clawd.bot:
+
+```bash
+npm install -g pnpm
+```
+
+**Verify pnpm is installed:**
+```bash
+pnpm --version
+```
+
+> **What you should see:** A version number
+
+### Step 7: Install Clawd.bot
+
+```bash
+npm install -g clawdbot@latest
+```
+
+This downloads and installs Clawd.bot globally on your Mac. Wait for it to complete.
+
+**Verify Clawd.bot is installed:**
+```bash
+clawdbot --version
+```
+
+> **What you should see:** A version number
+
+### Step 8: Run the Setup Wizard
+
+This is the main setup. Copy and paste:
+
+```bash
+clawdbot onboard --install-daemon
+```
+
+Press Enter. The wizard will ask you several questions:
+
+**Question 1: "Choose a model provider"**
+- Type `1` for Anthropic Claude (recommended)
+- Or type `2` for OpenAI, etc.
+- Press Enter
+
+**Question 2: "Enter your API key"**
+- Go to [console.anthropic.com](https://console.anthropic.com)
+- Create an API key if you don't have one
+- Copy it and paste it into Terminal
+- Press Enter
+
+> **⚠️ Important:** Don't share this key with anyone. Treat it like a password.
+
+**Question 3: "Configure channels"**
+- You'll be asked about Telegram or WhatsApp
+- Choose which platform you want to use
+- Follow the steps in "Part 2" or "Part 3" below
+
+**Question 4: "Enable daemon (runs in background)"**
+- Answer `yes` when asked
+- This makes Clawd.bot start automatically
+
+**Verify setup is working:**
+
+After the wizard completes, check the status:
+```bash
+clawdbot status
+```
+
+> **What you should see:** A message saying the gateway is running and services are active
+
+🎉 **Mac setup is complete!** Move to Part 2 or Part 3 to connect Telegram or WhatsApp.
+
+---
+
+## Part 2: Windows Setup (Using WSL2)
+
+> **Why WSL2?** Windows doesn't natively support Clawd.bot well. WSL2 (Windows Subsystem for Linux) creates a mini Linux environment inside Windows where everything works perfectly.
+
+### Step 1: Open PowerShell as Administrator
+
+1. Press **Windows key** and type `powershell`
+2. Right-click on "PowerShell" and select "Run as administrator"
+3. Click "Yes" when asked for permission
+
+> **What you should see:** A blue window with `PS C:\Users\YourName>` at the bottom
+
+### Step 2: Install WSL2
+
+Copy and paste this command:
+
+```powershell
+wsl --install -d Ubuntu-24.04
+```
+
+Press Enter. This downloads and installs Ubuntu Linux inside Windows. **It will take 5-10 minutes.**
+
+> **What you should see:** Messages about downloading and installing. When done, you'll see `Installation successful!`
+
+### Step 3: Restart Your Computer
+
+After WSL2 installation completes, restart your computer. This is important.
+
+### Step 4: Set Up Ubuntu
+
+After restart, Ubuntu will start automatically. It will ask you to create a username and password:
+
+- **Username:** Pick something short (example: `clawd`)
+- **Password:** Pick a strong password (you won't see it as you type—that's normal)
+
+> **What you should see:** After entering password twice, you're in Ubuntu Terminal (looks like: `username@computer-name:~$`)
+
+### Step 5: Update Ubuntu
+
+Copy and paste:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+Enter your Ubuntu password when asked. Wait for it to complete (2-5 minutes).
+
+### Step 6: Install NVM
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+
+Press Enter. This installs NVM.
+
+Reload your shell configuration:
+```bash
+source ~/.bashrc
+```
+
+**Verify NVM is installed:**
+```bash
+nvm --version
+```
+
+> **What you should see:** A version number
+
+### Step 7: Install Node.js
+
+```bash
+nvm install 22
+nvm use 22
+```
+
+**Verify Node.js:**
+```bash
+node --version
+```
+
+> **What you should see:** Something like `v22.x.x`
+
+### Step 8: Install pnpm
+
+```bash
+npm install -g pnpm
+```
+
+**Verify pnpm:**
+```bash
+pnpm --version
+```
+
+> **What you should see:** A version number
+
+### Step 9: Install Clawd.bot
+
+```bash
+npm install -g clawdbot@latest
+```
+
+**Verify Clawd.bot:**
+```bash
+clawdbot --version
+```
+
+> **What you should see:** A version number
+
+### Step 10: Run the Setup Wizard
+
+```bash
+clawdbot onboard --install-daemon
+```
+
+The wizard will guide you through:
+- **Choose a model provider** (Anthropic recommended)
+- **Enter your API key** (from [console.anthropic.com](https://console.anthropic.com))
+- **Configure channels** (Telegram or WhatsApp—see Part 2 or 3 below)
+- **Enable daemon** (answer `yes`)
+
+**Verify setup:**
+```bash
+clawdbot status
+```
+
+> **What you should see:** Gateway running, services active
+
+### Step 11: Enable SystemD (Required for Daemon)
+
+The daemon needs systemd enabled:
+
+```bash
+sudo tee /etc/wsl.conf > /dev/null << EOF
+[boot]
+systemd=true
+EOF
+```
+
+Now close Ubuntu and restart it:
+```bash
+exit
+```
+
+In PowerShell (Windows), restart WSL:
+```powershell
+wsl --shutdown
+```
+
+Start Ubuntu again by pressing Windows key and typing "Ubuntu", then press Enter.
+
+🎉 **Windows setup is complete!** Move to Part 2 or Part 3 to connect Telegram or WhatsApp.
+
+---
+
+## Part 3: Set Up Telegram
+
+### What You'll Need
+
+- Telegram app on your phone (install from App Store or Google Play)
+- A Telegram account (or create one)
+- Your Clawd.bot running on Mac/Windows
+
+### Step 1: Create a Telegram Bot
+
+1. Open Telegram on your phone
+2. Search for `@BotFather` (with the @ symbol)
+3. Open the BotFather chat
+4. Type `/newbot` and press Enter
+5. BotFather asks for a **name** for your bot:
+   - Example: "My AI Assistant"
+   - Type it and press Enter
+6. BotFather asks for a **username** (must end with "bot"):
+   - Example: `my_ai_assistant_bot`
+   - Type it and press Enter
+
+> **What you should see:** A long string starting with numbers. This is your **Bot Token**. Copy it.
+
+### Step 2: Configure Telegram in Clawd.bot
+
+On your Mac/Windows Terminal (not phone):
+
+```bash
+clawdbot configure --section channels.telegram.botToken
+```
+
+When prompted, paste your Bot Token from BotFather. Press Enter.
+
+**Verify configuration:**
+```bash
+clawdbot status
+```
+
+> **Look for:** Telegram listed under "Channels" as "connected" or "active"
+
+### Step 3: Start Using Telegram
+
+1. On your phone, open Telegram
+2. Search for your bot's username (example: `@my_ai_assistant_bot`)
+3. Open the chat
+4. Send any message
+
+> **What you should see (first time):** Clawd.bot sends you a pairing code (a short code). You need to approve it.
+
+### Step 4: Approve the Pairing
+
+On your Mac/Windows Terminal:
+
+```bash
+clawdbot status --all
+```
+
+Look for the pairing code. Then:
+
+```bash
+clawdbot config approve-pairing [pairing-code]
+```
+
+Replace `[pairing-code]` with the actual code.
+
+Now try messaging your bot again on Telegram. It should respond!
+
+> **⚠️ If it doesn't respond:**
+> - Make sure gateway is running: `clawdbot status`
+> - Check logs: `clawdbot logs --follow`
+> - See "Troubleshooting" section below
+
+🎉 **Telegram is connected!**
+
+---
+
+## Part 4: Set Up WhatsApp
+
+### What You'll Need
+
+- WhatsApp on your phone (install from App Store or Google Play)
+- A **real phone number** (not a fake one):
+  - Recommended: Spare Android phone with eSIM
+  - Fallback: Your personal number
+  - ❌ Don't use: Virtual numbers like Google Voice (blocked by WhatsApp)
+- Your Clawd.bot running on Mac/Windows
+
+> **Why a real number?** WhatsApp verifies you're a real person by sending an SMS code.
+
+### Step 1: Get Your Bot's QR Code
+
+On your Mac/Windows Terminal:
+
+```bash
+clawdbot channels login
+```
+
+This will display a QR code in Terminal.
+
+### Step 2: Scan the QR Code
+
+On your phone:
+
+1. Open WhatsApp
+2. Go to **Settings** → **Linked Devices**
+3. Tap **Link a device**
+4. Point your phone at the QR code in Terminal
+5. WhatsApp will verify and link the device
+
+> **What you should see:** WhatsApp shows "device linked" and you can start using it
+
+### Step 3: Test It
+
+1. Open WhatsApp on your phone
+2. Find the chat with your Clawd.bot
+3. Send a message
+
+> **What you should see:** Clawd.bot responds within a few seconds
+
+> **⚠️ If you see errors or the gateway seems slow,** check Part 5: Troubleshooting below.
+
+### Step 4: Optional - Configure Who Can Chat
+
+By default, anyone with your phone number can message your bot. You can restrict this:
+
+```bash
+clawdbot config set channels.whatsapp.allowFrom '["1234567890","9876543210"]'
+```
+
+Replace the numbers with actual WhatsApp numbers (country code + number, no spaces).
+
+🎉 **WhatsApp is connected!**
+
+---
+
+## Part 5: Troubleshooting
+
+### Problem 1: "Command not found: clawdbot"
+
+**Solution:**
+
+Make sure installation completed. Try:
+
+```bash
+npm install -g clawdbot@latest
+```
+
+If still doesn't work:
+
+**Mac:** Make sure nvm is active:
+```bash
+nvm use 22
+```
+
+**Windows:** Restart Ubuntu:
+```bash
+exit
+```
+
+Then open Ubuntu again.
+
+### Problem 2: "Health check failed: gateway closed"
+
+This means the gateway isn't starting properly.
+
+**Quick Fix:**
+
+```bash
+clawdbot doctor
+```
+
+This tool checks your setup and often fixes issues automatically. If it asks to restart the gateway, say yes.
+
+**If that doesn't work:**
+
+```bash
+clawdbot gateway restart
+```
+
+Then check:
+```bash
+clawdbot status
+```
+
+### Problem 3: Bot Doesn't Respond on Telegram/WhatsApp
+
+**Check 1: Is the gateway running?**
+
+```bash
+clawdbot status
+```
+
+Should show "Gateway: Active" or "Running".
+
+**Check 2: Is the channel connected?**
+
+```bash
+clawdbot status
+```
+
+Look for Telegram or WhatsApp. Should say "connected" or "active".
+
+**Check 3: Read the logs**
+
+```bash
+clawdbot logs --follow
+```
+
+Send a message on Telegram/WhatsApp and watch the logs. You'll see errors if something is wrong. Press Ctrl+C to stop watching logs.
+
+**If API key is missing:**
+
+```bash
+clawdbot models auth setup-token
+```
+
+Enter your API key again.
+
+### Problem 4: "No such file or directory" (Windows WSL)
+
+This usually means a file wasn't found. Try:
+
+```bash
+clawdbot doctor --fix
+```
+
+This repairs common issues. Then:
+
+```bash
+clawdbot status
+```
+
+### Problem 5: WhatsApp Says "Device No Longer Available"
+
+This means the connection dropped. Fix it:
+
+```bash
+clawdbot channels logout
+clawdbot channels login
+```
+
+Scan the QR code again with WhatsApp → Settings → Linked Devices.
+
+### Still Stuck?
+
+1. Run the doctor tool:
+   ```bash
+   clawdbot doctor
+   ```
+
+2. Check the full logs:
+   ```bash
+   clawdbot logs --follow
+   ```
+
+3. Visit [docs.clawd.bot/help/faq](https://docs.clawd.bot/help/faq) for more answers
+
+4. Search GitHub issues: [github.com/clawdbot/clawdbot/issues](https://github.com/clawdbot/clawdbot/issues)
+
+---
+
+## Part 6: Common Questions
+
+### Q: Does my computer need to stay on?
+
+**A:** Yes, for now. Clawd.bot runs as a background service on your computer. If you shut down your computer, the bot goes offline. Future versions may support cloud hosting.
+
+### Q: Is my data private?
+
+**A:** Yes! All conversations, credentials, and files stay on your computer. Nothing goes to Clawd.bot's servers.
+
+### Q: Can I use multiple messaging apps?
+
+**A:** Yes! You can configure Telegram, WhatsApp, Discord, Slack, Signal, and others. Just run the configuration wizard again for each one.
+
+### Q: Can I move the bot to another computer?
+
+**A:** Yes, but it's complex. Your credentials are stored in `~/.clawdbot/`. You can copy this folder to another computer, but you'll need to re-authenticate WhatsApp by scanning the QR code again.
+
+### Q: Which API key should I use?
+
+**A:**
+- **Anthropic Claude** (recommended): Best quality, free tier available at [console.anthropic.com](https://console.anthropic.com)
+- **OpenAI**: Works well, requires paid subscription
+- **MiniMax**: Budget option
+
+### Q: Can I run multiple bots?
+
+**A:** Yes, but they'll need separate configurations and directories. Advanced topic—check the docs.
+
+### Q: What if I want to stop Clawd.bot?
+
+**A:**
+```bash
+clawdbot gateway stop
+```
+
+To restart:
+```bash
+clawdbot gateway start
+```
+
+---
+
+## Next Steps
+
+Congratulations! Your Clawd.bot is now running. Here's what you can do next:
+
+1. **Chat with it** on Telegram or WhatsApp
+2. **Configure skills** (tools the bot can use):
+   ```bash
+   clawdbot configure --section skills
+   ```
+3. **Set up web search** (Brave Search API):
+   ```bash
+   clawdbot configure --section web
+   ```
+4. **Explore the web dashboard**:
+   - Open browser and go to `http://127.0.0.1:18789/`
+5. **Read advanced docs**: [docs.clawd.bot](https://docs.clawd.bot)
+
+---
+
+## Resources
+
+- **Official Docs:** [docs.clawd.bot](https://docs.clawd.bot)
+- **GitHub:** [github.com/clawdbot/clawdbot](https://github.com/clawdbot/clawdbot)
+- **Discord Community:** [discord.gg/clawdbot](https://discord.gg/clawdbot) (if available)
+- **FAQ:** [docs.clawd.bot/help/faq](https://docs.clawd.bot/help/faq)
+- **Troubleshooting:** [docs.clawd.bot/gateway/troubleshooting](https://docs.clawd.bot/gateway/troubleshooting)
+
+---
+
+## Feedback
+
+Having trouble? Found an issue with this guide?
+
+- Report bugs: [github.com/clawdbot/clawdbot/issues](https://github.com/clawdbot/clawdbot/issues)
+- Ask questions: Check the FAQ first, then GitHub Discussions
+- Suggest improvements to this guide: (Contact ai-tools-hub maintainers)
+
+Happy chatting! 🚀

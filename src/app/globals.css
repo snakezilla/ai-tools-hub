@@ -4,95 +4,216 @@
 
 @layer base {
   :root {
-    --background: #FAFAFA;
-    --foreground: #0A0A0A;
+    --background: #FEFEFE;
+    --foreground: #1D1D1F;
   }
 
   html {
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     color: var(--foreground);
     background: var(--background);
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Large, readable typography defaults */
+  /* Apple-style typography hierarchy */
   h1 {
-    @apply text-heading-xl tracking-tight text-balance;
+    @apply text-heading-xl md:text-heading-2xl tracking-tight text-balance text-foreground;
   }
 
   h2 {
-    @apply text-heading-lg tracking-tight text-balance;
+    @apply text-heading-md md:text-heading-lg tracking-tight text-balance text-foreground;
   }
 
   h3 {
-    @apply text-heading-md tracking-tight;
+    @apply text-heading-sm md:text-heading-md tracking-tight text-foreground;
   }
 
   h4 {
-    @apply text-heading-sm;
+    @apply text-heading-xs md:text-heading-sm text-foreground;
   }
 
   p {
-    @apply text-body leading-relaxed;
+    @apply text-body leading-relaxed text-muted;
+  }
+
+  /* Better focus states */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
+  }
+
+  /* Selection colors */
+  ::selection {
+    @apply bg-accent/20 text-foreground;
   }
 }
 
 @layer components {
-  /* Card styles - clean, minimal shadows */
+  /* Premium card styles */
   .card {
-    @apply bg-card rounded-card shadow-card transition-shadow duration-200;
+    @apply bg-card rounded-card shadow-card transition-all duration-300 ease-out-expo;
   }
 
   .card:hover {
-    @apply shadow-card-hover;
+    @apply shadow-card-hover transform -translate-y-0.5;
   }
 
-  /* Button styles */
+  .card-elevated {
+    @apply bg-card-elevated rounded-card-lg shadow-card-elevated;
+  }
+
+  /* Button system - Apple-inspired */
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-button font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 ease-out
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 
+           disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .btn-primary {
-    @apply btn bg-accent text-white hover:bg-accent-dark;
+    @apply btn px-6 py-3.5 bg-accent text-white rounded-button-lg shadow-button
+           hover:bg-accent-dark hover:shadow-button-hover hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-button
+           focus-visible:ring-accent;
+  }
+
+  .btn-primary-lg {
+    @apply btn px-8 py-4 text-lg bg-accent text-white rounded-button-lg shadow-button
+           hover:bg-accent-dark hover:shadow-button-hover hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-button
+           focus-visible:ring-accent;
   }
 
   .btn-secondary {
-    @apply btn bg-card text-foreground border border-border hover:bg-card-hover;
+    @apply btn px-6 py-3.5 bg-card text-foreground border border-border rounded-button-lg
+           hover:bg-card-hover hover:border-muted-foreground hover:-translate-y-0.5
+           active:translate-y-0 focus-visible:ring-accent;
+  }
+
+  .btn-ghost {
+    @apply btn px-4 py-2 text-accent bg-transparent
+           hover:bg-accent-muted rounded-button
+           focus-visible:ring-accent;
+  }
+
+  .btn-text {
+    @apply inline-flex items-center gap-1.5 text-accent font-semibold
+           hover:gap-2.5 transition-all duration-200;
   }
 
   /* Link styles */
   .link {
-    @apply text-accent hover:text-accent-dark underline-offset-4 hover:underline transition-colors;
+    @apply text-accent hover:text-accent-dark underline-offset-4 
+           hover:underline transition-all duration-200;
   }
 
-  /* Section container */
+  .link-subtle {
+    @apply text-muted hover:text-foreground transition-colors duration-200;
+  }
+
+  /* Section containers */
   .section {
-    @apply py-18 md:py-26;
+    @apply py-20 md:py-32;
+  }
+
+  .section-sm {
+    @apply py-12 md:py-20;
   }
 
   .container-content {
-    @apply max-w-content mx-auto px-6 md:px-8;
+    @apply max-w-content mx-auto px-5 sm:px-6 lg:px-8;
   }
 
   .container-narrow {
-    @apply max-w-narrow mx-auto px-6 md:px-8;
+    @apply max-w-narrow mx-auto px-5 sm:px-6 lg:px-8;
   }
 
-  /* Tool card specific */
-  .tool-card {
-    @apply card p-6 md:p-8 flex flex-col gap-6;
+  .container-hero {
+    @apply max-w-hero mx-auto px-5 sm:px-6 lg:px-8;
+  }
+
+  /* Section backgrounds */
+  .section-light {
+    @apply bg-section-light;
+  }
+
+  .section-warm {
+    @apply bg-section-warm;
+  }
+
+  /* Trust bar styling */
+  .trust-bar {
+    @apply flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-body-sm text-muted;
+  }
+
+  .trust-item {
+    @apply flex items-center gap-2;
+  }
+
+  /* Feature card */
+  .feature-card {
+    @apply card p-8 md:p-10 flex flex-col h-full;
+  }
+
+  .feature-icon {
+    @apply w-14 h-14 rounded-2xl bg-accent-muted flex items-center justify-center mb-6;
+  }
+
+  /* Path card - for learning paths */
+  .path-card {
+    @apply card p-6 md:p-8 border border-border hover:border-accent/30 cursor-pointer;
+  }
+
+  .path-card-featured {
+    @apply path-card border-accent/20 bg-gradient-to-b from-accent-muted/30 to-transparent;
+  }
+
+  /* Testimonial card */
+  .testimonial-card {
+    @apply bg-white rounded-card-lg p-6 md:p-8 shadow-soft;
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 text-body-xs font-medium rounded-full;
+  }
+
+  .badge-primary {
+    @apply badge bg-accent-muted text-accent;
+  }
+
+  .badge-success {
+    @apply badge bg-success-light text-success-dark;
+  }
+
+  .badge-muted {
+    @apply badge bg-border-light text-muted;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent to-accent-dark bg-clip-text text-transparent;
+  }
+
+  /* Divider */
+  .divider {
+    @apply h-px bg-gradient-to-r from-transparent via-border to-transparent;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
   }
 
   /* Hide scrollbar but allow scrolling */
@@ -103,5 +224,254 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Smooth image loading */
+  .img-loading {
+    @apply bg-border-light animate-pulse;
+  }
+
+  /* Stagger animation delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
+  /* Glass morphism */
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl;
+  }
+
+  /* Hide on touch devices */
+  @media (hover: none) {
+    .hover-only {
+      display: none;
+    }
+  }
+}
+
+/* Custom scrollbar for larger screens */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d1d1d6;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a6;
+  }
+}
+
+/* =====================================================
+   SCROLL-TRIGGERED ANIMATIONS
+   ===================================================== */
+
+/* Base state for scroll animations */
+.scroll-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Visible state */
+.scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Scale variant */
+.scroll-hidden-scale {
+  opacity: 0;
+  transform: scale(0.95) translateY(16px);
+}
+
+.scroll-visible-scale {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Stagger delays for grid items */
+.stagger-delay-0 { transition-delay: 0ms; }
+.stagger-delay-1 { transition-delay: 80ms; }
+.stagger-delay-2 { transition-delay: 160ms; }
+.stagger-delay-3 { transition-delay: 240ms; }
+.stagger-delay-4 { transition-delay: 320ms; }
+.stagger-delay-5 { transition-delay: 400ms; }
+
+/* =====================================================
+   MICRO-INTERACTIONS
+   ===================================================== */
+
+/* Button press effect */
+.btn-primary:active,
+.btn-primary-lg:active,
+.btn-secondary:active {
+  transform: scale(0.97) translateY(1px);
+  transition-duration: 0.1s;
+}
+
+/* Enhanced card hover */
+.card {
+  will-change: transform, box-shadow;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card:active {
+  transform: translateY(-2px);
+  transition-duration: 0.1s;
+}
+
+/* Feature icon hover bounce */
+.feature-icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1) translateY(-2px);
+}
+
+/* Link underline animation */
+.link-animated {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-animated:hover::after {
+  width: 100%;
+}
+
+/* Arrow slide on hover */
+.arrow-slide {
+  transition: transform 0.2s ease-out;
+}
+
+.group:hover .arrow-slide {
+  transform: translateX(4px);
+}
+
+/* Icon bounce on hover */
+.icon-bounce {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.group:hover .icon-bounce {
+  transform: scale(1.15);
+}
+
+/* Subtle pulse for attention */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 2s ease-in-out infinite;
+}
+
+/* Gradient shift animation */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Testimonial card subtle lift */
+.testimonial-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+}
+
+/* Badge hover effect */
+.badge {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Trust item hover */
+.trust-item {
+  transition: opacity 0.2s ease;
+}
+
+.trust-item:hover {
+  opacity: 0.8;
+}
+
+/* Path card enhanced hover */
+.path-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+.path-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hidden,
+  .scroll-visible,
+  .scroll-hidden-scale,
+  .scroll-visible-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .card,
+  .testimonial-card,
+  .path-card,
+  .feature-icon,
+  .btn-primary,
+  .btn-secondary {
+    transition: none;
+  }
+  
+  .animate-subtle-pulse,
+  .animate-gradient {
+    animation: none;
   }
 }
