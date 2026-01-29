@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/react"
+import { Suspense } from "react"
 import "./globals.css"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
+import { ReferralTracker } from "@/components/ReferralTracker"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -95,6 +97,9 @@ export default function RootLayout({
           <Footer />
         </div>
         <Analytics />
+        <Suspense fallback={null}>
+          <ReferralTracker />
+        </Suspense>
       </body>
     </html>
   )
