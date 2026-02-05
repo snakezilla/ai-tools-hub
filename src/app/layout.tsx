@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Practical Library - Learn AI Tools in 5 Minutes",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Practical Library | Learn AI Tools in 5 Minutes",
     description: "AI tools that save 10+ hours/week. Learn them in 5 minutes.",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: 'article',
     images: [
       {
-        url: 'https://practicallibrary.com/og/clawd-bot-setup.png',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Clawd.bot Setup Guide',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Clawd.bot Setup Guide for Beginners',
     description: 'Install your personal AI assistant in 30 minutes.',
-    images: ['https://practicallibrary.com/og/clawd-bot-setup.png'],
+    images: ['/opengraph-image'],
   },
   alternates: {
     canonical: 'https://practicallibrary.com/guides/clawd-bot-setup',
@@ -47,7 +47,7 @@ export const schemaMarkup = {
   name: 'How to Set Up Clawd.bot',
   description: 'Complete beginner-friendly guide to installing and configuring Clawd.bot on Mac or Windows with Telegram or WhatsApp integration',
   estimatedTime: 'PT30M',
-  image: 'https://practicallibrary.com/og/clawd-bot-setup.png',
+  image: 'https://practicallibrary.com/opengraph-image',
   step: [
     {
       '@type': 'HowToStep',

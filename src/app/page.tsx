@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://practicallibrary.com/og-image.png',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Practical Library - AI Tools for Everyone',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Practical Library — Learn AI Tools Without the Tech Jargon',
     description: 'If you can send an email, you can use AI. Free guides for non-technical business owners.',
-    images: ['https://practicallibrary.com/og-image.png'],
+    images: ['/opengraph-image'],
   },
   robots: {
     index: true,
